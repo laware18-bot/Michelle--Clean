@@ -1,0 +1,3366 @@
+<!-- GHL CUSTOM PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional house cleaning in Gilbert, Chandler, Queen Creek, and Mesa AZ. Licensed, bonded, and insured. Family-owned. Free quote today.">
+  <title>The Clean Cycle AZ | House Cleaning Gilbert AZ</title>
+
+  <!-- Google Fonts: Fraunces (variable, opsz + wght axes) + IBM Plex Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    /* Hallmark · macrostructure: Photographic Fold · genre: warm-trust
+     * nav: N10 scroll-morph pill · footer: Ft3 (local service hub)
+     * tone: warm-trust · anchor hue: teal #2ABFBF
+     * pre-emit critique: P4 H3 E4 S3 R4 V3
+     */
+    /* ============================================================
+       DESIGN SYSTEM — The Clean Cycle AZ
+       Source of truth: DESIGN.md
+       ============================================================ */
+
+    /* ------------------------------------------------------------
+       1. TOKENS
+       ------------------------------------------------------------ */
+    :root {
+      /* --- Colors: anchors --- */
+      --color-navy:    #1B365D;
+      --color-teal:    #2ABFBF;
+
+      /* --- Colors: derived --- */
+      --color-cream:   #F8F4EE;   /* paper surface — warm off-white */
+      --color-cloud:   #EAF5F5;   /* secondary surface — light teal tint */
+      --color-slate:   #4A6B8A;   /* secondary text, muted labels */
+      --color-sand:    #CEC6B4;   /* borders, rules, dividers */
+
+      /* --- Colors: state derivatives --- */
+      --color-teal-hover:     #1FA8A8;
+      --color-teal-active:    #178F8F;
+      --color-navy-hover:     #14284A;
+      --color-disabled-bg:    #C2CDD6;
+      --color-disabled-text:  #8E9FAC;
+      --color-overlay:        rgba(27, 54, 93, 0.72);
+
+      /* --- Typography --- */
+      --font-display: "Fraunces", ui-serif, Georgia, serif;
+      --font-body:    "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
+      /* --- Type scale: major-third ratio (×1.25) from 16px base --- */
+      --text-xs:      0.64rem;     /* 10px */
+      --text-sm:      0.80rem;     /* 13px */
+      --text-base:    1.00rem;     /* 16px */
+      --text-md:      1.25rem;     /* 20px */
+      --text-lg:      1.5625rem;   /* 25px */
+      --text-xl:      1.9531rem;   /* 31px */
+      --text-2xl:     2.4414rem;   /* 39px */
+      --text-display: clamp(2.75rem, 5vw + 1rem, 4.5rem);
+
+      /* --- Spacing: 4pt scale --- */
+      --space-3xs: 0.125rem;   /*  2px */
+      --space-2xs: 0.25rem;    /*  4px */
+      --space-xs:  0.5rem;     /*  8px */
+      --space-sm:  0.75rem;    /* 12px */
+      --space-md:  1rem;       /* 16px */
+      --space-lg:  1.5rem;     /* 24px */
+      --space-xl:  2.5rem;     /* 40px */
+      --space-2xl: 4rem;       /* 64px */
+      --space-3xl: 6rem;       /* 96px */
+      --space-4xl: 9rem;       /* 144px */
+
+      /* --- Section padding rhythm --- */
+      --section-pad-hero:    5rem 0 4rem;
+      --section-pad-default: 4.5rem 0 5rem;
+      --section-pad-tight:   2.5rem 0 3rem;
+
+      /* --- Layout --- */
+      --max-width:       1280px;
+      --max-width-text:  65ch;
+      --page-inset:      clamp(1rem, 4vw, 5rem);
+      --banner-height:   64px;
+      --mobile-bar-h:    56px;
+
+      /* --- Borders & radius --- */
+      --radius-card:   8px;
+      --radius-pill:   9999px;
+      --radius-input:  6px;
+      --radius-modal:  12px;
+      --border-sand:   1px solid var(--color-sand);
+
+      /* --- Shadows --- */
+      --shadow-whisper: 0 1px 2px rgba(27, 54, 93, 0.05);
+      --shadow-hairline: 0 0 0 1px rgba(27, 54, 93, 0.06);
+      --shadow-card-hover: 0 4px 16px rgba(27, 54, 93, 0.10);
+
+      /* --- Z-index scale --- */
+      --z-base:       1;
+      --z-raised:     10;
+      --z-dropdown:   100;
+      --z-sticky:     200;
+      --z-sticky-nav: 300;
+      --z-modal:      400;
+      --z-toast:      500;
+
+
+      /* --- Colors: semantic extras (tokenized from inline hex) --- */
+      --color-error:        #C0392B;   /* form error text */
+      --color-error-border: #E74C3C;   /* form error border/outline */
+      --color-success:      #1A8A60;   /* checklist mark-yes green */
+      --color-navy-deep:    #0F2440;   /* footer background (deeper than navy) */
+      --color-surface-card: #FFFFFF;   /* card surface (white on cream page) */
+      --color-cloud-hover:  #D6EEEE;   /* cloud card hover */
+      --color-table-hover:  #D6EDEC;   /* table row hover */
+
+      /* --- Motion --- */
+      --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-fast:  180ms;
+      --dur-base:  240ms;
+      --dur-slow:  320ms;
+    }
+
+    /* ------------------------------------------------------------
+       2. RESET & BASE
+       ------------------------------------------------------------ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Prevent horizontal scroll from any overflow elements */
+    html { overflow-x: clip; }
+    body { overflow-x: clip; }
+
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--color-navy);
+      background-color: var(--color-cream);
+      /* Reserve space at bottom for mobile bar */
+      padding-bottom: var(--mobile-bar-h);
+    }
+
+    @media (min-width: 768px) {
+      body { padding-bottom: 0; }
+    }
+
+    img, video, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: var(--color-teal);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    a:hover { color: var(--color-teal-hover); }
+    a:focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* Buttons: base reset */
+    button {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: none;
+      line-height: 1;
+    }
+    button:focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 2px;
+    }
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* Inputs: base reset */
+    input, select, textarea {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 400;
+      color: var(--color-navy);
+      background-color: var(--color-surface-card);
+      border: 1px solid var(--color-sand);
+      border-radius: var(--radius-input);
+      padding: 0 var(--space-md);
+      height: 44px;
+      width: 100%;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      transition: border-color var(--dur-fast) var(--ease-out); /* outline instant per gate 15 */
+    }
+    textarea {
+      height: auto;
+      min-height: 100px;
+      padding: var(--space-sm) var(--space-md);
+      resize: vertical;
+    }
+    input:hover, select:hover, textarea:hover {
+      border-color: var(--color-slate);
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--color-teal);
+      outline-color: var(--color-teal);
+    }
+    input::placeholder, textarea::placeholder {
+      color: var(--color-disabled-text);
+    }
+    input:disabled, select:disabled, textarea:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      background-color: var(--color-disabled-bg);
+    }
+    /* Reserve space for helper/error text — prevents layout shift */
+    .field-helper {
+      display: block;
+      min-height: 1lh;
+      font-size: var(--text-sm);
+      color: var(--color-slate);
+      margin-top: var(--space-2xs);
+    }
+    .field-helper--error { color: var(--color-error); }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ------------------------------------------------------------
+       3. LAYOUT UTILITIES
+       ------------------------------------------------------------ */
+
+    /* Page-width wrapper */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: var(--page-inset);
+    }
+
+    /* Full-bleed (ignores max-width) */
+    .full-bleed {
+      width: 100%;
+    }
+
+    /* Two-column grids — activate at 1024px */
+    .grid-40-60 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .grid-40-60 {
+        grid-template-columns: 2fr 3fr;
+      }
+    }
+
+    .grid-60-40 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .grid-60-40 {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    .grid-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+    .grid-hero > * { min-width: 0; }
+    @media (min-width: 1024px) {
+      .grid-hero {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    /* 2-column equal at 768px+ */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .grid-2col { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* 3-column at 1024px+ */
+    .grid-3col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 1024px) {
+      .grid-3col { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Flex row utility */
+    .flex-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    /* Text alignment */
+    .text-left  { text-align: left; }
+    .text-center { text-align: center; }
+
+    /* Screen-reader only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ------------------------------------------------------------
+       4. TYPOGRAPHY HELPERS
+       ------------------------------------------------------------ */
+    .display {
+      font-family: var(--font-display);
+      font-size: var(--text-display);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .heading-2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .heading-3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+    }
+
+    .heading-card {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .lede {
+      font-size: var(--text-md);
+      font-weight: 400;
+      line-height: 1.55;
+      max-width: var(--max-width-text);
+    }
+
+    .label, .eyebrow {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--color-slate);
+    }
+
+    .services-lede {
+      font-size: var(--text-md);
+      color: var(--color-slate);
+      line-height: 1.55;
+      max-width: 52ch;
+      margin-top: var(--space-md);
+    }
+
+    /* ------------------------------------------------------------
+       5. BUTTONS
+       ------------------------------------------------------------ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      padding: 0 var(--space-xl);
+      height: 48px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: var(--text-base);
+      white-space: nowrap;
+      text-decoration: none;
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+    }
+
+    /* Primary: teal fill, navy text */
+    .btn--primary {
+      background-color: var(--color-teal);
+      color: var(--color-navy);
+    }
+    .btn--primary:hover {
+      background-color: var(--color-teal-hover);
+      color: var(--color-navy);
+      text-decoration: none;
+    }
+    .btn--primary:active { background-color: var(--color-teal-active); }
+
+    /* Secondary: navy fill, cream text */
+    .btn--secondary {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+    }
+    .btn--secondary:hover {
+      background-color: var(--color-navy-hover);
+      color: var(--color-cream);
+      text-decoration: none;
+    }
+
+    /* Ghost: transparent, navy border+text */
+    .btn--ghost {
+      background-color: transparent;
+      color: var(--color-navy);
+      box-shadow: inset 0 0 0 1.5px var(--color-navy);
+    }
+    .btn--ghost:hover {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+      text-decoration: none;
+    }
+
+    /* Ghost on dark (cream border) */
+    .btn--ghost-light {
+      background-color: transparent;
+      color: var(--color-cream);
+      box-shadow: inset 0 0 0 1.5px var(--color-cream);
+    }
+    .btn--ghost-light:hover {
+      background-color: var(--color-cream);
+      color: var(--color-navy);
+      text-decoration: none;
+    }
+
+    /* Disabled state — all three required signals */
+    .btn:disabled,
+    .btn[aria-disabled="true"] {
+      background-color: var(--color-disabled-bg);
+      color: var(--color-disabled-text);
+      cursor: not-allowed;
+      opacity: 0.55;
+      box-shadow: none;
+    }
+
+    /* ------------------------------------------------------------
+       6. THE CYCLE MARK (signature element)
+          300° open SVG arc — used in exactly 3 places.
+       ------------------------------------------------------------ */
+    .cycle-mark {
+      display: block;
+      flex-shrink: 0;
+    }
+    .cycle-mark--lg  { width: 80px;  height: 80px;  }
+    .cycle-mark--md  { width: 48px;  height: 48px;  }
+    .cycle-mark--sm  { width: 20px;  height: 20px;  }
+
+    /* ------------------------------------------------------------
+       7. NAVBAR
+       ------------------------------------------------------------ */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-sticky-nav);
+      padding: var(--space-md) var(--page-inset);
+      /* Transparent at top of page */
+      background-color: transparent;
+      transition:
+        background-color var(--dur-base) var(--ease-out),
+        padding var(--dur-base) var(--ease-out);
+    }
+
+    /* Scrolled state: morphs into floating pill */
+    #navbar.is-scrolled {
+      background-color: transparent; /* pill handles bg */
+      padding: var(--space-sm) var(--page-inset);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      line-height: 1;
+    }
+
+    /* Pill shell — hidden at top, visible on scroll */
+    .navbar__pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 900px;
+      margin-inline: auto;
+      background-color: transparent;
+      border-radius: var(--radius-pill);
+      padding: var(--space-sm) var(--space-lg);
+      transition:
+        background-color var(--dur-base) var(--ease-out),
+        box-shadow var(--dur-base) var(--ease-out);
+    }
+
+    #navbar.is-scrolled .navbar__pill {
+      background-color: var(--color-navy);
+      box-shadow: 0 4px 24px rgba(27, 54, 93, 0.18);
+    }
+
+    /* Logo — always shown white (hero is dark; pill bg is also navy) */
+    .navbar__logo {
+      display: block;
+      height: 40px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      transition: opacity var(--dur-fast) var(--ease-out);
+    }
+    .navbar__logo:hover { opacity: 0.85; }
+
+    .navbar__wordmark {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    /* Phone link — desktop only */
+    .navbar__phone {
+      display: none;
+      align-items: center;
+      gap: var(--space-xs);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      color: var(--color-cream);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .navbar__phone:hover { color: var(--color-teal); }
+    @media (min-width: 1024px) {
+      .navbar__phone { display: flex; }
+    }
+
+    .navbar__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-shrink: 0;
+    }
+
+    .navbar__links {
+      display: none;
+      list-style: none;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .navbar__links { display: flex; }
+    }
+
+    /* Nav links: cream in both states (hero is dark; pill bg is navy) */
+    .navbar__links a {
+      font-weight: 500;
+      font-size: var(--text-base);
+      color: var(--color-cream);
+      text-decoration: none;
+      transition: color var(--dur-fast) var(--ease-out);
+      white-space: nowrap;
+    }
+    .navbar__links a:hover { color: var(--color-teal); }
+
+    /* Hamburger — visible below 1024px */
+    .navbar__burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      padding: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .navbar__burger span {
+      display: block;
+      height: 2px;
+      background-color: var(--color-cream);
+      border-radius: 2px;
+      transition: background-color var(--dur-fast);
+    }
+    @media (min-width: 1024px) {
+      .navbar__burger { display: none; }
+    }
+
+    /* Mobile menu drawer — hidden by default */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: calc(var(--z-sticky-nav) - 1);
+      background-color: var(--color-navy);
+      padding: calc(var(--banner-height) + var(--space-2xl)) var(--page-inset) var(--space-2xl);
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    #mobile-menu.is-open { display: flex; }
+
+    #mobile-menu a {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--color-cream);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    #mobile-menu a:hover { color: var(--color-teal); }
+
+    /* ------------------------------------------------------------
+       8. HERO SECTION
+       ------------------------------------------------------------ */
+    #hero {
+      background-color: var(--color-navy); /* fallback while image loads */
+      background-image:
+        linear-gradient(
+          105deg,
+          rgba(27, 54, 93, 0.92) 0%,
+          rgba(27, 54, 93, 0.80) 52%,
+          rgba(27, 54, 93, 0.48) 100%
+        ),
+        url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: var(--color-cream);
+      padding: calc(var(--banner-height) + 5rem) 0 4rem;
+      position: relative;
+      overflow: visible;
+    }
+
+    /* All text in hero inherits cream */
+    #hero h1,
+    #hero .display  { color: var(--color-cream); }
+    #hero .lede     { color: rgba(248, 244, 238, 0.88); }
+    #hero .label    { color: var(--color-teal); letter-spacing: 0.1em; }
+
+    /* Micro trust line under CTAs */
+    .hero__trust-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      font-size: var(--text-sm);
+      color: rgba(248, 244, 238, 0.72);
+      font-weight: 500;
+    }
+    .hero__trust-line span {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2xs);
+    }
+    .hero__trust-line svg {
+      color: var(--color-teal);
+      flex-shrink: 0;
+    }
+
+    #hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__headline-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .hero__form-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      position: relative;
+    }
+
+    /* Cycle Mark anchor point in form col */
+    .hero__cycle-anchor {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+    @media (max-width: 1023px) {
+      .hero__cycle-anchor { display: none; }
+    }
+
+    .hero__form-card {
+      background-color: var(--color-surface-card);
+      border: var(--border-sand);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    /* ------------------------------------------------------------
+       9. TRUST STRIP
+       ------------------------------------------------------------ */
+    #trust-strip {
+      background-color: var(--color-navy);
+      padding: 2.5rem 0 3rem;
+    }
+
+    /* 2-col grid on mobile → 4-col row at 768px+ */
+    .trust-strip__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl) var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .trust-strip__grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+    }
+
+    .trust-strip__item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      color: var(--color-cream);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    /* Vertical dividers between items at desktop only */
+    @media (min-width: 768px) {
+      .trust-strip__item + .trust-strip__item {
+        border-left: 1px solid rgba(248, 244, 238, 0.12);
+      }
+    }
+
+    .trust-strip__icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      color: var(--color-teal);
+      margin-top: 2px;
+    }
+    .trust-strip__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .trust-strip__text {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3xs);
+    }
+
+    .trust-strip__headline {
+      font-weight: 600;
+      font-size: var(--text-base);
+      color: var(--color-cream);
+      line-height: 1.3;
+    }
+
+    .trust-strip__sub {
+      font-size: var(--text-sm);
+      color: rgba(248, 244, 238, 0.60);
+      font-weight: 400;
+    }
+
+    /* ------------------------------------------------------------
+       10. SERVICES SECTION
+       ------------------------------------------------------------ */
+    #services {
+      background-color: var(--color-cream);
+      padding: var(--section-pad-default);
+    }
+
+    .services-header {
+      max-width: 600px;
+      margin-bottom: var(--space-2xl);
+    }
+    .services-header .label { margin-bottom: var(--space-sm); }
+    .services-header .heading-2 { margin-bottom: var(--space-md); }
+
+    /* 5-card grid: 1 col → 2 col → 3 col
+       Cards are NOT equal height (align-items: start prevents stretch). */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Base service card — vertical layout */
+    .svc-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      background-color: var(--color-cream);
+      border: var(--border-sand);
+      border: var(--border-sand);
+      border-top: 3px solid var(--color-teal);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+    }
+    .svc-card:hover {
+      background-color: var(--color-cloud);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .svc-card__icon {
+      width: 44px;
+      height: 44px;
+      color: var(--color-teal);
+      flex-shrink: 0;
+    }
+    .svc-card__icon svg { width: 100%; height: 100%; }
+
+    .svc-card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .svc-card__bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      flex: 1;
+      margin: 0;
+      padding: 0;
+    }
+    .svc-card__bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-xs);
+      font-size: var(--text-sm);
+      color: var(--color-slate);
+      line-height: 1.5;
+    }
+    .svc-card__bullets li::before {
+      content: "";
+      display: block;
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      margin-top: 7px;
+      border-radius: 50%;
+      background-color: var(--color-teal);
+    }
+
+    .svc-card__link {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-teal);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      transition:
+        color var(--dur-fast) var(--ease-out),
+        gap var(--dur-fast) var(--ease-out);
+    }
+    .svc-card__link:hover {
+      color: var(--color-teal-hover);
+      text-decoration: none;
+    }
+
+    /* Featured card (Standard Clean): spans 2 cols, horizontal layout at desktop */
+    @media (min-width: 1024px) {
+      .svc-card--featured {
+        grid-column: span 2;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--space-xl);
+      }
+      .svc-card--featured .svc-card__icon {
+        width: 60px;
+        height: 60px;
+        margin-top: var(--space-2xs);
+      }
+      .svc-card--featured .svc-card__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+      .svc-card--featured .svc-card__title { font-size: var(--text-xl); }
+    }
+
+    /* Cloud variant — navy accent, used for variety on 2 of the 5 cards */
+    .svc-card--cloud {
+      background-color: var(--color-cloud);
+      border-top-color: var(--color-navy);
+    }
+    .svc-card--cloud:hover { background-color: var(--color-cloud-hover); }
+    .svc-card--cloud .svc-card__icon { color: var(--color-navy); }
+    .svc-card--cloud .svc-card__link { color: var(--color-navy); }
+    .svc-card--cloud .svc-card__link:hover { color: var(--color-slate); }
+    .svc-card--cloud .svc-card__bullets li::before { background-color: var(--color-navy); }
+
+    /* ------------------------------------------------------------
+       11. CHECKLISTS SECTION
+       ------------------------------------------------------------ */
+    #checklists {
+      background-color: var(--color-cloud);
+      padding: var(--section-pad-default);
+    }
+
+    .checklists-header {
+      max-width: 580px;
+      margin-bottom: var(--space-2xl);
+    }
+    .checklists-header .label { margin-bottom: var(--space-sm); }
+    .checklists-header .heading-2 { margin-bottom: var(--space-md); }
+
+    /* Tab nav — underline style */
+    .cl-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--color-sand);
+      margin-bottom: var(--space-xl);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .cl-tabs::-webkit-scrollbar { display: none; }
+
+    .cl-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-sm) var(--space-lg);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 500;
+      color: var(--color-slate);
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 1;
+      transition:
+        color var(--dur-fast) var(--ease-out),
+        border-color var(--dur-fast) var(--ease-out);
+    }
+    .cl-tab-btn:hover { color: var(--color-navy); }
+    .cl-tab-btn.is-active {
+      color: var(--color-navy);
+      border-bottom-color: var(--color-teal);
+      font-weight: 600;
+    }
+    .cl-tab-btn:focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* Panels: hidden unless .is-active */
+    .cl-panel { display: none; }
+    .cl-panel.is-active { display: block; }
+
+    /* Horizontal scroll wrapper — always present */
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-hairline);
+    }
+
+    /* Comparison table — 4 columns */
+    .checklist-table {
+      width: 100%;
+      min-width: 540px;  /* forces horizontal scroll on narrow viewports */
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+
+    .checklist-table thead tr {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+    }
+
+    .checklist-table th {
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-base);
+      letter-spacing: -0.01em;
+      border: 1px solid rgba(27, 54, 93, 0.4);
+      vertical-align: middle;
+    }
+
+    .checklist-table td {
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--color-sand);
+      vertical-align: middle;
+      line-height: 1.4;
+    }
+
+    /* Column widths: task name gets remaining space, check cols are fixed */
+    .checklist-table th:first-child,
+    .checklist-table td:first-child { width: auto; min-width: 200px; }
+
+    .checklist-table th:not(:first-child),
+    .checklist-table td:not(:first-child) {
+      width: 110px;
+      text-align: center;
+    }
+
+    .checklist-table tbody tr:nth-child(odd)  { background-color: var(--color-cream); }
+    .checklist-table tbody tr:nth-child(even) { background-color: var(--color-cloud); }
+    .checklist-table tbody tr:hover           { background-color: var(--color-table-hover); }
+
+    /* Check / dash mark colors */
+    .mark-yes { color: var(--color-success); }  /* forest green for "included" */
+    .mark-no  { color: var(--color-sand); }
+
+    /* Note below table */
+    .checklist-note {
+      margin-top: var(--space-lg);
+      padding: var(--space-md) var(--space-lg);
+      background-color: rgba(42, 191, 191, 0.08);
+      border-left: 3px solid var(--color-teal);
+      border-radius: 0 var(--radius-card) var(--radius-card) 0;
+      font-size: var(--text-sm);
+      color: var(--color-slate);
+      line-height: 1.55;
+    }
+    .checklist-note a {
+      color: var(--color-teal);
+      font-weight: 600;
+    }
+
+    /* ------------------------------------------------------------
+       12. PRICING SECTION
+       ------------------------------------------------------------ */
+    #pricing {
+      background-color: var(--color-cream);
+      padding: var(--section-pad-default);
+    }
+
+    /* Hero price callouts — 2 col mobile → 4 col 768px+ */
+    .price-heroes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+    }
+    @media (min-width: 768px) {
+      .price-heroes { grid-template-columns: repeat(4, 1fr); }
+    }
+    .price-hero-card {
+      background-color: var(--color-surface-card);
+      border: var(--border-sand);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+    .price-hero-label {
+      display: block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-slate);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: var(--space-xs);
+    }
+    .price-hero-amount {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.2vw + 0.5rem, 2rem);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-teal);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+    .price-hero-note {
+      display: block;
+      font-size: var(--text-xs);
+      color: var(--color-slate);
+      margin-top: var(--space-2xs);
+    }
+
+    /* Tab strip — folder-tab style (radios remain in normal flow, gate 53) */
+    .pricing-tabs {
+      display: flex;
+      gap: 2px;
+      border-bottom: 2px solid var(--color-sand);
+      margin-bottom: var(--space-xl);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .pricing-tabs::-webkit-scrollbar { display: none; }
+
+    /* Radios: in-flow, zero-size — no scroll-jump (gate 53) */
+    .pricing-tabs input[type="radio"] {
+      position: static;
+      width: 0; height: 0; opacity: 0; margin: 0; padding: 0;
+    }
+
+    .pricing-tab-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 42px;
+      border-radius: 6px 6px 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      margin-bottom: -2px;
+      font-size: var(--text-base);
+      font-weight: 500;
+      color: var(--color-slate);
+      background-color: transparent;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        color            var(--dur-fast) var(--ease-out);
+    }
+    .pricing-tab-label:hover { color: var(--color-navy); }
+
+    /* Active tab: teal background, white text */
+    #tab-standard:checked ~ .pricing-tabs-ui label[for="tab-standard"],
+    #tab-deep:checked     ~ .pricing-tabs-ui label[for="tab-deep"],
+    #tab-moveout:checked  ~ .pricing-tabs-ui label[for="tab-moveout"],
+    #tab-rental:checked   ~ .pricing-tabs-ui label[for="tab-rental"] {
+      background-color: var(--color-teal);
+      color: #fff;
+      border-color: var(--color-teal);
+    }
+
+    /* Panel visibility */
+    .pricing-panel { display: none; }
+    #tab-standard:checked ~ .pricing-panels #panel-standard,
+    #tab-deep:checked     ~ .pricing-panels #panel-deep,
+    #tab-moveout:checked  ~ .pricing-panels #panel-moveout,
+    #tab-rental:checked   ~ .pricing-panels #panel-rental {
+      display: block;
+    }
+
+    /* Pricing table */
+    .pricing-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+    }
+    /* Right-edge fade on mobile hints at horizontal scrollability */
+    @media (max-width: 767px) {
+      .pricing-table-wrap::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0;
+        width: 2.5rem;
+        background: linear-gradient(to right, rgba(248,244,238,0) 0%, rgba(248,244,238,0.85) 100%);
+        pointer-events: none;
+      }
+    }
+
+    .pricing-table {
+      width: 100%;
+      min-width: 360px;
+      border-collapse: collapse;
+      font-size: var(--text-base);
+    }
+    .pricing-table thead tr {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+    }
+    .pricing-table th {
+      padding: var(--space-sm) var(--space-lg);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-base);
+      text-align: left;
+      white-space: nowrap;
+    }
+    .pricing-table th:not(:first-child) { text-align: right; }
+    .pricing-table td {
+      padding: var(--space-sm) var(--space-lg);
+      border-bottom: 1px solid var(--color-sand);
+      vertical-align: middle;
+    }
+    .pricing-table td:not(:first-child) {
+      text-align: right;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--color-navy);
+      white-space: nowrap;
+    }
+    .pricing-table tbody tr:nth-child(odd)  { background-color: var(--color-surface-card); }
+    .pricing-table tbody tr:nth-child(even) { background-color: var(--color-cloud); }
+    .pricing-table tbody tr:hover { background-color: var(--color-table-hover); }
+    .pricing-table .price-na {
+      color: var(--color-sand);
+      font-family: var(--font-body);
+      font-weight: 400;
+    }
+    .pricing-table .price-contact {
+      color: var(--color-teal);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: var(--text-sm);
+    }
+
+    /* Rental matrix: wider min-width, centred price cells */
+    .pricing-table--matrix { min-width: 520px; }
+    .pricing-table--matrix th:not(:first-child),
+    .pricing-table--matrix td:not(:first-child) { text-align: center; }
+
+    /* Row reveal toggle */
+    .price-row--hidden { display: none; }
+    .price-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      margin-top: var(--space-md);
+      padding: 0;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-teal);
+      cursor: pointer;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .price-toggle:hover { color: var(--color-teal-hover); }
+    .toggle-chevron {
+      display: inline-block;
+      font-style: normal;
+      transition: transform var(--dur-fast) var(--ease-out);
+    }
+    .price-toggle.is-open .toggle-chevron { transform: rotate(180deg); }
+
+    /* CTA banner */
+    .pricing-cta {
+      margin-top: var(--space-2xl);
+      padding: var(--space-xl) var(--space-2xl);
+      background-color: var(--color-cloud);
+      border: var(--border-sand);
+      border-radius: var(--radius-card);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 640px) {
+      .pricing-cta {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-xl);
+      }
+    }
+    .pricing-cta__heading {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-navy);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+    }
+    .pricing-cta__sub {
+      font-size: var(--text-base);
+      color: var(--color-slate);
+      margin-top: var(--space-xs);
+    }
+
+    /* ------------------------------------------------------------
+       13. REVIEWS SECTION
+       ------------------------------------------------------------ */
+    #reviews {
+      background-color: var(--color-cloud);
+      padding: var(--section-pad-default);
+    }
+
+    .reviews-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .review-rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background-color: var(--color-surface-card);
+      border: var(--border-sand);
+      border-radius: var(--radius-card);
+      padding: var(--space-sm) var(--space-lg);
+      box-shadow: var(--shadow-whisper);
+      flex-shrink: 0;
+    }
+    .review-rating-score {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-navy);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .review-rating-stars {
+      color: var(--color-teal);
+      font-size: 1.1rem;
+      line-height: 1;
+      letter-spacing: 0.05em;
+    }
+    .review-rating-label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-slate);
+      line-height: 1.3;
+    }
+
+    .review-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      background-color: var(--color-surface-card);
+      border: var(--border-sand);
+      border-top: 3px solid var(--color-teal);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-whisper);
+    }
+
+    .review-stars {
+      display: flex;
+      gap: var(--space-2xs);
+      align-items: center;
+    }
+    .review-stars svg {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      fill: var(--color-teal);
+    }
+
+    .review-quote {
+      font-family: var(--font-display);
+      font-size: var(--text-md);
+      font-weight: 300;
+      font-style: italic; /* italic in body prose — gate 38a permits */
+      line-height: 1.5;
+      color: var(--color-navy);
+    }
+
+    .review-byline {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+    }
+    .review-name {
+      font-weight: 600;
+      font-size: var(--text-base);
+    }
+    .review-location {
+      font-size: var(--text-sm);
+      color: var(--color-slate);
+    }
+
+    /* GHL review widget embed */
+    .reviews-iframe-wrap {
+      margin-top: var(--space-2xl);
+      border: var(--border-sand);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      background-color: var(--color-surface-card);
+    }
+    .reviews-iframe-wrap iframe {
+      display: block;
+      width: 100%;
+      min-height: 540px;
+      border: none;
+    }
+
+    .reviews-google-link {
+      display: block;
+      width: fit-content;
+      margin: var(--space-lg) auto 0;
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-teal);
+      text-decoration: none;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .reviews-google-link:hover { color: var(--color-teal-hover); text-decoration: underline; }
+
+    /* ------------------------------------------------------------
+       14. QUOTE FORM SECTION
+       ------------------------------------------------------------ */
+    #quote-form {
+      background-color: var(--color-navy);
+      padding: var(--section-pad-default);
+    }
+
+    #quote-form h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--color-cream);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+    }
+    #quote-form .form-subhead {
+      font-size: var(--text-md);
+      color: rgba(248, 244, 238, 0.72);
+      line-height: 1.5;
+      max-width: 52ch;
+      margin-bottom: var(--space-2xl);
+    }
+
+    #quote-form .form-field label {
+      color: rgba(248, 244, 238, 0.88);
+    }
+
+    /* Keep inputs light on the dark bg */
+    #quote-form input,
+    #quote-form select,
+    #quote-form textarea {
+      background-color: rgba(255, 255, 255, 0.96);
+    }
+
+    /* Invalid field state */
+    .field-is-invalid input,
+    .field-is-invalid select,
+    .field-is-invalid textarea {
+      border-color: var(--color-error-border);
+      outline-color: var(--color-error-border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    @media (min-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .form-field--full { grid-column: 1 / -1; }
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+    }
+
+    /* Submit row: full-width on mobile, right-aligned on desktop */
+    .form-submit-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      align-items: stretch;
+    }
+    @media (min-width: 768px) {
+      .form-submit-row {
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .form-submit-row .btn { width: auto; }
+    }
+    .form-note {
+      font-size: var(--text-sm);
+      color: rgba(248, 244, 238, 0.55);
+      line-height: 1.5;
+    }
+
+    /* ------------------------------------------------------------
+       15. FOOTER
+       ------------------------------------------------------------ */
+    #footer {
+      background-color: var(--color-navy-deep);
+      padding: var(--space-3xl) 0 0;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      padding-bottom: var(--space-3xl);
+    }
+    @media (min-width: 640px) {
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl) var(--space-2xl); }
+    }
+    @media (min-width: 1024px) {
+      .footer__grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: var(--space-2xl); }
+    }
+
+    .footer__logo-img {
+      height: 34px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .footer__tagline {
+      font-size: var(--text-base);
+      color: rgba(248, 244, 238, 0.65);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+      max-width: 28ch;
+    }
+
+    .footer__contact-link {
+      display: block;
+      color: var(--color-teal);
+      font-weight: 600;
+      font-size: var(--text-base);
+      text-decoration: none;
+      margin-bottom: var(--space-2xs);
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .footer__contact-link:hover { color: var(--color-teal-hover); text-decoration: underline; }
+
+    .footer__col-heading {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-cream);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer__col-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .footer__col-list a {
+      font-size: var(--text-base);
+      color: rgba(248, 244, 238, 0.60);
+      text-decoration: none;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .footer__col-list a:hover { color: var(--color-teal); }
+
+    .footer__divider {
+      border: none;
+      border-top: 1px solid rgba(248, 244, 238, 0.09);
+    }
+
+    .footer__bottom {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-lg) 0;
+      align-items: flex-start;
+    }
+    @media (min-width: 768px) {
+      .footer__bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+    }
+
+    .footer__legal {
+      font-size: var(--text-sm);
+      color: rgba(248, 244, 238, 0.60);
+    }
+
+    .footer__links {
+      display: flex;
+      gap: var(--space-lg);
+      list-style: none;
+    }
+    .footer__links a {
+      font-size: var(--text-sm);
+      color: rgba(248, 244, 238, 0.58);
+      text-decoration: none;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .footer__links a:hover { color: var(--color-teal); }
+
+    /* ------------------------------------------------------------
+       16. POPUP MODAL (#lead-popup)
+       ------------------------------------------------------------ */
+    #lead-popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-modal);
+      background-color: var(--color-overlay);
+      align-items: center;
+      justify-content: center;
+      padding: var(--page-inset);
+    }
+    #lead-popup.is-open { display: flex; }
+
+    .popup__panel {
+      background-color: var(--color-surface-card);
+      border-radius: var(--radius-modal);
+      width: 100%;
+      max-width: 440px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(15, 36, 64, 0.35);
+      overflow: hidden;
+    }
+
+    .popup__accent-bar {
+      height: 6px;
+      background-color: var(--color-teal);
+    }
+
+    .popup__body {
+      padding: var(--space-2xl) var(--space-xl) var(--space-xl);
+      overflow-y: auto;
+    }
+
+    .popup__close {
+      position: absolute;
+      top: calc(var(--space-md) + 6px);
+      right: var(--space-md);
+      width: 30px; height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(27, 54, 93, 0.08);
+      color: var(--color-navy);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      transition: background-color var(--dur-fast) var(--ease-out);
+      z-index: 1;
+    }
+    .popup__close:hover { background-color: rgba(27, 54, 93, 0.16); }
+
+    .popup__icon-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: var(--space-md);
+    }
+    .popup__icon {
+      width: 48px; height: 48px;
+      background-color: var(--color-cloud);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+    }
+
+    .popup__heading {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-navy);
+      text-align: center;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+    }
+
+    .popup__subtext {
+      font-size: var(--text-base);
+      color: var(--color-slate);
+      text-align: center;
+      line-height: 1.55;
+      margin-bottom: var(--space-xl);
+    }
+
+    .popup__fields {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .popup__disclaimer {
+      font-size: var(--text-xs);
+      color: var(--color-slate);
+      text-align: center;
+      line-height: 1.5;
+      opacity: 0.70;
+      margin-top: var(--space-sm);
+    }
+
+    /* ------------------------------------------------------------
+       17. MOBILE STICKY BAR (#mobile-bar)
+       ------------------------------------------------------------ */
+    #mobile-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: var(--z-sticky);
+      min-height: var(--mobile-bar-h);
+      background-color: rgba(15, 36, 64, 0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding: var(--space-xs) var(--page-inset);
+      padding-bottom: calc(var(--space-xs) + env(safe-area-inset-bottom));
+    }
+    @media (min-width: 768px) { #mobile-bar { display: none; } }
+
+    .mobile-bar__btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      height: 42px;
+      border-radius: var(--radius-pill);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color var(--dur-fast) var(--ease-out);
+    }
+    .mobile-bar__call {
+      background-color: rgba(255, 255, 255, 0.10);
+      color: var(--color-cream);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .mobile-bar__call:hover { background-color: rgba(255, 255, 255, 0.18); }
+    .mobile-bar__quote {
+      background-color: var(--color-teal);
+      color: var(--color-navy);
+    }
+    .mobile-bar__quote:hover { background-color: var(--color-teal-hover); }
+
+    /* ============================================================
+       SKELETON LABELS
+       Visible only during skeleton phase — remove when adding content.
+       ============================================================ */
+    .skeleton-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      background-color: rgba(42, 191, 191, 0.12);
+      border: 1.5px dashed var(--color-teal);
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-teal);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .skeleton-block {
+      background-color: rgba(42, 191, 191, 0.08);
+      border: 1.5px dashed rgba(42, 191, 191, 0.35);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .skeleton-block--dark {
+      background-color: rgba(248, 244, 238, 0.06);
+      border-color: rgba(248, 244, 238, 0.20);
+    }
+    .skeleton-label--dark {
+      background-color: rgba(248, 244, 238, 0.08);
+      border-color: rgba(248, 244, 238, 0.35);
+      color: var(--color-cream);
+      opacity: 0.65;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       REUSABLE SVG SYMBOLS — referenced via <use> throughout page
+       ============================================================ -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <!-- Cycle Mark: 300° open arc, gap at lower-right (3–5 o'clock) -->
+    <!-- Path: start at 60° clockwise to 360°/0°, radius 44, center (50,50) -->
+    <symbol id="cycle-mark" viewBox="0 0 100 100" fill="none">
+      <path
+        d="M 72 88 A 44 44 0 1 1 94 50"
+        stroke="currentColor"
+        stroke-width="5"
+        stroke-linecap="round"
+      />
+    </symbol>
+
+    <!-- Star (filled) — for review ratings -->
+    <symbol id="icon-star" viewBox="0 0 16 16">
+      <path d="M8 1l1.854 3.756 4.146.603-3 2.924.708 4.13L8 10.347l-3.708 1.066.708-4.13-3-2.924 4.146-.603z"/>
+    </symbol>
+
+    <!-- Check — for checklist tables and pricing cards -->
+    <symbol id="icon-check" viewBox="0 0 16 16" fill="none">
+      <path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Dash — for "not included" table cells -->
+    <symbol id="icon-dash" viewBox="0 0 16 16" fill="none">
+      <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Close / × — for modal -->
+    <symbol id="icon-close" viewBox="0 0 16 16" fill="none">
+      <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Phone -->
+    <symbol id="icon-phone" viewBox="0 0 16 16" fill="none">
+      <path d="M2 3a1 1 0 0 1 1-1h2.5l1 3-1.5 1a9 9 0 0 0 4 4l1-1.5 3 1V13a1 1 0 0 1-1 1C5.4 14 2 6.6 2 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Shield — Licensed & Insured -->
+    <symbol id="icon-shield" viewBox="0 0 20 20" fill="none">
+      <path d="M10 2L3 5.5V10c0 4.25 3.09 8.22 7 9 3.91-.78 7-4.75 7-9V5.5L10 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Calendar — scheduling -->
+    <symbol id="icon-calendar" viewBox="0 0 20 20" fill="none">
+      <rect x="2" y="4" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M2 9h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M6 2v4M14 2v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="7" cy="13" r="1" fill="currentColor"/>
+      <circle cx="10" cy="13" r="1" fill="currentColor"/>
+      <circle cx="13" cy="13" r="1" fill="currentColor"/>
+    </symbol>
+
+    <!-- Users — families served -->
+    <symbol id="icon-users" viewBox="0 0 20 20" fill="none">
+      <circle cx="7.5" cy="6" r="3" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M1 18c0-3.31 2.91-6 6.5-6s6.5 2.69 6.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="15" cy="6" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M19 18c0-2.76-1.79-5.13-4.24-5.77" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+
+  <!-- ============================================================
+       NAVBAR — #navbar
+       Transparent at top → floating navy pill on scroll
+       ============================================================ -->
+  <nav id="navbar" aria-label="Main navigation">
+    <div class="navbar__pill">
+
+      <!-- Logo -->
+      <a href="#hero" class="navbar__wordmark" aria-label="The Clean Cycle AZ Home">
+        <img
+          src="https://assets.cdn.filesafe.space/yClPU8JfUYTPBosdlZfn/media/67293b5fce0095653cb8d153.png"
+          alt="The Clean Cycle AZ"
+          class="navbar__logo"
+          width="160"
+          height="40"
+        >
+      </a>
+
+      <!-- Desktop nav links: Home | Services | Pricing | Reviews | Contact -->
+      <ul class="navbar__links" role="list">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#quote-form">Contact</a></li>
+      </ul>
+
+      <!-- Desktop: phone + Book Now -->
+      <div class="navbar__actions">
+        <a href="tel:+16026100059" class="navbar__phone" aria-label="Call us at (602) 610-0059">
+          <svg width="14" height="14" aria-hidden="true" style="display:block;">
+            <use href="#icon-phone"/>
+          </svg>
+          (602) 610-0059
+        </a>
+        <a
+          href="#lead-popup"
+          class="btn btn--primary"
+          style="height: 40px; padding: 0 1.25rem; font-size: var(--text-sm);"
+          onclick="openLeadPopup(event)"
+          aria-haspopup="dialog"
+        >Book Now</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="navbar__burger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        onclick="toggleMobileMenu(this)"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile full-screen menu drawer -->
+  <nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#hero"       onclick="closeMobileMenu()">Home</a>
+    <a href="#services"   onclick="closeMobileMenu()">Services</a>
+    <a href="#pricing"    onclick="closeMobileMenu()">Pricing</a>
+    <a href="#reviews"    onclick="closeMobileMenu()">Reviews</a>
+    <a href="#quote-form" onclick="closeMobileMenu()">Contact</a>
+    <a href="tel:+16026100059" class="navbar__phone" style="font-size: var(--text-md); color: var(--color-teal); opacity: 1; margin-top: var(--space-md);">
+      (602) 610-0059
+    </a>
+    <a
+      href="#lead-popup"
+      class="btn btn--primary"
+      style="margin-top: var(--space-sm); width: fit-content;"
+      onclick="openLeadPopup(event); closeMobileMenu();"
+    >Book Now</a>
+  </nav>
+
+
+  <main>
+
+    <!-- ==========================================================
+         HERO — #hero
+         Left-aligned 2fr/1fr split over full-bleed photo + dark overlay
+         ========================================================== -->
+    <section id="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <div class="grid-hero">
+
+          <!-- LEFT: Headline + CTA column -->
+          <div class="hero__headline-col">
+
+            <p class="label">Gilbert · Chandler · Queen Creek · Mesa</p>
+
+            <h1 id="hero-headline" class="display">
+              East Valley Homes,<br>Cleaned With Care
+            </h1>
+
+            <p class="lede">
+              The Clean Cycle is a family-owned team serving East Valley families
+              with eco-friendly products, background-checked cleaners, and
+              flexible scheduling: weekly, bi-weekly, or one-time.
+            </p>
+
+            <!-- CTA group: primary → popup, secondary → services section -->
+            <div class="flex-row" style="flex-wrap: wrap; gap: var(--space-md);">
+              <button
+                class="btn btn--primary"
+                style="height: 52px; padding: 0 var(--space-2xl); font-size: var(--text-md);"
+                onclick="openLeadPopup(event)"
+                aria-haspopup="dialog"
+              >
+                Get $50 Off Your First Cleaning
+              </button>
+              <a
+                href="#services"
+                class="btn btn--ghost-light"
+                style="height: 52px;"
+              >See Our Services ↓</a>
+            </div>
+
+            <!-- Micro trust signals -->
+            <div class="hero__trust-line" role="list">
+              <span role="listitem">
+                <svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg>
+                Licensed &amp; Insured
+              </span>
+              <span role="listitem">
+                <svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg>
+                Background-Checked Cleaners
+              </span>
+              <span role="listitem">
+                <svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg>
+                Satisfaction Guaranteed
+              </span>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: Quick-quote card -->
+          <div class="hero__form-col">
+            <div class="hero__form-card">
+              <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; color: var(--color-navy); margin-bottom: var(--space-xs);">
+                Get Your Free Quote
+              </p>
+              <p style="font-size: var(--text-sm); color: var(--color-slate); margin-bottom: var(--space-xl);">
+                Takes 30 seconds. No obligation.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+
+                <div class="form-field">
+                  <label for="hero-name">Your Name</label>
+                  <input type="text" id="hero-name" name="hero_name"
+                    autocomplete="name" placeholder="María R.">
+                  <span class="field-helper"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="hero-phone">Phone Number</label>
+                  <input type="tel" id="hero-phone" name="hero_phone"
+                    autocomplete="tel" placeholder="(602) 000-0000">
+                  <span class="field-helper"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="hero-service">Service Needed</label>
+                  <select id="hero-service" name="hero_service">
+                    <option value="" disabled selected>Choose a service…</option>
+                    <option value="standard">Standard Clean</option>
+                    <option value="deep">Deep Clean</option>
+                    <option value="move-out">Move-In / Move-Out</option>
+                    <option value="rental">Short Term Rental</option>
+                    <option value="postconstruction">Post-Construction Cleanup</option>
+                    <option value="commercial">Commercial</option>
+                  </select>
+                  <span class="field-helper"></span>
+                </div>
+
+                <button
+                  type="button"
+                  class="btn btn--secondary"
+                  style="width: 100%; height: 50px; font-size: var(--text-md); margin-top: var(--space-xs);"
+                  onclick="openLeadPopup(event)"
+                >
+                  Request a Quote →
+                </button>
+
+                <p style="font-size: var(--text-xs); color: var(--color-slate); text-align: center; margin-top: var(--space-2xs);">
+                  Or call us: <a href="tel:+16026100059" style="color: var(--color-teal); font-weight: 600;">(602) 610-0059</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Cycle Mark — signature element placement #1 -->
+            <svg
+              class="cycle-mark cycle-mark--lg hero__cycle-anchor"
+              aria-hidden="true"
+              style="color: var(--color-teal);"
+            >
+              <use href="#cycle-mark"/>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         TRUST STRIP — #trust-strip
+         Navy background · 4-item grid (2×2 mobile → 4-col desktop)
+         ========================================================== -->
+    <section id="trust-strip" aria-label="Why families trust The Clean Cycle AZ">
+      <div class="container">
+        <div class="trust-strip__grid">
+
+          <!-- Item 1: Google Rating -->
+          <div class="trust-strip__item">
+            <div class="trust-strip__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78z"/>
+              </svg>
+            </div>
+            <div class="trust-strip__text">
+              <strong class="trust-strip__headline">4.9 Google Rating</strong>
+              <span class="trust-strip__sub">Based on 50+ reviews</span>
+            </div>
+          </div>
+
+          <!-- Item 2: Licensed & Insured -->
+          <div class="trust-strip__item">
+            <div class="trust-strip__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href="#icon-shield"/>
+              </svg>
+            </div>
+            <div class="trust-strip__text">
+              <strong class="trust-strip__headline">Licensed &amp; Insured</strong>
+              <span class="trust-strip__sub">Bonded · Background-checked</span>
+            </div>
+          </div>
+
+          <!-- Item 3: Flexible Scheduling -->
+          <div class="trust-strip__item">
+            <div class="trust-strip__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href="#icon-calendar"/>
+              </svg>
+            </div>
+            <div class="trust-strip__text">
+              <strong class="trust-strip__headline">Weekly, Bi-Weekly &amp; Monthly</strong>
+              <span class="trust-strip__sub">Evenings &amp; weekends available</span>
+            </div>
+          </div>
+
+          <!-- Item 4: Happy Families -->
+          <div class="trust-strip__item">
+            <div class="trust-strip__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href="#icon-users"/>
+              </svg>
+            </div>
+            <div class="trust-strip__text">
+              <strong class="trust-strip__headline">25+ Happy Families</strong>
+              <span class="trust-strip__sub">Serving East Valley since 2019</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         SERVICES — #services
+         Section header + 5-card responsive grid (3-col desktop)
+         Card 1 spans 2 cols at desktop (featured/asymmetric offset)
+         ========================================================== -->
+    <section id="services" aria-labelledby="services-heading">
+      <div class="container">
+
+        <!-- Section header — left-aligned, not centered -->
+        <div class="services-header">
+          <p class="label">What We Offer</p>
+          <h2 class="heading-2" id="services-heading">Five ways we keep<br>East Valley homes clean</h2>
+          <p style="font-size: var(--text-md); color: var(--color-slate); line-height: 1.55; max-width: 52ch; margin-top: var(--space-md);">
+            From weekly maintenance to full deep-clean resets. We have a
+            service for every home, schedule, and situation.
+          </p>
+        </div>
+
+        <!-- 5-card grid
+             Desktop: [Card 1 — spans 2] [Card 2]
+                      [Card 3] [Card 4] [Card 5]
+             Tablet:  2 col
+             Mobile:  1 col                          -->
+        <div class="services-grid">
+
+          <!-- Card 1: Standard / Recurring Clean (featured — spans 2 cols desktop) -->
+          <article class="svc-card svc-card--featured" aria-labelledby="svc-standard-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- House outline -->
+                <polyline points="3,22 20,7 37,22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 22v14h24V22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="15" y="27" width="10" height="9" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <!-- Sparkle top-right — signals "clean" -->
+                <path d="M31 11 l0 -3 M31 11 l0 3 M31 11 l3 0 M31 11 l-3 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="svc-card__content">
+              <h3 class="svc-card__title" id="svc-standard-title">Standard Cleaning</h3>
+              <p style="font-size:var(--text-sm); color:var(--color-slate); line-height:1.5; margin-top:calc(var(--space-xs)*-1);">
+                Our most popular service, scheduled around your life.
+              </p>
+              <ul class="svc-card__bullets">
+                <li>Weekly, bi-weekly, or monthly visits</li>
+                <li>Dusting, vacuuming, mopping &amp; full surface wipe-downs</li>
+                <li>Kitchen, bathrooms, bedrooms &amp; all living areas</li>
+                <li>Same team every visit. We learn your home.</li>
+              </ul>
+              <a href="#checklists" class="svc-card__link">See what's included →</a>
+            </div>
+          </article>
+
+          <!-- Card 2: Deep Clean (cloud variant — visual contrast) -->
+          <article class="svc-card svc-card--cloud" aria-labelledby="svc-deep-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Magnifying glass -->
+                <circle cx="17" cy="18" r="11" stroke="currentColor" stroke-width="2.2"/>
+                <path d="M25 26 L35 36" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                <!-- Crosshair inside lens — "detail-focused" -->
+                <path d="M11 18h12 M17 12v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title" id="svc-deep-title">Deep Clean</h3>
+            <ul class="svc-card__bullets">
+              <li>Everything in a Standard Clean, plus detail areas</li>
+              <li>Inside oven, fridge &amp; cabinet exteriors</li>
+              <li>Baseboards, door frames &amp; light fixtures</li>
+            </ul>
+            <a href="#checklists" class="svc-card__link">Compare services →</a>
+          </article>
+
+          <!-- Card 3: Move-In / Move-Out (standard cream) -->
+          <article class="svc-card" aria-labelledby="svc-move-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Key shape — move-in/out -->
+                <circle cx="13" cy="20" r="9" stroke="currentColor" stroke-width="2.2"/>
+                <path d="M21 20 h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M31 16 v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M36 16 v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="13" cy="20" r="3" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title" id="svc-move-title">Move-In / Move-Out</h3>
+            <ul class="svc-card__bullets">
+              <li>Full deep clean inside cabinets, drawers &amp; closets</li>
+              <li>Wall spot-cleaning &amp; baseboard scrubbing</li>
+              <li>Perfect for security deposit or handoff day</li>
+            </ul>
+            <a href="#quote-form" class="svc-card__link">Get a quote →</a>
+          </article>
+
+          <!-- Card 4: Short Term Rental (cloud variant) -->
+          <article class="svc-card svc-card--cloud" aria-labelledby="svc-rental-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Bed icon — guest-ready -->
+                <path d="M4 30 V16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M4 22 h32 v8 H4" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                <path d="M4 30 v4 M36 30 v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <rect x="14" y="22" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1.8"/>
+                <rect x="25" y="22" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title" id="svc-rental-title">Short Term Rental Cleaning</h3>
+            <ul class="svc-card__bullets">
+              <li>Fast, reliable turnovers between guest stays</li>
+              <li>Linen refresh, trash removal, restock essentials</li>
+              <li>Completion report sent after every visit</li>
+            </ul>
+            <a href="#quote-form" class="svc-card__link">Get a quote →</a>
+          </article>
+
+          <!-- Card 5: Commercial (standard cream) -->
+          <article class="svc-card" aria-labelledby="svc-commercial-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Office building -->
+                <rect x="6" y="6" width="28" height="30" rx="2" stroke="currentColor" stroke-width="2.2"/>
+                <path d="M6 19 h28" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="11" y="10" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="19" y="10" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="27" y="10" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="11" y="22" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="19" y="22" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="27" y="22" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="17" y="29" width="6" height="7" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title" id="svc-commercial-title">Commercial Cleaning</h3>
+            <ul class="svc-card__bullets">
+              <li>Offices, retail spaces &amp; common areas</li>
+              <li>Scheduled around your business hours</li>
+              <li>Flexible frequency: daily to monthly</li>
+            </ul>
+            <a href="#quote-form" class="svc-card__link">Get a quote →</a>
+          </article>
+
+          <!-- Card 6: Post-Construction Cleanup (cream variant) -->
+          <article class="svc-card" aria-labelledby="svc-postconstruction-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Hard hat -->
+                <path d="M8 26 h24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M10 26 C10 16 30 16 30 26" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                <rect x="6" y="26" width="28" height="4" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 10 v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title" id="svc-postconstruction-title">Post-Construction Cleanup</h3>
+            <ul class="svc-card__bullets">
+              <li>Dust, debris &amp; paint residue removal</li>
+              <li>Deep clean after renovations or remodels</li>
+              <li>Move-in ready results. Same day available.</li>
+            </ul>
+            <a href="#quote-form" class="svc-card__link">Get a quote →</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         CHECKLISTS — #checklists
+         Cloud background · Standard vs Deep comparison table
+         ========================================================== -->
+    <section id="checklists" aria-labelledby="checklists-heading">
+      <div class="container">
+
+        <div class="services-header" style="margin-bottom: var(--space-xl);">
+          <h2 id="checklists-heading">Exactly what gets cleaned</h2>
+          <p class="services-lede">Every visit follows the same room-by-room checklist. No guessing, no shortcuts. Just a consistent clean every time.</p>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="cl-tabs" role="tablist" aria-label="Room checklists" id="cl-tabs">
+          <button class="cl-tab-btn is-active" role="tab" aria-selected="true"  aria-controls="cl-kitchen"    id="cl-btn-kitchen"    data-panel="cl-kitchen">Kitchen</button>
+          <button class="cl-tab-btn"           role="tab" aria-selected="false" aria-controls="cl-bathroom"   id="cl-btn-bathroom"   data-panel="cl-bathroom">Bathroom</button>
+          <button class="cl-tab-btn"           role="tab" aria-selected="false" aria-controls="cl-bedrooms"   id="cl-btn-bedrooms"   data-panel="cl-bedrooms">Bedrooms</button>
+          <button class="cl-tab-btn"           role="tab" aria-selected="false" aria-controls="cl-common"     id="cl-btn-common"     data-panel="cl-common">Common Areas</button>
+        </div>
+
+        <!-- Kitchen -->
+        <div class="cl-panel is-active" id="cl-kitchen" role="tabpanel" aria-labelledby="cl-btn-kitchen">
+          <div class="table-scroll">
+            <table class="checklist-table">
+              <caption class="sr-only">Kitchen cleaning checklist by service level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Standard</th>
+                  <th scope="col">Deep Clean</th>
+                  <th scope="col">Move In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Dust light fixtures</td>                    <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Remove cobwebs</td>                          <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean countertops &amp; backsplash</td>      <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean microwave inside &amp; out</td>        <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean stovetop &amp; burners</td>            <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean sink &amp; soap dish</td>              <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean appliance exteriors</td>               <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe down cabinet doors</td>                 <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Empty trash &amp; wipe can</td>              <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum / sweep / mop floors</td>             <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean doors &amp; door frames</td>           <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wet-wipe baseboards</td>                     <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean inside cabinets &amp; drawers</td>     <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Bathroom -->
+        <div class="cl-panel" id="cl-bathroom" role="tabpanel" aria-labelledby="cl-btn-bathroom">
+          <div class="table-scroll">
+            <table class="checklist-table">
+              <caption class="sr-only">Bathroom cleaning checklist by service level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Standard</th>
+                  <th scope="col">Deep Clean</th>
+                  <th scope="col">Move In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Dust light fixtures &amp; fan</td>           <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Remove cobwebs</td>                           <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Scrub toilet bowl, seat &amp; base</td>      <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Scrub shower &amp; tub surfaces</td>         <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean sink &amp; faucet</td>                 <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Polish mirrors</td>                           <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe countertops</td>                         <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe door &amp; handle</td>                  <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Empty trash</td>                              <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Sweep &amp; mop floors</td>                  <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Scrub tile grout</td>                         <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean shower door tracks &amp; seals</td>    <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wet-wipe baseboards</td>                      <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean inside medicine cabinet</td>            <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Bedrooms -->
+        <div class="cl-panel" id="cl-bedrooms" role="tabpanel" aria-labelledby="cl-btn-bedrooms">
+          <div class="table-scroll">
+            <table class="checklist-table">
+              <caption class="sr-only">Bedroom cleaning checklist by service level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Standard</th>
+                  <th scope="col">Deep Clean</th>
+                  <th scope="col">Move In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Dust all flat surfaces</td>                          <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Remove cobwebs</td>                                   <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Dust ceiling fan blades</td>                         <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe window sills</td>                               <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean mirrors &amp; glass</td>                       <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe switch plates &amp; outlets</td>                <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Make beds (linens provided by client)</td>           <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Empty trash</td>                                      <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum carpet / sweep &amp; mop hard floors</td>     <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum under bed</td>                                 <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wet-wipe baseboards</td>                              <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean door frames &amp; handles</td>                 <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum closet floors</td>                             <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe inside closet shelves</td>                      <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Common Areas -->
+        <div class="cl-panel" id="cl-common" role="tabpanel" aria-labelledby="cl-btn-common">
+          <div class="table-scroll">
+            <table class="checklist-table">
+              <caption class="sr-only">Common areas cleaning checklist by service level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Standard</th>
+                  <th scope="col">Deep Clean</th>
+                  <th scope="col">Move In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Dust all surfaces &amp; décor</td>                   <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Remove cobwebs</td>                                   <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Dust ceiling fans</td>                               <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe switch plates &amp; outlets</td>                <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum upholstered furniture</td>                    <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean mirrors &amp; glass surfaces</td>              <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean sliding door glass</td>                        <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Empty all trash bins</td>                            <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum carpet / sweep &amp; mop floors</td>          <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe window sills</td>                               <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Dust blinds &amp; window treatments</td>             <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wet-wipe baseboards</td>                              <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean door frames &amp; handles</td>                 <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Spot-clean walls &amp; light switches</td>           <td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-no"  aria-label="Not included">✕</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="checklist-note">All services include eco-friendly, non-toxic products at no extra charge. <a href="#quote-form">Get a free quote →</a></p>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         PRICING — #pricing
+         ========================================================== -->
+    <section id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+
+        <!-- Section header -->
+        <div class="services-header" style="margin-bottom: var(--space-2xl);">
+          <h2 id="pricing-heading">Flat-rate prices. No surprises.</h2>
+          <p class="services-lede">Every quote is firm before we arrive. Price is based on home size. Never hourly, never hidden.</p>
+        </div>
+
+        <!-- Hero price callouts -->
+        <div class="price-heroes" aria-label="Starting prices by service type">
+          <div class="price-hero-card">
+            <span class="price-hero-label">Standard Clean</span>
+            <span class="price-hero-amount">From $110</span>
+            <span class="price-hero-note">per visit</span>
+          </div>
+          <div class="price-hero-card">
+            <span class="price-hero-label">Deep Clean</span>
+            <span class="price-hero-amount">From $170</span>
+            <span class="price-hero-note">per visit</span>
+          </div>
+          <div class="price-hero-card">
+            <span class="price-hero-label">Move In / Out</span>
+            <span class="price-hero-amount">From $197</span>
+            <span class="price-hero-note">per visit</span>
+          </div>
+          <div class="price-hero-card">
+            <span class="price-hero-label">Short-Term Rental</span>
+            <span class="price-hero-amount">From $135</span>
+            <span class="price-hero-note">per turnover</span>
+          </div>
+        </div>
+
+        <!-- CSS-only tab switcher — radios in normal flow, zero-size (gate 53) -->
+        <input type="radio" name="pricing-tab" id="tab-standard" checked
+          style="position:static;width:0;height:0;opacity:0;margin:0;padding:0;">
+        <input type="radio" name="pricing-tab" id="tab-deep"
+          style="position:static;width:0;height:0;opacity:0;margin:0;padding:0;">
+        <input type="radio" name="pricing-tab" id="tab-moveout"
+          style="position:static;width:0;height:0;opacity:0;margin:0;padding:0;">
+        <input type="radio" name="pricing-tab" id="tab-rental"
+          style="position:static;width:0;height:0;opacity:0;margin:0;padding:0;">
+
+        <div class="pricing-tabs pricing-tabs-ui" role="tablist" aria-label="Pricing by service">
+          <label class="pricing-tab-label" for="tab-standard" role="tab">Standard Clean</label>
+          <label class="pricing-tab-label" for="tab-deep"     role="tab">Deep Clean</label>
+          <label class="pricing-tab-label" for="tab-moveout"  role="tab">Move In / Out</label>
+          <label class="pricing-tab-label" for="tab-rental"   role="tab">Short-Term Rental</label>
+        </div>
+
+        <div class="pricing-panels">
+
+          <!-- Standard Clean panel -->
+          <div class="pricing-panel" id="panel-standard" role="tabpanel">
+            <div class="pricing-table-wrap">
+              <table class="pricing-table" id="pricing-standard">
+                <caption class="sr-only">Standard Clean pricing by home size and frequency</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Home Size</th>
+                    <th scope="col">Weekly</th>
+                    <th scope="col">Bi-Weekly</th>
+                    <th scope="col">Monthly</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>0–749 sqft</td>         <td>$110</td><td>$115</td><td>$140</td></tr>
+                  <tr><td>750–999 sqft</td>        <td>$120</td><td>$130</td><td>$155</td></tr>
+                  <tr><td>1,000–1,249 sqft</td>    <td>$130</td><td>$145</td><td>$170</td></tr>
+                  <tr><td>1,250–1,499 sqft</td>    <td>$140</td><td>$160</td><td>$190</td></tr>
+                  <tr><td>1,500–1,799 sqft</td>    <td>$155</td><td>$175</td><td>$210</td></tr>
+                  <tr><td>1,800–2,099 sqft</td>    <td>$165</td><td>$195</td><td>$230</td></tr>
+                  <tr class="price-row--hidden"><td>2,100–2,399 sqft</td>  <td>$175</td><td>$210</td><td>$250</td></tr>
+                  <tr class="price-row--hidden"><td>2,400–2,699 sqft</td>  <td>$190</td><td>$225</td><td>$270</td></tr>
+                  <tr class="price-row--hidden"><td>2,700–2,999 sqft</td>  <td>$205</td><td>$240</td><td>$290</td></tr>
+                  <tr class="price-row--hidden"><td>3,000–3,299 sqft</td>  <td>$220</td><td>$255</td><td>$315</td></tr>
+                  <tr class="price-row--hidden"><td>3,300–3,599 sqft</td>  <td>$235</td><td>$270</td><td>$340</td></tr>
+                  <tr class="price-row--hidden"><td>3,600–3,899 sqft</td>  <td>$250</td><td>$285</td><td>$365</td></tr>
+                  <tr class="price-row--hidden"><td>3,900–4,199 sqft</td>  <td>$265</td><td>$300</td><td>$390</td></tr>
+                  <tr class="price-row--hidden"><td>4,200–4,499 sqft</td>  <td>$280</td><td>$315</td><td>$415</td></tr>
+                  <tr class="price-row--hidden"><td>4,500–4,999 sqft</td>  <td>$295</td><td>$330</td><td>$440</td></tr>
+                  <tr class="price-row--hidden"><td>5,000–5,299 sqft</td>  <td>$310</td><td>$345</td><td>$465</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="price-toggle" data-table="pricing-standard" aria-expanded="false">
+              <span class="toggle-label">Show all home sizes</span>
+              <span class="toggle-chevron" aria-hidden="true">▾</span>
+            </button>
+          </div>
+
+          <!-- Deep Clean panel -->
+          <div class="pricing-panel" id="panel-deep" role="tabpanel">
+            <div class="pricing-table-wrap">
+              <table class="pricing-table" id="pricing-deep">
+                <caption class="sr-only">Deep Clean pricing by home size</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Home Size</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>0–749 sqft</td>         <td>$170</td></tr>
+                  <tr><td>750–999 sqft</td>        <td>$185</td></tr>
+                  <tr><td>1,000–1,249 sqft</td>    <td>$205</td></tr>
+                  <tr><td>1,250–1,499 sqft</td>    <td>$225</td></tr>
+                  <tr><td>1,500–1,799 sqft</td>    <td>$245</td></tr>
+                  <tr><td>1,800–2,099 sqft</td>    <td>$290</td></tr>
+                  <tr class="price-row--hidden"><td>2,100–2,399 sqft</td>  <td>$320</td></tr>
+                  <tr class="price-row--hidden"><td>2,400–2,699 sqft</td>  <td>$375</td></tr>
+                  <tr class="price-row--hidden"><td>2,700–2,999 sqft</td>  <td>$435</td></tr>
+                  <tr class="price-row--hidden"><td>3,000–3,299 sqft</td>  <td>$500</td></tr>
+                  <tr class="price-row--hidden"><td>3,300–3,599 sqft</td>  <td>$570</td></tr>
+                  <tr class="price-row--hidden"><td>3,600–3,899 sqft</td>  <td>$620</td></tr>
+                  <tr class="price-row--hidden"><td>3,900–4,199 sqft</td>  <td>$680</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="price-toggle" data-table="pricing-deep" aria-expanded="false">
+              <span class="toggle-label">Show all home sizes</span>
+              <span class="toggle-chevron" aria-hidden="true">▾</span>
+            </button>
+          </div>
+
+          <!-- Move In / Out panel -->
+          <div class="pricing-panel" id="panel-moveout" role="tabpanel">
+            <div class="pricing-table-wrap">
+              <table class="pricing-table" id="pricing-moveout">
+                <caption class="sr-only">Move In / Out pricing by home size</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Home Size</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>0–749 sqft</td>         <td>$197</td></tr>
+                  <tr><td>750–999 sqft</td>        <td>$217</td></tr>
+                  <tr><td>1,000–1,249 sqft</td>    <td>$239</td></tr>
+                  <tr><td>1,250–1,499 sqft</td>    <td>$265</td></tr>
+                  <tr><td>1,500–1,799 sqft</td>    <td>$289</td></tr>
+                  <tr><td>1,800–2,099 sqft</td>    <td>$340</td></tr>
+                  <tr class="price-row--hidden"><td>2,100–2,399 sqft</td>  <td>$375</td></tr>
+                  <tr class="price-row--hidden"><td>2,400–2,699 sqft</td>  <td>$440</td></tr>
+                  <tr class="price-row--hidden"><td>2,700–2,999 sqft</td>  <td>$510</td></tr>
+                  <tr class="price-row--hidden"><td>3,000–3,299 sqft</td>  <td>$590</td></tr>
+                  <tr class="price-row--hidden"><td>3,300–3,599 sqft</td>  <td>$670</td></tr>
+                  <tr class="price-row--hidden"><td>3,600–3,899 sqft</td>  <td>$730</td></tr>
+                  <tr class="price-row--hidden"><td>3,900–4,199 sqft</td>  <td>$800</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="price-toggle" data-table="pricing-moveout" aria-expanded="false">
+              <span class="toggle-label">Show all home sizes</span>
+              <span class="toggle-chevron" aria-hidden="true">▾</span>
+            </button>
+          </div>
+
+          <!-- Short-Term Rental panel — beds × sqft matrix -->
+          <div class="pricing-panel" id="panel-rental" role="tabpanel">
+            <div class="pricing-table-wrap">
+              <table class="pricing-table pricing-table--matrix" id="pricing-rental">
+                <caption class="sr-only">Short-Term Rental pricing matrix by bedrooms and square footage</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Beds</th>
+                    <th scope="col">Up to 1,500 sqft</th>
+                    <th scope="col">1,501–2,000 sqft</th>
+                    <th scope="col">2,001–2,500 sqft</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1–2 Beds</td>
+                    <td>$135</td>
+                    <td>$150</td>
+                    <td>$165</td>
+                  </tr>
+                  <tr>
+                    <td>3 Beds</td>
+                    <td>$150</td>
+                    <td>$170</td>
+                    <td>$190</td>
+                  </tr>
+                  <tr>
+                    <td>4 Beds</td>
+                    <td>$175</td>
+                    <td>$195</td>
+                    <td>$220</td>
+                  </tr>
+                  <tr>
+                    <td>5 Beds</td>
+                    <td>$225</td>
+                    <td>$255</td>
+                    <td>$290</td>
+                  </tr>
+                  <tr>
+                    <td>6 Beds</td>
+                    <td>$275</td>
+                    <td>$310</td>
+                    <td>$350</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin-top: var(--space-md); font-size: var(--text-sm); color: var(--color-slate);">
+              6+ beds or 2,500+ sqft: <a href="#quote-form" style="color: var(--color-teal); font-weight: 600;">Contact for custom quote</a>
+            </p>
+          </div>
+
+        </div><!-- /.pricing-panels -->
+
+        <!-- CTA banner -->
+        <div class="pricing-cta">
+          <div class="pricing-cta__copy">
+            <p class="pricing-cta__heading">Not sure which service fits your home?</p>
+            <p class="pricing-cta__sub">We'll help you pick the right service and lock in your price. Free, no pressure.</p>
+          </div>
+          <a href="#quote-form" class="btn btn--primary pricing-cta__btn" style="flex-shrink:0;">Get a Free Quote →</a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         REVIEWS — #reviews
+         Cloud background · 3-col pull-quote cards
+         ========================================================== -->
+    <section id="reviews" aria-labelledby="reviews-heading">
+      <div class="container">
+
+        <!-- Section head + rating badge -->
+        <div class="reviews-head">
+          <div>
+            <h2 id="reviews-heading" class="heading-2">What Our Clients Say</h2>
+          </div>
+
+          <div class="review-rating-badge" aria-label="4.9 stars on Google">
+            <span class="review-rating-score">4.9</span>
+            <div>
+              <div class="review-rating-stars" aria-hidden="true">★★★★★</div>
+              <div class="review-rating-label">on Google</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured pull-quote cards -->
+        <div class="grid-3col">
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+            </div>
+            <blockquote class="review-quote">
+              “I’ve used three different cleaning services in Gilbert and The Clean Cycle is the first one I didn’t have to re-clean after. They actually do the baseboards and the microwave, every time.”
+            </blockquote>
+            <div class="review-byline">
+              <span class="review-name">Sarah M.</span>
+              <span class="review-location">Gilbert, AZ · Standard Clean, bi-weekly</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+            </div>
+            <blockquote class="review-quote">
+              “Used them for a move-out clean on our Chandler rental. The landlord did the walk-through and called it the cleanest departure she’d seen in five years. Got the full deposit back.”
+            </blockquote>
+            <div class="review-byline">
+              <span class="review-name">James &amp; Priya K.</span>
+              <span class="review-location">Chandler, AZ · Move-Out Clean</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+            </div>
+            <blockquote class="review-quote">
+              “Our short-term rental in Queen Creek was getting mixed reviews on cleanliness. Six months with The Clean Cycle and we haven’t had a single complaint. Guests keep commenting on how fresh it feels.”
+            </blockquote>
+            <div class="review-byline">
+              <span class="review-name">Danielle R.</span>
+              <span class="review-location">Queen Creek, AZ · Short-Term Rental</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GHL review widget embed -->
+        <!-- Replace src with your GHL review widget URL from your account settings -->
+        <div class="reviews-iframe-wrap" aria-label="Google reviews embed">
+          <iframe
+            src="https://app.thecleancycleaz.com/reputation/widgets/review_widget/yClPU8JfUYTPBosdlZfn?widgetId=67d48f08104179349f9c7813"
+            title="Customer reviews powered by Google"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <a
+          href="https://www.google.com/maps?cid=the+clean+cycle+cleaning+service"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="reviews-google-link"
+          aria-label="See all our Google reviews (opens in new tab)"
+        >See All Our Google Reviews →</a>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         QUOTE FORM — #quote-form
+         Cloud background · Cycle Mark heading anchor (placement #3)
+         ========================================================== -->
+    <section id="quote-form" aria-labelledby="form-heading">
+      <div class="container">
+
+        <!-- Section heading -->
+        <div style="max-width: 600px; margin-bottom: var(--space-2xl);">
+          <h2 id="form-heading">Get Your Free Quote in 24 Hours</h2>
+          <p class="form-subhead">Tell us a little about your home and we'll send a firm price. No in-home visit required, no surprises on cleaning day.</p>
+        </div>
+
+        <form
+          id="quote-form-main"
+          name="quote-request"
+          data-ghl-form="true"
+          action="#"
+          novalidate
+          aria-label="Request a free cleaning quote"
+        >
+          <div class="form-grid">
+
+            <!-- Row 1: Name + Phone -->
+            <div class="form-field">
+              <label for="f-name">Full Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="f-name" name="name" autocomplete="name"
+                placeholder="María R." required aria-required="true"
+                aria-describedby="f-name-helper">
+              <span class="field-helper" id="f-name-helper" role="alert"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="f-phone">Phone <span aria-hidden="true">*</span></label>
+              <input type="tel" id="f-phone" name="phone" autocomplete="tel"
+                placeholder="(480) 000-0000" required aria-required="true"
+                maxlength="14" aria-describedby="f-phone-helper">
+              <span class="field-helper" id="f-phone-helper" role="alert"></span>
+            </div>
+
+            <!-- Row 2: Email + Zip -->
+            <div class="form-field">
+              <label for="f-email">Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="f-email" name="email" autocomplete="email"
+                placeholder="you@example.com" required aria-required="true"
+                aria-describedby="f-email-helper">
+              <span class="field-helper" id="f-email-helper" role="alert"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="f-zip">Zip Code <span aria-hidden="true">*</span></label>
+              <input type="text" id="f-zip" name="zip" autocomplete="postal-code"
+                placeholder="85234" required aria-required="true"
+                inputmode="numeric" maxlength="5"
+                aria-describedby="f-zip-helper">
+              <span class="field-helper" id="f-zip-helper" role="alert"></span>
+            </div>
+
+            <!-- Row 3: Service Type — full width -->
+            <div class="form-field form-field--full">
+              <label for="f-service">Service Type <span aria-hidden="true">*</span></label>
+              <select id="f-service" name="service" required aria-required="true"
+                aria-describedby="f-service-helper">
+                <option value="" disabled selected>Select a service…</option>
+                <option value="standard">Standard Clean</option>
+                <option value="deep">Deep Clean</option>
+                <option value="move-in">Move-In Clean</option>
+                <option value="move-out">Move-Out Clean</option>
+                <option value="rental">Short Term Rental Cleaning</option>
+                <option value="postconstruction">Post-Construction Cleanup</option>
+                <option value="commercial">Commercial Cleaning</option>
+              </select>
+              <span class="field-helper" id="f-service-helper" role="alert"></span>
+            </div>
+
+            <!-- Row 4: Notes — full width -->
+            <div class="form-field form-field--full">
+              <label for="f-message">Anything we should know? <span style="font-weight:400; opacity:0.7;">(optional)</span></label>
+              <textarea id="f-message" name="message"
+                placeholder="e.g. home size, pets, preferred days, gate code…"
+                aria-label="Additional notes (optional)"></textarea>
+              <span class="field-helper"></span>
+            </div>
+
+            <!-- Submit row -->
+            <div class="form-field form-field--full">
+              <div class="form-submit-row">
+                <button type="submit" class="btn btn--primary" style="padding-inline: var(--space-2xl);">
+                  Request My Free Quote →
+                </button>
+                <p class="form-note">We respond within 24 hours. No spam, no obligations.</p>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER — #footer
+       Navy background · Statement-style (Ft5)
+       Large Fraunces tagline left · contact right
+       ============================================================ -->
+  <footer id="footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Col 1: Brand -->
+        <div>
+          <img
+            src="https://assets.cdn.filesafe.space/yClPU8JfUYTPBosdlZfn/media/67293b5fce0095653cb8d153.png"
+            alt="The Clean Cycle AZ"
+            class="footer__logo-img"
+            width="160" height="34"
+            loading="lazy"
+          >
+          <p class="footer__tagline">A clean home is a calm home. Serving East Valley families with pride since 2014.</p>
+          <a href="tel:+16026100059" class="footer__contact-link">(602) 610-0059</a>
+          <a href="mailto:hello@thecleancycleaz.com" class="footer__contact-link">hello@thecleancycleaz.com</a>
+        </div>
+
+        <!-- Col 2: Services -->
+        <div>
+          <p class="footer__col-heading">Services</p>
+          <ul class="footer__col-list" role="list">
+            <li><a href="#services">Standard Clean</a></li>
+            <li><a href="#services">Deep Clean</a></li>
+            <li><a href="#services">Move In / Out</a></li>
+            <li><a href="#services">Short-Term Rental</a></li>
+            <li><a href="#services">Commercial</a></li>
+            <li><a href="#services">Post-Construction</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Service Areas -->
+        <div>
+          <p class="footer__col-heading">Service Areas</p>
+          <ul class="footer__col-list" role="list">
+            <li><a href="#hero">Gilbert, AZ</a></li>
+            <li><a href="#hero">Chandler, AZ</a></li>
+            <li><a href="#hero">Mesa, AZ</a></li>
+            <li><a href="#hero">Scottsdale, AZ</a></li>
+            <li><a href="#hero">Phoenix, AZ</a></li>
+            <li><a href="#hero">Queen Creek, AZ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Quick Links -->
+        <div>
+          <p class="footer__col-heading">Quick Links</p>
+          <ul class="footer__col-list" role="list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#quote-form">Contact</a></li>
+            <li style="margin-top: var(--space-xs);">
+              <a href="#quote-form" class="btn btn--primary" style="height:36px; padding: 0 var(--space-lg); font-size: var(--text-sm);">Book Now</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="footer__divider">
+
+      <div class="footer__bottom">
+        <p class="footer__legal">
+          &copy; <span id="footer-year"></span> The Clean Cycle AZ &middot; Licensed &middot; Bonded &middot; Insured
+        </p>
+        <ul class="footer__links" role="list">
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/terms">Terms</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       POPUP MODAL — #lead-popup
+       Navy overlay · cream panel · condensed 3-field form
+       ============================================================ -->
+  <div
+    id="lead-popup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="popup-title"
+    aria-hidden="true"
+  >
+    <div class="popup__panel">
+
+      <!-- Teal accent bar -->
+      <div class="popup__accent-bar"></div>
+
+      <!-- Close button -->
+      <button class="popup__close" aria-label="Close popup" onclick="closeLeadPopup()">
+        <svg width="14" height="14" aria-hidden="true"><use href="#icon-close"/></svg>
+      </button>
+
+      <div class="popup__body">
+
+        <!-- Sparkle icon -->
+        <div class="popup__icon-wrap">
+          <div class="popup__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <h2 id="popup-title" class="popup__heading">Get $50 Off Your First Cleaning!</h2>
+        <p class="popup__subtext">Join 25+ East Valley families who trust us with their homes every week.</p>
+
+        <form
+          id="popup-lead-form"
+          name="popup-lead"
+          action="#"
+          data-ghl-form="true"
+          novalidate
+          aria-label="Claim $50 off your first cleaning"
+        >
+          <div class="popup__fields">
+
+            <div class="form-field">
+              <label for="p-name">Full Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="p-name" name="name" autocomplete="name"
+                placeholder="María R." required aria-required="true"
+                aria-describedby="p-name-helper">
+              <span class="field-helper" id="p-name-helper" role="alert"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="p-phone">Phone Number <span aria-hidden="true">*</span></label>
+              <input type="tel" id="p-phone" name="phone" autocomplete="tel"
+                placeholder="(602) 000-0000" required aria-required="true"
+                maxlength="14" aria-describedby="p-phone-helper">
+              <span class="field-helper" id="p-phone-helper" role="alert"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="p-email">Email Address <span aria-hidden="true">*</span></label>
+              <input type="email" id="p-email" name="email" autocomplete="email"
+                placeholder="you@example.com" required aria-required="true"
+                aria-describedby="p-email-helper">
+              <span class="field-helper" id="p-email-helper" role="alert"></span>
+            </div>
+
+            <button type="submit" class="btn btn--primary" style="width: 100%; font-weight: 700;">
+              Claim My $50 Off
+            </button>
+
+          </div>
+
+          <p class="popup__disclaimer">By submitting, you agree to receive promotional communications.</p>
+        </form>
+
+      </div><!-- /.popup__body -->
+    </div><!-- /.popup__panel -->
+  </div>
+
+
+  <!-- ============================================================
+       MOBILE STICKY BAR — #mobile-bar
+       Fixed bottom · navy · phone left, CTA right
+       Hidden at ≥1024px
+       ============================================================ -->
+  <div id="mobile-bar" aria-label="Quick contact bar" role="complementary">
+    <a href="tel:+16026100059" class="mobile-bar__btn mobile-bar__call" aria-label="Call us at (602) 610-0059">
+      &#x1F4DE; Call Now
+    </a>
+    <a href="#quote-form" class="mobile-bar__btn mobile-bar__quote">
+      &#x1F4CB; Get Quote
+    </a>
+  </div>
+
+
+  <!-- ============================================================
+       MINIMAL JS — nav scroll, modal, mobile menu, year stamp
+       ============================================================ -->
+  <script>
+    // --- Navbar: add .is-scrolled after 80px ---
+    (function () {
+      var nav = document.getElementById('navbar');
+      function onScroll() {
+        if (window.scrollY > 80) {
+          nav.classList.add('is-scrolled');
+        } else {
+          nav.classList.remove('is-scrolled');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // run once on load
+    })();
+
+    // --- Mobile menu toggle ---
+    function toggleMobileMenu(btn) {
+      var menu = document.getElementById('mobile-menu');
+      var isOpen = menu.classList.toggle('is-open');
+      menu.setAttribute('aria-hidden', String(!isOpen));
+      btn.setAttribute('aria-expanded', String(isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    function closeMobileMenu() {
+      var menu = document.getElementById('mobile-menu');
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      var btn = document.querySelector('[aria-controls="mobile-menu"]');
+      if (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+      }
+    }
+
+    // --- Modal open / close ---
+    function openLeadPopup(e) {
+      if (e) e.preventDefault();
+      var popup = document.getElementById('lead-popup');
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      localStorage.setItem('cc_popup_shown', 'true');
+      var focusables = popup.querySelectorAll('button, input, select, textarea, a[href]');
+      if (focusables[0]) focusables[0].focus();
+    }
+    function closeLeadPopup() {
+      var popup = document.getElementById('lead-popup');
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    // Close on overlay click
+    document.getElementById('lead-popup').addEventListener('click', function (e) {
+      if (e.target === this) closeLeadPopup();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeLeadPopup();
+        closeMobileMenu();
+      }
+    });
+
+    // --- Quote form: phone auto-format, zip filter, validation ---
+    (function () {
+      var form = document.getElementById('quote-form-main');
+      if (!form) return;
+
+      // Phone: format as (XXX) XXX-XXXX on input
+      var phoneEl = document.getElementById('f-phone');
+      if (phoneEl) {
+        phoneEl.addEventListener('input', function () {
+          var digits = phoneEl.value.replace(/\D/g, '').slice(0, 10);
+          var out = '';
+          if (digits.length > 0) out = '(' + digits.slice(0, 3);
+          if (digits.length >= 4) out += ') ' + digits.slice(3, 6);
+          if (digits.length >= 7) out += '-' + digits.slice(6, 10);
+          phoneEl.value = out;
+        });
+      }
+
+      // Zip: digits only, max 5
+      var zipEl = document.getElementById('f-zip');
+      if (zipEl) {
+        zipEl.addEventListener('input', function () {
+          zipEl.value = zipEl.value.replace(/\D/g, '').slice(0, 5);
+        });
+      }
+
+      // Helper: mark a field invalid with message
+      function setError(field, msg) {
+        var wrap = field.closest('.form-field');
+        var helper = wrap && wrap.querySelector('.field-helper');
+        if (wrap) wrap.classList.add('field-is-invalid');
+        if (helper) {
+          helper.textContent = msg;
+          helper.classList.add('field-helper--error');
+        }
+      }
+
+      // Helper: clear field error
+      function clearError(field) {
+        var wrap = field.closest('.form-field');
+        var helper = wrap && wrap.querySelector('.field-helper');
+        if (wrap) wrap.classList.remove('field-is-invalid');
+        if (helper) {
+          helper.textContent = '';
+          helper.classList.remove('field-helper--error');
+        }
+      }
+
+      // Clear errors on input
+      form.querySelectorAll('input, select, textarea').forEach(function (el) {
+        el.addEventListener('input', function () { clearError(el); });
+        el.addEventListener('change', function () { clearError(el); });
+      });
+
+      // Submit validation
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var valid = true;
+
+        // Required fields
+        form.querySelectorAll('[required]').forEach(function (el) {
+          clearError(el);
+          if (!el.value.trim()) {
+            setError(el, 'This field is required.');
+            valid = false;
+          }
+        });
+
+        // Phone: need 10 digits
+        if (phoneEl && phoneEl.value) {
+          if (phoneEl.value.replace(/\D/g, '').length < 10) {
+            setError(phoneEl, 'Please enter a 10-digit phone number.');
+            valid = false;
+          }
+        }
+
+        // Zip: exactly 5 digits
+        if (zipEl && zipEl.value) {
+          if (zipEl.value.replace(/\D/g, '').length !== 5) {
+            setError(zipEl, 'Please enter a valid 5-digit zip code.');
+            valid = false;
+          }
+        }
+
+        if (valid) {
+          // GHL forms submit via their own JS once integrated — fall through
+          form.submit();
+        } else {
+          // Focus first invalid field
+          var first = form.querySelector('.field-is-invalid input, .field-is-invalid select, .field-is-invalid textarea');
+          if (first) first.focus();
+        }
+      });
+    })();
+
+    // --- Pricing: show/hide extra table rows ---
+    (function () {
+      document.querySelectorAll('.price-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var isOpen   = btn.classList.toggle('is-open');
+          var tableId  = btn.getAttribute('data-table');
+          var table    = document.getElementById(tableId);
+          if (!table) return;
+          table.querySelectorAll('.price-row--hidden').forEach(function (row) {
+            row.style.display = isOpen ? 'table-row' : '';
+          });
+          btn.querySelector('.toggle-label').textContent =
+            isOpen ? 'Show fewer sizes' : 'Show all home sizes';
+          btn.setAttribute('aria-expanded', String(isOpen));
+        });
+      });
+    })();
+
+    // --- Checklist tabs ---
+    (function () {
+      var tabList = document.getElementById('cl-tabs');
+      if (!tabList) return;
+      tabList.addEventListener('click', function (e) {
+        var btn = e.target.closest('.cl-tab-btn');
+        if (!btn) return;
+        var panelId = btn.getAttribute('data-panel');
+        // Deactivate all
+        tabList.querySelectorAll('.cl-tab-btn').forEach(function (b) {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.cl-panel').forEach(function (p) {
+          p.classList.remove('is-active');
+        });
+        // Activate selected
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+        var panel = document.getElementById(panelId);
+        if (panel) panel.classList.add('is-active');
+      });
+      // Keyboard: left/right arrows between tabs
+      tabList.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        var btns = Array.from(tabList.querySelectorAll('.cl-tab-btn'));
+        var idx  = btns.indexOf(document.activeElement);
+        if (idx === -1) return;
+        var next = e.key === 'ArrowRight' ? (idx + 1) % btns.length : (idx - 1 + btns.length) % btns.length;
+        btns[next].focus();
+        btns[next].click();
+      });
+    })();
+
+    // --- Popup phone auto-format (mirrors main form) ---
+    (function () {
+      var pp = document.getElementById('p-phone');
+      if (!pp) return;
+      pp.addEventListener('input', function () {
+        var digits = pp.value.replace(/\D/g, '').slice(0, 10);
+        var out = '';
+        if (digits.length > 0) out = '(' + digits.slice(0, 3);
+        if (digits.length >= 4) out += ') ' + digits.slice(3, 6);
+        if (digits.length >= 7) out += '-' + digits.slice(6, 10);
+        pp.value = out;
+      });
+    })();
+
+    // --- Popup auto-show after 3 s; respect localStorage ---
+    (function () {
+      var KEY = 'cc_popup_shown';
+      if (localStorage.getItem(KEY)) return;
+      var timer = setTimeout(function () {
+        if (!localStorage.getItem(KEY)) {
+          var popup = document.getElementById('lead-popup');
+          if (popup && popup.getAttribute('aria-hidden') === 'true') {
+            popup.classList.add('is-open');
+            popup.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            localStorage.setItem(KEY, 'true');
+          }
+        }
+      }, 3000);
+      // Clear timer if popup already manually opened
+      document.getElementById('lead-popup').addEventListener('click', function () {
+        clearTimeout(timer);
+      });
+    })();
+
+    // --- Set footer year ---
+    var yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
