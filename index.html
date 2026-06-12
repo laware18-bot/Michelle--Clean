@@ -792,85 +792,149 @@
     }
 
     /* ------------------------------------------------------------
-       10. SERVICES SECTION — asymmetric 40/60 layout
+       10. SERVICES SECTION
        ------------------------------------------------------------ */
     #services {
       background-color: var(--color-cream);
       padding: var(--section-pad-default);
     }
 
-    .services__intro-col {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-lg);
-      align-items: flex-start;
+    .services-header {
+      max-width: 600px;
+      margin-bottom: var(--space-2xl);
     }
+    .services-header .label { margin-bottom: var(--space-sm); }
+    .services-header .heading-2 { margin-bottom: var(--space-md); }
 
-    /* Sticky intro at desktop */
-    @media (min-width: 1024px) {
-      .services__intro-col {
-        position: sticky;
-        top: calc(var(--banner-height) + var(--space-xl));
-        align-self: start;
-      }
-    }
-
-    .services__card-grid {
+    /* 5-card grid: 1 col → 2 col → 3 col
+       Cards are NOT equal height (align-items: start prevents stretch). */
+    .services-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--space-lg);
+      align-items: start;
     }
     @media (min-width: 768px) {
-      .services__card-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
-    /* Service card skeleton */
-    .service-card {
-      display: grid;
-      grid-template-columns: 80px 1fr;
+    /* Base service card — vertical layout */
+    .svc-card {
+      display: flex;
+      flex-direction: column;
       gap: var(--space-md);
-      align-items: start;
       background-color: var(--color-cream);
       border: var(--border-sand);
-      border-left: 3px solid var(--color-teal); /* 3px teal accent stroke */
+      border-left: 3px solid var(--color-teal);
       border-radius: var(--radius-card);
-      padding: var(--space-lg);
+      padding: var(--space-xl);
       transition:
         background-color var(--dur-fast) var(--ease-out),
         box-shadow var(--dur-fast) var(--ease-out);
     }
-    .service-card:hover {
+    .svc-card:hover {
       background-color: var(--color-cloud);
       box-shadow: var(--shadow-card-hover);
     }
 
-    /* Hero service card (Standard Clean) spans full width at desktop */
-    .service-card--hero {
-      grid-column: 1 / -1;
-      grid-template-columns: 120px 1fr;
+    .svc-card__icon {
+      width: 44px;
+      height: 44px;
+      color: var(--color-teal);
+      flex-shrink: 0;
+    }
+    .svc-card__icon svg { width: 100%; height: 100%; }
+
+    .svc-card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
     }
 
-    .service-card__thumb {
-      background-color: var(--color-cloud);
-      border-radius: 4px;
-      aspect-ratio: 1;
-    }
-
-    .service-card__body {
+    .svc-card__bullets {
+      list-style: none;
       display: flex;
       flex-direction: column;
       gap: var(--space-xs);
+      flex: 1;
+      margin: 0;
+      padding: 0;
+    }
+    .svc-card__bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-xs);
+      font-size: var(--text-sm);
+      color: var(--color-slate);
+      line-height: 1.5;
+    }
+    .svc-card__bullets li::before {
+      content: "";
+      display: block;
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      margin-top: 7px;
+      border-radius: 50%;
+      background-color: var(--color-teal);
     }
 
-    /* Checklist drawer (hidden by default) */
-    .service-card__drawer {
-      display: none;
-      grid-column: 1 / -1;
-      padding-top: var(--space-md);
-      border-top: var(--border-sand);
-      margin-top: var(--space-md);
+    .svc-card__link {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-teal);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      transition:
+        color var(--dur-fast) var(--ease-out),
+        gap var(--dur-fast) var(--ease-out);
     }
-    .service-card__drawer.is-open { display: block; }
+    .svc-card__link:hover {
+      color: var(--color-teal-hover);
+      gap: var(--space-xs);
+      text-decoration: none;
+    }
+
+    /* Featured card (Standard Clean): spans 2 cols, horizontal layout at desktop */
+    @media (min-width: 1024px) {
+      .svc-card--featured {
+        grid-column: span 2;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--space-xl);
+      }
+      .svc-card--featured .svc-card__icon {
+        width: 60px;
+        height: 60px;
+        margin-top: var(--space-2xs);
+      }
+      .svc-card--featured .svc-card__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+      .svc-card--featured .svc-card__title { font-size: var(--text-xl); }
+    }
+
+    /* Cloud variant — navy accent, used for variety on 2 of the 5 cards */
+    .svc-card--cloud {
+      background-color: var(--color-cloud);
+      border-left-color: var(--color-navy);
+    }
+    .svc-card--cloud:hover { background-color: #d6eeee; }
+    .svc-card--cloud .svc-card__icon { color: var(--color-navy); }
+    .svc-card--cloud .svc-card__link { color: var(--color-navy); }
+    .svc-card--cloud .svc-card__link:hover { color: var(--color-slate); }
+    .svc-card--cloud .svc-card__bullets li::before { background-color: var(--color-navy); }
 
     /* ------------------------------------------------------------
        11. CHECKLISTS SECTION
@@ -880,10 +944,73 @@
       padding: var(--section-pad-default);
     }
 
+    .checklists-header {
+      max-width: 580px;
+      margin-bottom: var(--space-2xl);
+    }
+    .checklists-header .label { margin-bottom: var(--space-sm); }
+    .checklists-header .heading-2 { margin-bottom: var(--space-md); }
+
+    /* Tab nav — underline style */
+    .cl-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--color-sand);
+      margin-bottom: var(--space-xl);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .cl-tabs::-webkit-scrollbar { display: none; }
+
+    .cl-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-sm) var(--space-lg);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 500;
+      color: var(--color-slate);
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 1;
+      transition:
+        color var(--dur-fast) var(--ease-out),
+        border-color var(--dur-fast) var(--ease-out);
+    }
+    .cl-tab-btn:hover { color: var(--color-navy); }
+    .cl-tab-btn.is-active {
+      color: var(--color-navy);
+      border-bottom-color: var(--color-teal);
+      font-weight: 600;
+    }
+    .cl-tab-btn:focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* Panels: hidden unless .is-active */
+    .cl-panel { display: none; }
+    .cl-panel.is-active { display: block; }
+
+    /* Horizontal scroll wrapper — always present */
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-hairline);
+    }
+
+    /* Comparison table — 4 columns */
     .checklist-table {
       width: 100%;
+      min-width: 540px;  /* forces horizontal scroll on narrow viewports */
       border-collapse: collapse;
-      font-size: var(--text-base);
+      font-size: var(--text-sm);
     }
 
     .checklist-table thead tr {
@@ -891,29 +1018,55 @@
       color: var(--color-cream);
     }
 
-    .checklist-table th,
-    .checklist-table td {
+    .checklist-table th {
       padding: var(--space-sm) var(--space-md);
-      text-align: left;
-      border: 1px solid var(--color-sand);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-base);
+      letter-spacing: -0.01em;
+      border: 1px solid rgba(27, 54, 93, 0.4);
       vertical-align: middle;
     }
 
-    .checklist-table th {
-      font-family: var(--font-display);
-      font-weight: 600;
-      letter-spacing: -0.01em;
+    .checklist-table td {
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--color-sand);
+      vertical-align: middle;
+      line-height: 1.4;
+    }
+
+    /* Column widths: task name gets remaining space, check cols are fixed */
+    .checklist-table th:first-child,
+    .checklist-table td:first-child { width: auto; min-width: 200px; }
+
+    .checklist-table th:not(:first-child),
+    .checklist-table td:not(:first-child) {
+      width: 110px;
+      text-align: center;
     }
 
     .checklist-table tbody tr:nth-child(odd)  { background-color: var(--color-cream); }
     .checklist-table tbody tr:nth-child(even) { background-color: var(--color-cloud); }
-    .checklist-table tbody tr:hover           { background-color: #dff0f0; }
+    .checklist-table tbody tr:hover           { background-color: #d6edec; }
 
-    /* Overflow wrapper for narrow viewports */
-    .table-scroll {
-      overflow-x: auto;
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-hairline);
+    /* Check / dash mark colors */
+    .mark-yes { color: #1A8A60; }  /* forest green for "included" */
+    .mark-no  { color: var(--color-sand); }
+
+    /* Note below table */
+    .checklist-note {
+      margin-top: var(--space-lg);
+      padding: var(--space-md) var(--space-lg);
+      background-color: rgba(42, 191, 191, 0.08);
+      border-left: 3px solid var(--color-teal);
+      border-radius: 0 var(--radius-card) var(--radius-card) 0;
+      font-size: var(--text-sm);
+      color: var(--color-slate);
+      line-height: 1.55;
+    }
+    .checklist-note a {
+      color: var(--color-teal);
+      font-weight: 600;
     }
 
     /* ------------------------------------------------------------
@@ -1708,63 +1861,143 @@
 
     <!-- ==========================================================
          SERVICES — #services
-         Asymmetric 40/60: sticky intro col (left) + card grid (right)
+         Section header + 5-card responsive grid (3-col desktop)
+         Card 1 spans 2 cols at desktop (featured/asymmetric offset)
          ========================================================== -->
     <section id="services" aria-labelledby="services-heading">
       <div class="container">
-        <div class="grid-40-60">
 
-          <!-- LEFT 40%: Sticky intro column -->
-          <div class="services__intro-col">
-            <span class="skeleton-label">Services · Intro Column (40%)</span>
-            <div class="skeleton-block" style="min-height:180px; width:100%;">
-              <!-- Section heading (Fraunces 600), 2-line intro, text-link CTA -->
+        <!-- Section header — left-aligned, not centered -->
+        <div class="services-header">
+          <p class="label">What We Offer</p>
+          <h2 class="heading-2" id="services-heading">Five ways we keep<br>East Valley homes clean</h2>
+          <p style="font-size: var(--text-md); color: var(--color-slate); line-height: 1.55; max-width: 52ch; margin-top: var(--space-md);">
+            From weekly maintenance to full deep-clean resets — we have a
+            service for every home, schedule, and situation.
+          </p>
+        </div>
+
+        <!-- 5-card grid
+             Desktop: [Card 1 — spans 2] [Card 2]
+                      [Card 3] [Card 4] [Card 5]
+             Tablet:  2 col
+             Mobile:  1 col                          -->
+        <div class="services-grid">
+
+          <!-- Card 1: Standard / Recurring Clean (featured — spans 2 cols desktop) -->
+          <article class="svc-card svc-card--featured" aria-labelledby="svc-standard-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- House outline -->
+                <polyline points="3,22 20,7 37,22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 22v14h24V22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="15" y="27" width="10" height="9" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <!-- Sparkle top-right — signals "clean" -->
+                <path d="M31 11 l0 -3 M31 11 l0 3 M31 11 l3 0 M31 11 l-3 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
             </div>
-          </div>
-
-          <!-- RIGHT 60%: Service card grid (irregular — hero card spans full) -->
-          <div class="services__card-grid">
-            <span class="skeleton-label" style="grid-column: 1/-1;">Services · Card Grid (60%)</span>
-
-            <!-- Hero card: Standard Clean (spans both columns) -->
-            <div class="service-card service-card--hero" aria-label="Standard Cleaning — skeleton">
-              <div class="service-card__thumb"></div>
-              <div class="service-card__body">
-                <span class="skeleton-label">Standard Clean · Hero Card</span>
-                <div class="skeleton-block" style="min-height:60px;"><!-- Card content --></div>
-              </div>
+            <div class="svc-card__content">
+              <h3 class="svc-card__title" id="svc-standard-title">Standard Cleaning</h3>
+              <p style="font-size:var(--text-sm); color:var(--color-slate); line-height:1.5; margin-top:calc(var(--space-xs)*-1);">
+                Our most popular service — scheduled around your life.
+              </p>
+              <ul class="svc-card__bullets">
+                <li>Weekly, bi-weekly, or monthly visits — your choice</li>
+                <li>Dusting, vacuuming, mopping &amp; full surface wipe-downs</li>
+                <li>Kitchen, bathrooms, bedrooms &amp; all living areas</li>
+                <li>Same team every visit — we learn your home</li>
+              </ul>
+              <a href="#checklists" class="svc-card__link">See what's included →</a>
             </div>
+          </article>
 
-            <!-- Regular cards: Deep, Move-Out, Airbnb -->
-            <div class="service-card" aria-label="Deep Cleaning — skeleton">
-              <div class="service-card__thumb"></div>
-              <div class="service-card__body">
-                <span class="skeleton-label">Deep Clean</span>
-              </div>
+          <!-- Card 2: Deep Clean (cloud variant — visual contrast) -->
+          <article class="svc-card svc-card--cloud" aria-labelledby="svc-deep-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Magnifying glass -->
+                <circle cx="17" cy="18" r="11" stroke="currentColor" stroke-width="2.2"/>
+                <path d="M25 26 L35 36" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                <!-- Crosshair inside lens — "detail-focused" -->
+                <path d="M11 18h12 M17 12v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
             </div>
+            <h3 class="svc-card__title" id="svc-deep-title">Deep Clean</h3>
+            <ul class="svc-card__bullets">
+              <li>Everything in a Standard Clean, plus detail areas</li>
+              <li>Inside oven, fridge &amp; cabinet exteriors</li>
+              <li>Baseboards, door frames &amp; light fixtures</li>
+            </ul>
+            <a href="#checklists" class="svc-card__link">Compare services →</a>
+          </article>
 
-            <div class="service-card" aria-label="Move-Out Cleaning — skeleton">
-              <div class="service-card__thumb"></div>
-              <div class="service-card__body">
-                <span class="skeleton-label">Move-Out</span>
-              </div>
+          <!-- Card 3: Move-In / Move-Out (standard cream) -->
+          <article class="svc-card" aria-labelledby="svc-move-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Key shape — move-in/out -->
+                <circle cx="13" cy="20" r="9" stroke="currentColor" stroke-width="2.2"/>
+                <path d="M21 20 h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M31 16 v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M36 16 v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="13" cy="20" r="3" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
             </div>
+            <h3 class="svc-card__title" id="svc-move-title">Move-In / Move-Out</h3>
+            <ul class="svc-card__bullets">
+              <li>Full deep clean inside cabinets, drawers &amp; closets</li>
+              <li>Wall spot-cleaning &amp; baseboard scrubbing</li>
+              <li>Perfect for security deposit or handoff day</li>
+            </ul>
+            <a href="#quote-form" class="svc-card__link">Get a quote →</a>
+          </article>
 
-            <div class="service-card" aria-label="Airbnb Cleaning — skeleton">
-              <div class="service-card__thumb"></div>
-              <div class="service-card__body">
-                <span class="skeleton-label">Airbnb</span>
-              </div>
+          <!-- Card 4: Airbnb / Short-Term Rental (cloud variant) -->
+          <article class="svc-card svc-card--cloud" aria-labelledby="svc-airbnb-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Bed icon — guest-ready -->
+                <path d="M4 30 V16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M4 22 h32 v8 H4" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                <path d="M4 30 v4 M36 30 v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <rect x="14" y="22" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1.8"/>
+                <rect x="25" y="22" width="9" height="5" rx="1" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
             </div>
+            <h3 class="svc-card__title" id="svc-airbnb-title">Airbnb &amp; Short-Term Rentals</h3>
+            <ul class="svc-card__bullets">
+              <li>Fast, reliable turnovers between guest stays</li>
+              <li>Linen refresh, trash removal, restock essentials</li>
+              <li>Completion report sent after every visit</li>
+            </ul>
+            <a href="#quote-form" class="svc-card__link">Get a quote →</a>
+          </article>
 
-            <div class="service-card" aria-label="Commercial Cleaning — skeleton">
-              <div class="service-card__thumb"></div>
-              <div class="service-card__body">
-                <span class="skeleton-label">Commercial</span>
-              </div>
+          <!-- Card 5: Commercial (standard cream) -->
+          <article class="svc-card" aria-labelledby="svc-commercial-title">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Office building -->
+                <rect x="6" y="6" width="28" height="30" rx="2" stroke="currentColor" stroke-width="2.2"/>
+                <path d="M6 19 h28" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="11" y="10" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="19" y="10" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="27" y="10" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="11" y="22" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="19" y="22" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="27" y="22" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="17" y="29" width="6" height="7" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
             </div>
+            <h3 class="svc-card__title" id="svc-commercial-title">Commercial Cleaning</h3>
+            <ul class="svc-card__bullets">
+              <li>Offices, retail spaces &amp; common areas</li>
+              <li>Scheduled around your business hours</li>
+              <li>Flexible frequency — daily to monthly</li>
+            </ul>
+            <a href="#quote-form" class="svc-card__link">Get a quote →</a>
+          </article>
 
-          </div>
         </div>
       </div>
     </section>
@@ -1776,74 +2009,153 @@
          ========================================================== -->
     <section id="checklists" aria-labelledby="checklists-heading">
       <div class="container">
-        <div style="margin-bottom: var(--space-2xl);">
-          <span class="skeleton-label">Checklists · Section Head</span>
-          <div class="skeleton-block" style="min-height:80px; margin-top: var(--space-md);">
-            <!-- Section heading + lede -->
+
+        <div class="services-header" style="margin-bottom: var(--space-xl);">
+          <h2 id="checklists-heading">Exactly what gets cleaned</h2>
+          <p class="services-lede">Every visit follows the same room-by-room checklist. No guessing, no shortcuts — just a consistent clean every time.</p>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="cl-tabs" role="tablist" aria-label="Room checklists" id="cl-tabs">
+          <button class="cl-tab-btn is-active" role="tab" aria-selected="true"  aria-controls="cl-kitchen"    id="cl-btn-kitchen"    data-panel="cl-kitchen">Kitchen</button>
+          <button class="cl-tab-btn"           role="tab" aria-selected="false" aria-controls="cl-bathroom"   id="cl-btn-bathroom"   data-panel="cl-bathroom">Bathroom</button>
+          <button class="cl-tab-btn"           role="tab" aria-selected="false" aria-controls="cl-bedrooms"   id="cl-btn-bedrooms"   data-panel="cl-bedrooms">Bedrooms</button>
+          <button class="cl-tab-btn"           role="tab" aria-selected="false" aria-controls="cl-common"     id="cl-btn-common"     data-panel="cl-common">Common Areas</button>
+        </div>
+
+        <!-- Kitchen -->
+        <div class="cl-panel is-active" id="cl-kitchen" role="tabpanel" aria-labelledby="cl-btn-kitchen">
+          <div class="table-scroll">
+            <table class="checklist-table">
+              <caption class="sr-only">Kitchen cleaning checklist by service level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Standard</th>
+                  <th scope="col">Deep Clean</th>
+                  <th scope="col">Move In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Dust light fixtures</td>                    <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Remove cobwebs</td>                          <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean countertops &amp; backsplash</td>      <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean microwave inside &amp; out</td>        <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean stovetop &amp; burners</td>            <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean sink &amp; soap dish</td>              <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean appliance exteriors</td>               <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe down cabinet doors</td>                 <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Empty trash &amp; wipe can</td>              <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum / sweep / mop floors</td>             <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean doors &amp; door frames</td>           <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wet-wipe baseboards</td>                     <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean inside cabinets &amp; drawers</td>     <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <span class="skeleton-label">Checklists · Comparison Table</span>
-
-        <div class="table-scroll" style="margin-top: var(--space-md);">
-          <table class="checklist-table">
-            <caption class="sr-only">Standard Clean vs Deep Clean comparison</caption>
-            <thead>
-              <tr>
-                <th scope="col">What We Clean</th>
-                <th scope="col">Standard</th>
-                <th scope="col">Deep Clean</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Skeleton rows — replace with real checklist items -->
-              <tr>
-                <td><span class="skeleton-label">Item — e.g. Dust all surfaces</span></td>
-                <td style="text-align:center;">
-                  <svg width="16" height="16" aria-label="Included" style="display:inline-block; color: var(--color-teal);">
-                    <use href="#icon-check"/>
-                  </svg>
-                </td>
-                <td style="text-align:center;">
-                  <svg width="16" height="16" aria-label="Included" style="display:inline-block; color: var(--color-teal);">
-                    <use href="#icon-check"/>
-                  </svg>
-                </td>
-              </tr>
-              <tr>
-                <td><span class="skeleton-label">Item — e.g. Clean interior windows</span></td>
-                <td style="text-align:center;">
-                  <svg width="16" height="16" aria-label="Not included" style="display:inline-block; color: var(--color-slate);">
-                    <use href="#icon-dash"/>
-                  </svg>
-                </td>
-                <td style="text-align:center;">
-                  <svg width="16" height="16" aria-label="Included" style="display:inline-block; color: var(--color-teal);">
-                    <use href="#icon-check"/>
-                  </svg>
-                </td>
-              </tr>
-              <tr>
-                <td><span class="skeleton-label">Item — e.g. Inside oven/fridge</span></td>
-                <td style="text-align:center;">
-                  <svg width="16" height="16" aria-label="Not included" style="display:inline-block; color: var(--color-slate);">
-                    <use href="#icon-dash"/>
-                  </svg>
-                </td>
-                <td style="text-align:center;">
-                  <svg width="16" height="16" aria-label="Included" style="display:inline-block; color: var(--color-teal);">
-                    <use href="#icon-check"/>
-                  </svg>
-                </td>
-              </tr>
-              <tr>
-                <td><span class="skeleton-label">Add remaining items from client list…</span></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Bathroom -->
+        <div class="cl-panel" id="cl-bathroom" role="tabpanel" aria-labelledby="cl-btn-bathroom">
+          <div class="table-scroll">
+            <table class="checklist-table">
+              <caption class="sr-only">Bathroom cleaning checklist by service level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Standard</th>
+                  <th scope="col">Deep Clean</th>
+                  <th scope="col">Move In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Dust light fixtures &amp; fan</td>           <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Remove cobwebs</td>                           <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Scrub toilet bowl, seat &amp; base</td>      <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Scrub shower &amp; tub surfaces</td>         <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean sink &amp; faucet</td>                 <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Polish mirrors</td>                           <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe countertops</td>                         <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe door &amp; handle</td>                  <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Empty trash</td>                              <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Sweep &amp; mop floors</td>                  <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Scrub tile grout</td>                         <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean shower door tracks &amp; seals</td>    <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wet-wipe baseboards</td>                      <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean inside medicine cabinet</td>            <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+
+        <!-- Bedrooms -->
+        <div class="cl-panel" id="cl-bedrooms" role="tabpanel" aria-labelledby="cl-btn-bedrooms">
+          <div class="table-scroll">
+            <table class="checklist-table">
+              <caption class="sr-only">Bedroom cleaning checklist by service level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Standard</th>
+                  <th scope="col">Deep Clean</th>
+                  <th scope="col">Move In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Dust all flat surfaces</td>                          <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Remove cobwebs</td>                                   <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Dust ceiling fan blades</td>                         <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe window sills</td>                               <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean mirrors &amp; glass</td>                       <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe switch plates &amp; outlets</td>                <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Make beds (linens provided by client)</td>           <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Empty trash</td>                                      <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum carpet / sweep &amp; mop hard floors</td>     <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum under bed</td>                                 <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wet-wipe baseboards</td>                              <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean door frames &amp; handles</td>                 <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum closet floors</td>                             <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe inside closet shelves</td>                      <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Common Areas -->
+        <div class="cl-panel" id="cl-common" role="tabpanel" aria-labelledby="cl-btn-common">
+          <div class="table-scroll">
+            <table class="checklist-table">
+              <caption class="sr-only">Common areas cleaning checklist by service level</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Standard</th>
+                  <th scope="col">Deep Clean</th>
+                  <th scope="col">Move In/Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Dust all surfaces &amp; décor</td>                   <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Remove cobwebs</td>                                   <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Dust ceiling fans</td>                               <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe switch plates &amp; outlets</td>                <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum upholstered furniture</td>                    <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean mirrors &amp; glass surfaces</td>              <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean sliding door glass</td>                        <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Empty all trash bins</td>                            <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Vacuum carpet / sweep &amp; mop floors</td>          <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wipe window sills</td>                               <td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Dust blinds &amp; window treatments</td>             <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Wet-wipe baseboards</td>                              <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Clean door frames &amp; handles</td>                 <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+                <tr><td>Spot-clean walls &amp; light switches</td>           <td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-no"  aria-label="Not included">—</span></td><td><span class="mark-yes" aria-label="Included">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="checklist-note">All services include eco-friendly, non-toxic products at no extra charge. <a href="#quote-form">Get a free quote →</a></p>
+
       </div>
     </section>
 
@@ -2288,6 +2600,40 @@
         closeMobileMenu();
       }
     });
+
+    // --- Checklist tabs ---
+    (function () {
+      var tabList = document.getElementById('cl-tabs');
+      if (!tabList) return;
+      tabList.addEventListener('click', function (e) {
+        var btn = e.target.closest('.cl-tab-btn');
+        if (!btn) return;
+        var panelId = btn.getAttribute('data-panel');
+        // Deactivate all
+        tabList.querySelectorAll('.cl-tab-btn').forEach(function (b) {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.cl-panel').forEach(function (p) {
+          p.classList.remove('is-active');
+        });
+        // Activate selected
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+        var panel = document.getElementById(panelId);
+        if (panel) panel.classList.add('is-active');
+      });
+      // Keyboard: left/right arrows between tabs
+      tabList.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        var btns = Array.from(tabList.querySelectorAll('.cl-tab-btn'));
+        var idx  = btns.indexOf(document.activeElement);
+        if (idx === -1) return;
+        var next = e.key === 'ArrowRight' ? (idx + 1) % btns.length : (idx - 1 + btns.length) % btns.length;
+        btns[next].focus();
+        btns[next].click();
+      });
+    })();
 
     // --- Set footer year ---
     var yearEl = document.getElementById('footer-year');
