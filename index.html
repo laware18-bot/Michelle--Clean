@@ -286,6 +286,7 @@
       gap: var(--space-2xl);
       align-items: start;
     }
+    .grid-hero > * { min-width: 0; }
     @media (min-width: 1024px) {
       .grid-hero {
         grid-template-columns: 2fr 1fr;
@@ -3010,6 +3011,7 @@
         <form
           id="popup-lead-form"
           name="popup-lead"
+          action="#"
           data-ghl-form="true"
           novalidate
           aria-label="Claim $50 off your first cleaning"
