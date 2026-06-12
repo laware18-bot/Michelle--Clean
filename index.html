@@ -1,0 +1,2105 @@
+<!-- GHL CUSTOM PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional house cleaning in Gilbert, Chandler, Queen Creek, and Mesa AZ. Licensed, bonded, and insured. Family-owned. Free quote today.">
+  <title>The Clean Cycle AZ — House Cleaning Gilbert AZ</title>
+
+  <!-- Google Fonts: Fraunces (variable, opsz + wght axes) + IBM Plex Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — The Clean Cycle AZ
+       Source of truth: DESIGN.md
+       ============================================================ */
+
+    /* ------------------------------------------------------------
+       1. TOKENS
+       ------------------------------------------------------------ */
+    :root {
+      /* --- Colors: anchors --- */
+      --color-navy:    #1B365D;
+      --color-teal:    #2ABFBF;
+
+      /* --- Colors: derived --- */
+      --color-cream:   #F8F4EE;   /* paper surface — warm off-white */
+      --color-cloud:   #EAF5F5;   /* secondary surface — light teal tint */
+      --color-slate:   #4A6B8A;   /* secondary text, muted labels */
+      --color-sand:    #CEC6B4;   /* borders, rules, dividers */
+
+      /* --- Colors: state derivatives --- */
+      --color-teal-hover:     #1FA8A8;
+      --color-teal-active:    #178F8F;
+      --color-navy-hover:     #14284A;
+      --color-disabled-bg:    #C2CDD6;
+      --color-disabled-text:  #8E9FAC;
+      --color-overlay:        rgba(27, 54, 93, 0.72);
+
+      /* --- Typography --- */
+      --font-display: "Fraunces", ui-serif, Georgia, serif;
+      --font-body:    "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
+      /* --- Type scale: major-third ratio (×1.25) from 16px base --- */
+      --text-xs:      0.64rem;     /* 10px */
+      --text-sm:      0.80rem;     /* 13px */
+      --text-base:    1.00rem;     /* 16px */
+      --text-md:      1.25rem;     /* 20px */
+      --text-lg:      1.5625rem;   /* 25px */
+      --text-xl:      1.9531rem;   /* 31px */
+      --text-2xl:     2.4414rem;   /* 39px */
+      --text-display: clamp(2.75rem, 5vw + 1rem, 4.5rem);
+
+      /* --- Spacing: 4pt scale --- */
+      --space-3xs: 0.125rem;   /*  2px */
+      --space-2xs: 0.25rem;    /*  4px */
+      --space-xs:  0.5rem;     /*  8px */
+      --space-sm:  0.75rem;    /* 12px */
+      --space-md:  1rem;       /* 16px */
+      --space-lg:  1.5rem;     /* 24px */
+      --space-xl:  2.5rem;     /* 40px */
+      --space-2xl: 4rem;       /* 64px */
+      --space-3xl: 6rem;       /* 96px */
+      --space-4xl: 9rem;       /* 144px */
+
+      /* --- Section padding rhythm --- */
+      --section-pad-hero:    5rem 0 4rem;
+      --section-pad-default: 4.5rem 0 5rem;
+      --section-pad-tight:   2.5rem 0 3rem;
+
+      /* --- Layout --- */
+      --max-width:       1280px;
+      --max-width-text:  65ch;
+      --page-inset:      clamp(1rem, 4vw, 5rem);
+      --banner-height:   64px;
+      --mobile-bar-h:    56px;
+
+      /* --- Borders & radius --- */
+      --radius-card:   8px;
+      --radius-pill:   9999px;
+      --radius-input:  6px;
+      --radius-modal:  12px;
+      --border-sand:   1px solid var(--color-sand);
+
+      /* --- Shadows --- */
+      --shadow-whisper: 0 1px 2px rgba(27, 54, 93, 0.05);
+      --shadow-hairline: 0 0 0 1px rgba(27, 54, 93, 0.06);
+      --shadow-card-hover: 0 4px 16px rgba(27, 54, 93, 0.10);
+
+      /* --- Z-index scale --- */
+      --z-base:       1;
+      --z-raised:     10;
+      --z-dropdown:   100;
+      --z-sticky:     200;
+      --z-sticky-nav: 300;
+      --z-modal:      400;
+      --z-toast:      500;
+
+      /* --- Motion --- */
+      --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-fast:  180ms;
+      --dur-base:  240ms;
+      --dur-slow:  320ms;
+    }
+
+    /* ------------------------------------------------------------
+       2. RESET & BASE
+       ------------------------------------------------------------ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Prevent horizontal scroll from any overflow elements */
+    html { overflow-x: clip; }
+    body { overflow-x: clip; }
+
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--color-navy);
+      background-color: var(--color-cream);
+      /* Reserve space at bottom for mobile bar */
+      padding-bottom: var(--mobile-bar-h);
+    }
+
+    @media (min-width: 1024px) {
+      body { padding-bottom: 0; }
+    }
+
+    img, video, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: var(--color-teal);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    a:hover { color: var(--color-teal-hover); }
+    a:focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* Buttons: base reset */
+    button {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: none;
+      line-height: 1;
+    }
+    button:focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 2px;
+    }
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* Inputs: base reset */
+    input, select, textarea {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 400;
+      color: var(--color-navy);
+      background-color: #fff;
+      border: 1px solid var(--color-sand);
+      border-radius: var(--radius-input);
+      padding: 0 var(--space-md);
+      height: 44px;
+      width: 100%;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      transition:
+        border-color var(--dur-fast) var(--ease-out),
+        outline-color var(--dur-fast) var(--ease-out);
+    }
+    textarea {
+      height: auto;
+      min-height: 100px;
+      padding: var(--space-sm) var(--space-md);
+      resize: vertical;
+    }
+    input:hover, select:hover, textarea:hover {
+      border-color: var(--color-slate);
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--color-teal);
+      outline-color: var(--color-teal);
+    }
+    input::placeholder, textarea::placeholder {
+      color: var(--color-disabled-text);
+    }
+    input:disabled, select:disabled, textarea:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      background-color: var(--color-disabled-bg);
+    }
+    /* Reserve space for helper/error text — prevents layout shift */
+    .field-helper {
+      display: block;
+      min-height: 1lh;
+      font-size: var(--text-sm);
+      color: var(--color-slate);
+      margin-top: var(--space-2xs);
+    }
+    .field-helper--error { color: #C0392B; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ------------------------------------------------------------
+       3. LAYOUT UTILITIES
+       ------------------------------------------------------------ */
+
+    /* Page-width wrapper */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: var(--page-inset);
+    }
+
+    /* Full-bleed (ignores max-width) */
+    .full-bleed {
+      width: 100%;
+    }
+
+    /* Two-column grids — activate at 1024px */
+    .grid-40-60 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .grid-40-60 {
+        grid-template-columns: 2fr 3fr;
+      }
+    }
+
+    .grid-60-40 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .grid-60-40 {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    .grid-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .grid-hero {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    /* 2-column equal at 768px+ */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .grid-2col { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* 3-column at 1024px+ */
+    .grid-3col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 1024px) {
+      .grid-3col { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Flex row utility */
+    .flex-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    /* Text alignment */
+    .text-left  { text-align: left; }
+    .text-center { text-align: center; }
+
+    /* Screen-reader only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ------------------------------------------------------------
+       4. TYPOGRAPHY HELPERS
+       ------------------------------------------------------------ */
+    .display {
+      font-family: var(--font-display);
+      font-size: var(--text-display);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .heading-2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .heading-3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+    }
+
+    .heading-card {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .lede {
+      font-size: var(--text-md);
+      font-weight: 400;
+      line-height: 1.55;
+      max-width: var(--max-width-text);
+    }
+
+    .label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--color-slate);
+    }
+
+    /* ------------------------------------------------------------
+       5. BUTTONS
+       ------------------------------------------------------------ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      padding: 0 var(--space-xl);
+      height: 48px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: var(--text-base);
+      white-space: nowrap;
+      text-decoration: none;
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+    }
+
+    /* Primary: teal fill, navy text */
+    .btn--primary {
+      background-color: var(--color-teal);
+      color: var(--color-navy);
+    }
+    .btn--primary:hover {
+      background-color: var(--color-teal-hover);
+      color: var(--color-navy);
+      text-decoration: none;
+    }
+    .btn--primary:active { background-color: var(--color-teal-active); }
+
+    /* Secondary: navy fill, cream text */
+    .btn--secondary {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+    }
+    .btn--secondary:hover {
+      background-color: var(--color-navy-hover);
+      color: var(--color-cream);
+      text-decoration: none;
+    }
+
+    /* Ghost: transparent, navy border+text */
+    .btn--ghost {
+      background-color: transparent;
+      color: var(--color-navy);
+      box-shadow: inset 0 0 0 1.5px var(--color-navy);
+    }
+    .btn--ghost:hover {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+      text-decoration: none;
+    }
+
+    /* Ghost on dark (cream border) */
+    .btn--ghost-light {
+      background-color: transparent;
+      color: var(--color-cream);
+      box-shadow: inset 0 0 0 1.5px var(--color-cream);
+    }
+    .btn--ghost-light:hover {
+      background-color: var(--color-cream);
+      color: var(--color-navy);
+      text-decoration: none;
+    }
+
+    /* Disabled state — all three required signals */
+    .btn:disabled,
+    .btn[aria-disabled="true"] {
+      background-color: var(--color-disabled-bg);
+      color: var(--color-disabled-text);
+      cursor: not-allowed;
+      opacity: 0.55;
+      box-shadow: none;
+    }
+
+    /* ------------------------------------------------------------
+       6. THE CYCLE MARK (signature element)
+          300° open SVG arc — used in exactly 3 places.
+       ------------------------------------------------------------ */
+    .cycle-mark {
+      display: block;
+      flex-shrink: 0;
+    }
+    .cycle-mark--lg  { width: 80px;  height: 80px;  }
+    .cycle-mark--md  { width: 48px;  height: 48px;  }
+    .cycle-mark--sm  { width: 20px;  height: 20px;  }
+
+    /* ------------------------------------------------------------
+       7. NAVBAR
+       ------------------------------------------------------------ */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-sticky-nav);
+      padding: var(--space-md) var(--page-inset);
+      /* Transparent at top of page */
+      background-color: transparent;
+      transition:
+        background-color var(--dur-base) var(--ease-out),
+        padding var(--dur-base) var(--ease-out);
+    }
+
+    /* Scrolled state: morphs into floating pill */
+    #navbar.is-scrolled {
+      background-color: transparent; /* pill handles bg */
+      padding: var(--space-sm) var(--page-inset);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      line-height: 1;
+    }
+
+    /* Pill shell — hidden at top, visible on scroll */
+    .navbar__pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 900px;
+      margin-inline: auto;
+      background-color: transparent;
+      border-radius: var(--radius-pill);
+      padding: var(--space-sm) var(--space-lg);
+      transition:
+        background-color var(--dur-base) var(--ease-out),
+        box-shadow var(--dur-base) var(--ease-out);
+    }
+
+    #navbar.is-scrolled .navbar__pill {
+      background-color: var(--color-navy);
+      box-shadow: 0 4px 24px rgba(27, 54, 93, 0.18);
+    }
+
+    .navbar__wordmark {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-navy);
+      text-decoration: none;
+      letter-spacing: -0.015em;
+      transition: color var(--dur-fast) var(--ease-out);
+      white-space: nowrap;
+    }
+
+    #navbar.is-scrolled .navbar__wordmark {
+      color: var(--color-cream);
+    }
+
+    .navbar__links {
+      display: none;
+      list-style: none;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .navbar__links { display: flex; }
+    }
+
+    .navbar__links a {
+      font-weight: 500;
+      font-size: var(--text-base);
+      color: var(--color-navy);
+      text-decoration: none;
+      transition: color var(--dur-fast) var(--ease-out);
+      white-space: nowrap;
+    }
+    .navbar__links a:hover { color: var(--color-teal); }
+
+    #navbar.is-scrolled .navbar__links a {
+      color: var(--color-cream);
+    }
+    #navbar.is-scrolled .navbar__links a:hover {
+      color: var(--color-teal);
+    }
+
+    .navbar__cta {
+      flex-shrink: 0;
+    }
+
+    /* Hamburger — visible below 1024px */
+    .navbar__burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      padding: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .navbar__burger span {
+      display: block;
+      height: 2px;
+      background-color: var(--color-navy);
+      border-radius: 2px;
+      transition: background-color var(--dur-fast);
+    }
+    #navbar.is-scrolled .navbar__burger span {
+      background-color: var(--color-cream);
+    }
+    @media (min-width: 1024px) {
+      .navbar__burger { display: none; }
+    }
+
+    /* Mobile menu drawer — hidden by default */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: calc(var(--z-sticky-nav) - 1);
+      background-color: var(--color-navy);
+      padding: calc(var(--banner-height) + var(--space-2xl)) var(--page-inset) var(--space-2xl);
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    #mobile-menu.is-open { display: flex; }
+
+    #mobile-menu a {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--color-cream);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    #mobile-menu a:hover { color: var(--color-teal); }
+
+    /* ------------------------------------------------------------
+       8. HERO SECTION
+       ------------------------------------------------------------ */
+    #hero {
+      background-color: var(--color-cream);
+      padding: calc(var(--banner-height) + 5rem) 0 4rem;
+      position: relative;
+      overflow: visible;
+    }
+
+    /* Motivated teal half-circle decoration — top-right */
+    #hero::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -80px;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background-color: var(--color-cloud);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__headline-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      align-items: flex-start; /* LEFT-aligned — not centered */
+    }
+
+    .hero__form-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      position: relative;
+    }
+
+    /* Cycle Mark anchor point in form col */
+    .hero__cycle-anchor {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+    @media (max-width: 1023px) {
+      .hero__cycle-anchor { display: none; }
+    }
+
+    .hero__form-card {
+      background-color: #fff;
+      border: var(--border-sand);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    /* ------------------------------------------------------------
+       9. TRUST STRIP
+       ------------------------------------------------------------ */
+    #trust-strip {
+      background-color: var(--color-navy);
+      padding: var(--space-tight, 2.5rem) 0 3rem;
+      overflow: hidden;
+    }
+
+    .trust-strip__track {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+      /* Will overflow on mobile and scroll */
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+      padding-inline: var(--page-inset);
+      padding-block: var(--space-sm);
+    }
+    .trust-strip__track::-webkit-scrollbar { display: none; }
+
+    .trust-strip__item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-shrink: 0;
+      color: var(--color-cream);
+    }
+
+    .trust-strip__label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--color-cream);
+      white-space: nowrap;
+    }
+
+    .trust-strip__num {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 300;
+      color: var(--color-teal);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ------------------------------------------------------------
+       10. SERVICES SECTION — asymmetric 40/60 layout
+       ------------------------------------------------------------ */
+    #services {
+      background-color: var(--color-cream);
+      padding: var(--section-pad-default);
+    }
+
+    .services__intro-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      align-items: flex-start;
+    }
+
+    /* Sticky intro at desktop */
+    @media (min-width: 1024px) {
+      .services__intro-col {
+        position: sticky;
+        top: calc(var(--banner-height) + var(--space-xl));
+        align-self: start;
+      }
+    }
+
+    .services__card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .services__card-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Service card skeleton */
+    .service-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: var(--space-md);
+      align-items: start;
+      background-color: var(--color-cream);
+      border: var(--border-sand);
+      border-left: 3px solid var(--color-teal); /* 3px teal accent stroke */
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+    }
+    .service-card:hover {
+      background-color: var(--color-cloud);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    /* Hero service card (Standard Clean) spans full width at desktop */
+    .service-card--hero {
+      grid-column: 1 / -1;
+      grid-template-columns: 120px 1fr;
+    }
+
+    .service-card__thumb {
+      background-color: var(--color-cloud);
+      border-radius: 4px;
+      aspect-ratio: 1;
+    }
+
+    .service-card__body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    /* Checklist drawer (hidden by default) */
+    .service-card__drawer {
+      display: none;
+      grid-column: 1 / -1;
+      padding-top: var(--space-md);
+      border-top: var(--border-sand);
+      margin-top: var(--space-md);
+    }
+    .service-card__drawer.is-open { display: block; }
+
+    /* ------------------------------------------------------------
+       11. CHECKLISTS SECTION
+       ------------------------------------------------------------ */
+    #checklists {
+      background-color: var(--color-cloud);
+      padding: var(--section-pad-default);
+    }
+
+    .checklist-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-base);
+    }
+
+    .checklist-table thead tr {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+    }
+
+    .checklist-table th,
+    .checklist-table td {
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      border: 1px solid var(--color-sand);
+      vertical-align: middle;
+    }
+
+    .checklist-table th {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .checklist-table tbody tr:nth-child(odd)  { background-color: var(--color-cream); }
+    .checklist-table tbody tr:nth-child(even) { background-color: var(--color-cloud); }
+    .checklist-table tbody tr:hover           { background-color: #dff0f0; }
+
+    /* Overflow wrapper for narrow viewports */
+    .table-scroll {
+      overflow-x: auto;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-hairline);
+    }
+
+    /* ------------------------------------------------------------
+       12. PRICING SECTION
+       ------------------------------------------------------------ */
+    #pricing {
+      background-color: var(--color-cream);
+      padding: var(--section-pad-default);
+    }
+
+    /* Tab strip — CSS-only radio pattern */
+    .pricing-tabs {
+      display: flex;
+      gap: var(--space-2xs);
+      background-color: var(--color-cloud);
+      border: var(--border-sand);
+      border-radius: var(--radius-pill);
+      padding: var(--space-2xs);
+      width: fit-content;
+      margin-bottom: var(--space-2xl);
+    }
+
+    /* Radios: stay in flow but invisible — prevents scroll-jump (gate 53) */
+    .pricing-tabs input[type="radio"] {
+      position: static;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .pricing-tab-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xs) var(--space-lg);
+      height: 38px;
+      border-radius: var(--radius-pill);
+      font-size: var(--text-base);
+      font-weight: 500;
+      color: var(--color-slate);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out);
+    }
+
+    /* Active tab: show when preceding radio is checked */
+    #tab-residential:checked ~ .pricing-tabs-ui label[for="tab-residential"],
+    #tab-commercial:checked  ~ .pricing-tabs-ui label[for="tab-commercial"],
+    #tab-airbnb:checked      ~ .pricing-tabs-ui label[for="tab-airbnb"] {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    @media (min-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Pricing card */
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      background-color: var(--color-cream);
+      border: var(--border-sand);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+    }
+
+    /* Recommended card: navy fill */
+    .pricing-card--recommended {
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+      border-color: var(--color-navy);
+    }
+    .pricing-card--recommended .heading-card { color: var(--color-cream); }
+    .pricing-card--recommended .label        { color: var(--color-teal); }
+
+    .pricing-badge {
+      display: inline-block;
+      background-color: var(--color-teal);
+      color: var(--color-navy);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      padding: var(--space-2xs) var(--space-sm);
+      border-radius: var(--radius-pill);
+      width: fit-content;
+    }
+
+    .pricing-amount {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.025em;
+      line-height: 1;
+    }
+
+    /* Panel visibility for tabs */
+    .pricing-panel { display: none; }
+    #tab-residential:checked ~ .pricing-panels #panel-residential,
+    #tab-commercial:checked  ~ .pricing-panels #panel-commercial,
+    #tab-airbnb:checked      ~ .pricing-panels #panel-airbnb {
+      display: block;
+    }
+
+    /* ------------------------------------------------------------
+       13. REVIEWS SECTION
+       ------------------------------------------------------------ */
+    #reviews {
+      background-color: var(--color-cloud);
+      padding: var(--section-pad-default);
+    }
+
+    .review-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      background-color: #fff;
+      border-left: 3px solid var(--color-teal);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-whisper);
+    }
+
+    .review-stars {
+      display: flex;
+      gap: var(--space-2xs);
+      align-items: center;
+    }
+    .review-stars svg {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      fill: var(--color-teal);
+    }
+
+    .review-quote {
+      font-family: var(--font-display);
+      font-size: var(--text-md);
+      font-weight: 300;
+      font-style: italic; /* italic allowed in body prose — gate 38a */
+      line-height: 1.5;
+      color: var(--color-navy);
+    }
+
+    .review-byline {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+    }
+    .review-name {
+      font-weight: 600;
+      font-size: var(--text-base);
+    }
+    .review-location {
+      font-size: var(--text-sm);
+      color: var(--color-slate);
+    }
+
+    /* ------------------------------------------------------------
+       14. QUOTE FORM SECTION
+       ------------------------------------------------------------ */
+    #quote-form {
+      background-color: var(--color-cloud);
+      padding: var(--section-pad-default);
+    }
+
+    .quote-form__head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    @media (min-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .form-field--full { grid-column: 1 / -1; }
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+    }
+
+    .form-field label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-navy);
+    }
+
+    /* ------------------------------------------------------------
+       15. FOOTER
+       ------------------------------------------------------------ */
+    #footer {
+      background-color: var(--color-navy);
+      padding: var(--section-pad-default);
+    }
+
+    .footer__inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xl);
+    }
+
+    /* Statement row: large tagline left, contact right */
+    .footer__statement-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      align-items: flex-start;
+    }
+    @media (min-width: 768px) {
+      .footer__statement-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+    }
+
+    .footer__tagline {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 300;
+      color: var(--color-cream);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      max-width: 22ch;
+    }
+
+    .footer__contact {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      text-align: right;
+    }
+    @media (max-width: 767px) {
+      .footer__contact { text-align: left; }
+    }
+
+    .footer__contact a {
+      color: var(--color-teal);
+      font-size: var(--text-md);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .footer__contact a:hover {
+      color: var(--color-teal-hover);
+      text-decoration: underline;
+    }
+
+    .footer__contact p {
+      color: var(--color-cream);
+      font-size: var(--text-base);
+      opacity: 0.75;
+    }
+
+    .footer__divider {
+      border: none;
+      border-top: 1px solid rgba(248, 244, 238, 0.12);
+    }
+
+    .footer__bottom {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      align-items: flex-start;
+    }
+    @media (min-width: 768px) {
+      .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .footer__legal {
+      font-size: var(--text-sm);
+      color: var(--color-cream);
+      opacity: 0.55;
+    }
+
+    .footer__links {
+      display: flex;
+      gap: var(--space-lg);
+      list-style: none;
+    }
+    .footer__links a {
+      font-size: var(--text-sm);
+      color: var(--color-cream);
+      opacity: 0.65;
+      text-decoration: none;
+    }
+    .footer__links a:hover {
+      color: var(--color-teal);
+      opacity: 1;
+    }
+
+    /* ------------------------------------------------------------
+       16. POPUP MODAL (#lead-popup)
+       ------------------------------------------------------------ */
+    #lead-popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-modal);
+      background-color: var(--color-overlay);
+      align-items: center;
+      justify-content: center;
+      padding: var(--page-inset);
+    }
+
+    #lead-popup.is-open {
+      display: flex;
+    }
+
+    .popup__panel {
+      background-color: var(--color-cream);
+      border-radius: var(--radius-modal);
+      padding: var(--space-2xl);
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(27, 54, 93, 0.30);
+    }
+
+    .popup__close {
+      position: absolute;
+      top: var(--space-lg);
+      right: var(--space-lg);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-navy);
+      color: var(--color-cream);
+      border-radius: 50%;
+      font-size: var(--text-md);
+      font-weight: 600;
+      line-height: 1;
+      cursor: pointer;
+      border: none;
+    }
+    .popup__close:hover { background-color: var(--color-navy-hover); }
+
+    .popup__head {
+      margin-bottom: var(--space-xl);
+      padding-right: var(--space-2xl);
+    }
+
+    /* ------------------------------------------------------------
+       17. MOBILE STICKY BAR (#mobile-bar)
+       ------------------------------------------------------------ */
+    #mobile-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-sticky);
+      height: var(--mobile-bar-h);
+      background-color: var(--color-navy);
+      padding: 0 var(--page-inset);
+      /* Safe area inset for iPhone home bar */
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* Hide on desktop */
+    @media (min-width: 1024px) {
+      #mobile-bar { display: none; }
+    }
+
+    .mobile-bar__phone {
+      font-weight: 600;
+      font-size: var(--text-base);
+      color: var(--color-cream);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .mobile-bar__phone:hover {
+      color: var(--color-teal);
+      text-decoration: none;
+    }
+
+    /* ============================================================
+       SKELETON LABELS
+       Visible only during skeleton phase — remove when adding content.
+       ============================================================ */
+    .skeleton-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      background-color: rgba(42, 191, 191, 0.12);
+      border: 1.5px dashed var(--color-teal);
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-teal);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .skeleton-block {
+      background-color: rgba(42, 191, 191, 0.08);
+      border: 1.5px dashed rgba(42, 191, 191, 0.35);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .skeleton-block--dark {
+      background-color: rgba(248, 244, 238, 0.06);
+      border-color: rgba(248, 244, 238, 0.20);
+    }
+    .skeleton-label--dark {
+      background-color: rgba(248, 244, 238, 0.08);
+      border-color: rgba(248, 244, 238, 0.35);
+      color: var(--color-cream);
+      opacity: 0.65;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       REUSABLE SVG SYMBOLS — referenced via <use> throughout page
+       ============================================================ -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <!-- Cycle Mark: 300° open arc, gap at lower-right (3–5 o'clock) -->
+    <!-- Path: start at 60° clockwise to 360°/0°, radius 44, center (50,50) -->
+    <symbol id="cycle-mark" viewBox="0 0 100 100" fill="none">
+      <path
+        d="M 72 88 A 44 44 0 1 1 94 50"
+        stroke="currentColor"
+        stroke-width="5"
+        stroke-linecap="round"
+      />
+    </symbol>
+
+    <!-- Star (filled) — for review ratings -->
+    <symbol id="icon-star" viewBox="0 0 16 16">
+      <path d="M8 1l1.854 3.756 4.146.603-3 2.924.708 4.13L8 10.347l-3.708 1.066.708-4.13-3-2.924 4.146-.603z"/>
+    </symbol>
+
+    <!-- Check — for checklist tables and pricing cards -->
+    <symbol id="icon-check" viewBox="0 0 16 16" fill="none">
+      <path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Dash — for "not included" table cells -->
+    <symbol id="icon-dash" viewBox="0 0 16 16" fill="none">
+      <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Close / × — for modal -->
+    <symbol id="icon-close" viewBox="0 0 16 16" fill="none">
+      <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Phone -->
+    <symbol id="icon-phone" viewBox="0 0 16 16" fill="none">
+      <path d="M2 3a1 1 0 0 1 1-1h2.5l1 3-1.5 1a9 9 0 0 0 4 4l1-1.5 3 1V13a1 1 0 0 1-1 1C5.4 14 2 6.6 2 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+
+  <!-- ============================================================
+       NAVBAR — #navbar
+       Transparent at top → floating navy pill on scroll
+       ============================================================ -->
+  <nav id="navbar" aria-label="Main navigation">
+    <div class="navbar__pill">
+      <a href="/" class="navbar__wordmark" aria-label="The Clean Cycle AZ — Home">
+        The Clean Cycle
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="navbar__links" role="list">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#quote-form">Contact</a></li>
+      </ul>
+
+      <!-- Desktop CTA -->
+      <div class="navbar__cta">
+        <a
+          href="#lead-popup"
+          class="btn btn--primary"
+          style="height: 40px; padding: 0 1.25rem; font-size: var(--text-sm);"
+          onclick="openPopup(event)"
+          aria-haspopup="dialog"
+        >Get Free Quote</a>
+      </div>
+
+      <!-- Mobile burger -->
+      <button
+        class="navbar__burger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        onclick="toggleMobileMenu(this)"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu drawer -->
+  <nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#services"   onclick="closeMobileMenu()">Services</a>
+    <a href="#pricing"    onclick="closeMobileMenu()">Pricing</a>
+    <a href="#reviews"    onclick="closeMobileMenu()">Reviews</a>
+    <a href="#quote-form" onclick="closeMobileMenu()">Contact</a>
+    <a
+      href="#lead-popup"
+      class="btn btn--primary"
+      style="margin-top: var(--space-lg); width: fit-content;"
+      onclick="openPopup(event); closeMobileMenu();"
+    >Get Free Quote</a>
+  </nav>
+
+
+  <main>
+
+    <!-- ==========================================================
+         HERO — #hero
+         Left-aligned split: headline col (2fr) + intake form (1fr)
+         Cycle Mark decoration behind form CTA area
+         ========================================================== -->
+    <section id="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <div class="grid-hero">
+
+          <!-- LEFT: Headline column -->
+          <div class="hero__headline-col">
+            <span class="skeleton-label">Hero · Headline Column</span>
+            <div class="skeleton-block" style="min-height:120px; width:100%;">
+              <!-- h1 display headline goes here — Fraunces 700, ≤7 words -->
+            </div>
+            <div class="skeleton-block" style="min-height:60px; width:100%;">
+              <!-- Lede paragraph — 2 lines max -->
+            </div>
+            <div class="skeleton-block" style="min-height:44px; width:240px;">
+              <!-- Secondary trust signal: "Licensed · Bonded · Insured" micro-line -->
+            </div>
+          </div>
+
+          <!-- RIGHT: Inline booking intake form -->
+          <div class="hero__form-col">
+            <span class="skeleton-label">Hero · Intake Form Card</span>
+            <div class="hero__form-card">
+              <div class="skeleton-block" style="min-height:200px;">
+                <!-- 3-field form: Service Type, Zip Code, Preferred Date + CTA -->
+              </div>
+            </div>
+            <!-- Cycle Mark (large) — signature element placement #1 -->
+            <svg
+              class="cycle-mark cycle-mark--lg hero__cycle-anchor"
+              aria-hidden="true"
+              style="color: var(--color-teal);"
+            >
+              <use href="#cycle-mark"/>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         TRUST STRIP — #trust-strip
+         Navy background · horizontal trust badges
+         ========================================================== -->
+    <section id="trust-strip" aria-label="Trust and credentials">
+      <div class="trust-strip__track" role="list">
+
+        <!-- Trust items — Cycle Mark (small) used as separator between items -->
+        <div class="trust-strip__item" role="listitem">
+          <span class="trust-strip__num">5+</span>
+          <span class="trust-strip__label">Years Serving East Valley</span>
+        </div>
+
+        <svg class="cycle-mark cycle-mark--sm" aria-hidden="true" style="color: var(--color-teal); flex-shrink: 0;">
+          <use href="#cycle-mark"/>
+        </svg>
+
+        <div class="trust-strip__item" role="listitem">
+          <span class="skeleton-label skeleton-label--dark">Licensed · Bonded · Insured badge</span>
+        </div>
+
+        <svg class="cycle-mark cycle-mark--sm" aria-hidden="true" style="color: var(--color-teal); flex-shrink: 0;">
+          <use href="#cycle-mark"/>
+        </svg>
+
+        <div class="trust-strip__item" role="listitem">
+          <span class="trust-strip__num">100+</span>
+          <span class="trust-strip__label">East Valley Families</span>
+        </div>
+
+        <svg class="cycle-mark cycle-mark--sm" aria-hidden="true" style="color: var(--color-teal); flex-shrink: 0;">
+          <use href="#cycle-mark"/>
+        </svg>
+
+        <div class="trust-strip__item" role="listitem">
+          <span class="skeleton-label skeleton-label--dark">Eco-Friendly Products badge</span>
+        </div>
+
+        <svg class="cycle-mark cycle-mark--sm" aria-hidden="true" style="color: var(--color-teal); flex-shrink: 0;">
+          <use href="#cycle-mark"/>
+        </svg>
+
+        <div class="trust-strip__item" role="listitem">
+          <span class="skeleton-label skeleton-label--dark">100% Happiness Guarantee badge</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         SERVICES — #services
+         Asymmetric 40/60: sticky intro col (left) + card grid (right)
+         ========================================================== -->
+    <section id="services" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="grid-40-60">
+
+          <!-- LEFT 40%: Sticky intro column -->
+          <div class="services__intro-col">
+            <span class="skeleton-label">Services · Intro Column (40%)</span>
+            <div class="skeleton-block" style="min-height:180px; width:100%;">
+              <!-- Section heading (Fraunces 600), 2-line intro, text-link CTA -->
+            </div>
+          </div>
+
+          <!-- RIGHT 60%: Service card grid (irregular — hero card spans full) -->
+          <div class="services__card-grid">
+            <span class="skeleton-label" style="grid-column: 1/-1;">Services · Card Grid (60%)</span>
+
+            <!-- Hero card: Standard Clean (spans both columns) -->
+            <div class="service-card service-card--hero" aria-label="Standard Cleaning — skeleton">
+              <div class="service-card__thumb"></div>
+              <div class="service-card__body">
+                <span class="skeleton-label">Standard Clean · Hero Card</span>
+                <div class="skeleton-block" style="min-height:60px;"><!-- Card content --></div>
+              </div>
+            </div>
+
+            <!-- Regular cards: Deep, Move-Out, Airbnb -->
+            <div class="service-card" aria-label="Deep Cleaning — skeleton">
+              <div class="service-card__thumb"></div>
+              <div class="service-card__body">
+                <span class="skeleton-label">Deep Clean</span>
+              </div>
+            </div>
+
+            <div class="service-card" aria-label="Move-Out Cleaning — skeleton">
+              <div class="service-card__thumb"></div>
+              <div class="service-card__body">
+                <span class="skeleton-label">Move-Out</span>
+              </div>
+            </div>
+
+            <div class="service-card" aria-label="Airbnb Cleaning — skeleton">
+              <div class="service-card__thumb"></div>
+              <div class="service-card__body">
+                <span class="skeleton-label">Airbnb</span>
+              </div>
+            </div>
+
+            <div class="service-card" aria-label="Commercial Cleaning — skeleton">
+              <div class="service-card__thumb"></div>
+              <div class="service-card__body">
+                <span class="skeleton-label">Commercial</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         CHECKLISTS — #checklists
+         Cloud background · Standard vs Deep comparison table
+         ========================================================== -->
+    <section id="checklists" aria-labelledby="checklists-heading">
+      <div class="container">
+        <div style="margin-bottom: var(--space-2xl);">
+          <span class="skeleton-label">Checklists · Section Head</span>
+          <div class="skeleton-block" style="min-height:80px; margin-top: var(--space-md);">
+            <!-- Section heading + lede -->
+          </div>
+        </div>
+
+        <span class="skeleton-label">Checklists · Comparison Table</span>
+
+        <div class="table-scroll" style="margin-top: var(--space-md);">
+          <table class="checklist-table">
+            <caption class="sr-only">Standard Clean vs Deep Clean comparison</caption>
+            <thead>
+              <tr>
+                <th scope="col">What We Clean</th>
+                <th scope="col">Standard</th>
+                <th scope="col">Deep Clean</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Skeleton rows — replace with real checklist items -->
+              <tr>
+                <td><span class="skeleton-label">Item — e.g. Dust all surfaces</span></td>
+                <td style="text-align:center;">
+                  <svg width="16" height="16" aria-label="Included" style="display:inline-block; color: var(--color-teal);">
+                    <use href="#icon-check"/>
+                  </svg>
+                </td>
+                <td style="text-align:center;">
+                  <svg width="16" height="16" aria-label="Included" style="display:inline-block; color: var(--color-teal);">
+                    <use href="#icon-check"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="skeleton-label">Item — e.g. Clean interior windows</span></td>
+                <td style="text-align:center;">
+                  <svg width="16" height="16" aria-label="Not included" style="display:inline-block; color: var(--color-slate);">
+                    <use href="#icon-dash"/>
+                  </svg>
+                </td>
+                <td style="text-align:center;">
+                  <svg width="16" height="16" aria-label="Included" style="display:inline-block; color: var(--color-teal);">
+                    <use href="#icon-check"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="skeleton-label">Item — e.g. Inside oven/fridge</span></td>
+                <td style="text-align:center;">
+                  <svg width="16" height="16" aria-label="Not included" style="display:inline-block; color: var(--color-slate);">
+                    <use href="#icon-dash"/>
+                  </svg>
+                </td>
+                <td style="text-align:center;">
+                  <svg width="16" height="16" aria-label="Included" style="display:inline-block; color: var(--color-teal);">
+                    <use href="#icon-check"/>
+                  </svg>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="skeleton-label">Add remaining items from client list…</span></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         PRICING — #pricing
+         Cream background · CSS-only tab switcher + 3-tier cards
+         ========================================================== -->
+    <section id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+
+        <div style="margin-bottom: var(--space-2xl);">
+          <span class="skeleton-label">Pricing · Section Head</span>
+          <div class="skeleton-block" style="min-height:80px; margin-top: var(--space-md);">
+            <!-- Heading + flat-rate signal ("Simple, honest pricing") -->
+          </div>
+        </div>
+
+        <!-- CSS-only radio tab pattern — radios in flow, zero-size (gate 53) -->
+        <input type="radio" name="pricing-tab" id="tab-residential" checked
+          style="position:static; width:0; height:0; opacity:0; margin:0; padding:0;">
+        <input type="radio" name="pricing-tab" id="tab-commercial"
+          style="position:static; width:0; height:0; opacity:0; margin:0; padding:0;">
+        <input type="radio" name="pricing-tab" id="tab-airbnb"
+          style="position:static; width:0; height:0; opacity:0; margin:0; padding:0;">
+
+        <div class="pricing-tabs pricing-tabs-ui" role="tablist" aria-label="Pricing by service type">
+          <label class="pricing-tab-label" for="tab-residential" role="tab">Residential</label>
+          <label class="pricing-tab-label" for="tab-commercial"  role="tab">Commercial</label>
+          <label class="pricing-tab-label" for="tab-airbnb"      role="tab">Airbnb</label>
+        </div>
+
+        <div class="pricing-panels">
+          <!-- Residential panel -->
+          <div class="pricing-panel" id="panel-residential" role="tabpanel" aria-labelledby="tab-residential">
+            <div class="pricing-grid">
+
+              <div class="pricing-card">
+                <span class="skeleton-label">Essential tier</span>
+                <div class="skeleton-block" style="min-height:220px;"><!-- Pricing card content --></div>
+              </div>
+
+              <div class="pricing-card pricing-card--recommended">
+                <div class="pricing-badge">Most Popular</div>
+                <span class="skeleton-label skeleton-label--dark">Standard tier (recommended)</span>
+                <div class="skeleton-block skeleton-block--dark" style="min-height:220px;"><!-- Pricing card content --></div>
+              </div>
+
+              <div class="pricing-card">
+                <span class="skeleton-label">Deep Clean tier</span>
+                <div class="skeleton-block" style="min-height:220px;"><!-- Pricing card content --></div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Commercial panel -->
+          <div class="pricing-panel" id="panel-commercial" role="tabpanel" aria-labelledby="tab-commercial">
+            <div class="pricing-grid">
+              <div class="pricing-card" style="grid-column: 1 / -1; max-width: 520px;">
+                <span class="skeleton-label">Commercial pricing — skeleton</span>
+                <div class="skeleton-block" style="min-height:140px;"><!-- Quote-based commercial pricing --></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Airbnb panel -->
+          <div class="pricing-panel" id="panel-airbnb" role="tabpanel" aria-labelledby="tab-airbnb">
+            <div class="pricing-grid">
+              <div class="pricing-card" style="grid-column: 1 / -1; max-width: 520px;">
+                <span class="skeleton-label">Airbnb / Short-Term Rental pricing — skeleton</span>
+                <div class="skeleton-block" style="min-height:140px;"><!-- Per-turnover pricing --></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         REVIEWS — #reviews
+         Cloud background · 3-col pull-quote cards
+         ========================================================== -->
+    <section id="reviews" aria-labelledby="reviews-heading">
+      <div class="container">
+
+        <div style="margin-bottom: var(--space-2xl);">
+          <span class="skeleton-label">Reviews · Section Head</span>
+          <div class="skeleton-block" style="min-height:80px; margin-top: var(--space-md);">
+            <!-- Heading + "What our neighbors say" sub-line -->
+          </div>
+        </div>
+
+        <div class="grid-3col">
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+            </div>
+            <div class="skeleton-block" style="min-height:100px;"><!-- Review quote text (Fraunces 300 italic) --></div>
+            <div class="review-byline">
+              <span class="skeleton-label">Reviewer Name</span>
+              <span class="review-location">Gilbert, AZ</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+            </div>
+            <div class="skeleton-block" style="min-height:100px;"><!-- Review quote text --></div>
+            <div class="review-byline">
+              <span class="skeleton-label">Reviewer Name</span>
+              <span class="review-location">Chandler, AZ</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+            </div>
+            <div class="skeleton-block" style="min-height:100px;"><!-- Review quote text --></div>
+            <div class="review-byline">
+              <span class="skeleton-label">Reviewer Name</span>
+              <span class="review-location">Queen Creek, AZ</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         QUOTE FORM — #quote-form
+         Cloud background · Cycle Mark heading anchor (placement #3)
+         ========================================================== -->
+    <section id="quote-form" aria-labelledby="form-heading">
+      <div class="container">
+
+        <div class="quote-form__head">
+          <!-- Cycle Mark (medium) — signature element placement #3 -->
+          <svg
+            class="cycle-mark cycle-mark--md"
+            aria-hidden="true"
+            style="color: var(--color-teal);"
+          >
+            <use href="#cycle-mark"/>
+          </svg>
+          <div>
+            <span class="skeleton-label">Quote Form · Heading Area</span>
+            <div class="skeleton-block" style="min-height:70px; margin-top: var(--space-sm);">
+              <!-- "Ready for a cleaner home?" heading + sub-line -->
+            </div>
+          </div>
+        </div>
+
+        <form
+          id="quote-form-el"
+          name="quote-request"
+          novalidate
+          aria-label="Request a free quote"
+        >
+          <div class="form-grid">
+
+            <div class="form-field">
+              <label for="f-name">Full Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="f-name" name="name" autocomplete="name"
+                placeholder="Jane Doe" required aria-required="true">
+              <span class="field-helper" id="f-name-helper"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="f-phone">Phone <span aria-hidden="true">*</span></label>
+              <input type="tel" id="f-phone" name="phone" autocomplete="tel"
+                placeholder="(480) 000-0000" required aria-required="true">
+              <span class="field-helper" id="f-phone-helper"></span>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" name="email" autocomplete="email"
+                placeholder="you@example.com">
+              <span class="field-helper" id="f-email-helper"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="f-service">Service Type <span aria-hidden="true">*</span></label>
+              <select id="f-service" name="service" required aria-required="true">
+                <option value="" disabled selected>Select a service…</option>
+                <option value="standard">Standard Clean</option>
+                <option value="deep">Deep Clean</option>
+                <option value="move-out">Move-In / Move-Out</option>
+                <option value="airbnb">Airbnb / Short-Term Rental</option>
+                <option value="commercial">Commercial</option>
+              </select>
+              <span class="field-helper" id="f-service-helper"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="f-size">Home Size</label>
+              <select id="f-size" name="home_size">
+                <option value="" disabled selected>Bedrooms / bathrooms…</option>
+                <option value="1b1b">1 bed / 1 bath</option>
+                <option value="2b1b">2 bed / 1 bath</option>
+                <option value="2b2b">2 bed / 2 bath</option>
+                <option value="3b2b">3 bed / 2 bath</option>
+                <option value="4b2b">4 bed / 2+ bath</option>
+                <option value="5plus">5+ bed</option>
+              </select>
+              <span class="field-helper"></span>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="f-message">Anything else we should know?</label>
+              <textarea id="f-message" name="message" placeholder="e.g. pets, preferred schedule, access instructions…"></textarea>
+              <span class="field-helper"></span>
+            </div>
+
+            <div class="form-field form-field--full">
+              <button type="submit" class="btn btn--secondary" style="width: fit-content;">
+                Request My Free Quote
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER — #footer
+       Navy background · Statement-style (Ft5)
+       Large Fraunces tagline left · contact right
+       ============================================================ -->
+  <footer id="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__inner">
+
+        <div class="footer__statement-row">
+          <p class="footer__tagline">A clean home<br>is a calm home.</p>
+
+          <div class="footer__contact">
+            <a href="tel:+14804050668" aria-label="Call us at (480) 405-0668">
+              (480) 405-0668
+            </a>
+            <p>Gilbert, AZ · Serving East Valley</p>
+            <p class="skeleton-label skeleton-label--dark" style="margin-top: var(--space-xs);">
+              Contact info + service area — to populate
+            </p>
+          </div>
+        </div>
+
+        <hr class="footer__divider">
+
+        <div class="footer__bottom">
+          <p class="footer__legal">
+            © <span id="footer-year"></span> The Clean Cycle AZ · Licensed · Bonded · Insured
+          </p>
+          <ul class="footer__links" role="list">
+            <li><a href="/privacy">Privacy</a></li>
+            <li><a href="/terms">Terms</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       POPUP MODAL — #lead-popup
+       Navy overlay · cream panel · condensed 3-field form
+       ============================================================ -->
+  <div
+    id="lead-popup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="popup-title"
+    aria-hidden="true"
+  >
+    <div class="popup__panel">
+      <button
+        class="popup__close"
+        aria-label="Close quote popup"
+        onclick="closePopup()"
+      >
+        <svg width="14" height="14" aria-hidden="true"><use href="#icon-close"/></svg>
+      </button>
+
+      <div class="popup__head">
+        <span class="skeleton-label">Popup · Header</span>
+        <div class="skeleton-block" style="min-height:70px; margin-top: var(--space-sm);">
+          <!-- Short headline: "Get your free quote" + 1-line sub -->
+        </div>
+      </div>
+
+      <form name="popup-quote" novalidate aria-label="Quick quote request">
+        <div class="form-grid">
+
+          <div class="form-field form-field--full">
+            <label for="p-name">Full Name</label>
+            <input type="text" id="p-name" name="name" autocomplete="name" placeholder="Jane Doe" required>
+            <span class="field-helper" id="p-name-helper"></span>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="p-phone">Phone</label>
+            <input type="tel" id="p-phone" name="phone" autocomplete="tel" placeholder="(480) 000-0000" required>
+            <span class="field-helper" id="p-phone-helper"></span>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="p-service">Service Type</label>
+            <select id="p-service" name="service" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option value="standard">Standard Clean</option>
+              <option value="deep">Deep Clean</option>
+              <option value="move-out">Move-In / Move-Out</option>
+              <option value="airbnb">Airbnb / Short-Term Rental</option>
+              <option value="commercial">Commercial</option>
+            </select>
+            <span class="field-helper"></span>
+          </div>
+
+          <div class="form-field form-field--full">
+            <button type="submit" class="btn btn--primary" style="width: 100%;">
+              Send My Request
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       MOBILE STICKY BAR — #mobile-bar
+       Fixed bottom · navy · phone left, CTA right
+       Hidden at ≥1024px
+       ============================================================ -->
+  <div id="mobile-bar" aria-label="Quick contact bar" role="complementary">
+    <a href="tel:+14804050668" class="mobile-bar__phone" aria-label="Call (480) 405-0668">
+      <svg width="16" height="16" aria-hidden="true" style="display:inline-block; vertical-align:middle; margin-right:6px; color:var(--color-teal);">
+        <use href="#icon-phone"/>
+      </svg>
+      (480) 405-0668
+    </a>
+    <a
+      href="#lead-popup"
+      class="btn btn--primary"
+      style="height: 40px; padding: 0 1.25rem; font-size: var(--text-sm);"
+      onclick="openPopup(event)"
+    >Book Now</a>
+  </div>
+
+
+  <!-- ============================================================
+       MINIMAL JS — nav scroll, modal, mobile menu, year stamp
+       ============================================================ -->
+  <script>
+    // --- Navbar: add .is-scrolled after 80px ---
+    (function () {
+      var nav = document.getElementById('navbar');
+      function onScroll() {
+        if (window.scrollY > 80) {
+          nav.classList.add('is-scrolled');
+        } else {
+          nav.classList.remove('is-scrolled');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // run once on load
+    })();
+
+    // --- Mobile menu toggle ---
+    function toggleMobileMenu(btn) {
+      var menu = document.getElementById('mobile-menu');
+      var isOpen = menu.classList.toggle('is-open');
+      menu.setAttribute('aria-hidden', String(!isOpen));
+      btn.setAttribute('aria-expanded', String(isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    function closeMobileMenu() {
+      var menu = document.getElementById('mobile-menu');
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      var btn = document.querySelector('[aria-controls="mobile-menu"]');
+      if (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+      }
+    }
+
+    // --- Modal open / close ---
+    var firstFocusable = null;
+    function openPopup(e) {
+      if (e) e.preventDefault();
+      var popup = document.getElementById('lead-popup');
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      // Focus first interactive element
+      var focusables = popup.querySelectorAll('button, input, select, textarea, a[href]');
+      firstFocusable = focusables[0];
+      if (firstFocusable) firstFocusable.focus();
+    }
+    function closePopup() {
+      var popup = document.getElementById('lead-popup');
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    // Close on overlay click
+    document.getElementById('lead-popup').addEventListener('click', function (e) {
+      if (e.target === this) closePopup();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closePopup();
+        closeMobileMenu();
+      }
+    });
+
+    // --- Set footer year ---
+    var yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
