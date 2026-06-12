@@ -16,6 +16,11 @@
   >
 
   <style>
+    /* Hallmark · macrostructure: Photographic Fold · genre: warm-trust
+     * nav: N10 scroll-morph pill · footer: Ft3 (local service hub)
+     * tone: warm-trust · anchor hue: teal #2ABFBF
+     * pre-emit critique: P4 H3 E4 S3 R4 V3
+     */
     /* ============================================================
        DESIGN SYSTEM — The Clean Cycle AZ
        Source of truth: DESIGN.md
@@ -102,6 +107,16 @@
       --z-modal:      400;
       --z-toast:      500;
 
+
+      /* --- Colors: semantic extras (tokenized from inline hex) --- */
+      --color-error:        #C0392B;   /* form error text */
+      --color-error-border: #E74C3C;   /* form error border/outline */
+      --color-success:      #1A8A60;   /* checklist mark-yes green */
+      --color-navy-deep:    #0F2440;   /* footer background (deeper than navy) */
+      --color-surface-card: #FFFFFF;   /* card surface (white on cream page) */
+      --color-cloud-hover:  #D6EEEE;   /* cloud card hover */
+      --color-table-hover:  #D6EDEC;   /* table row hover */
+
       /* --- Motion --- */
       --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
       --dur-fast:  180ms;
@@ -187,7 +202,7 @@
       font-size: var(--text-base);
       font-weight: 400;
       color: var(--color-navy);
-      background-color: #fff;
+      background-color: var(--color-surface-card);
       border: 1px solid var(--color-sand);
       border-radius: var(--radius-input);
       padding: 0 var(--space-md);
@@ -195,9 +210,7 @@
       width: 100%;
       outline: 2px solid transparent;
       outline-offset: 2px;
-      transition:
-        border-color var(--dur-fast) var(--ease-out),
-        outline-color var(--dur-fast) var(--ease-out);
+      transition: border-color var(--dur-fast) var(--ease-out); /* outline instant per gate 15 */
     }
     textarea {
       height: auto;
@@ -228,7 +241,7 @@
       color: var(--color-slate);
       margin-top: var(--space-2xs);
     }
-    .field-helper--error { color: #C0392B; }
+    .field-helper--error { color: var(--color-error); }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -703,7 +716,8 @@
       display: flex;
       flex-direction: column;
       gap: var(--space-xl);
-      align-items: flex-start; /* LEFT-aligned — not centered */
+      align-items: flex-start;
+      text-align: left;
     }
 
     .hero__form-col {
@@ -726,7 +740,7 @@
     }
 
     .hero__form-card {
-      background-color: #fff;
+      background-color: var(--color-surface-card);
       border: var(--border-sand);
       border-radius: var(--radius-card);
       padding: var(--space-xl);
@@ -837,7 +851,8 @@
       gap: var(--space-md);
       background-color: var(--color-cream);
       border: var(--border-sand);
-      border-left: 3px solid var(--color-teal);
+      border: var(--border-sand);
+      border-top: 3px solid var(--color-teal);
       border-radius: var(--radius-card);
       padding: var(--space-xl);
       transition:
@@ -908,7 +923,6 @@
     }
     .svc-card__link:hover {
       color: var(--color-teal-hover);
-      gap: var(--space-xs);
       text-decoration: none;
     }
 
@@ -937,9 +951,9 @@
     /* Cloud variant — navy accent, used for variety on 2 of the 5 cards */
     .svc-card--cloud {
       background-color: var(--color-cloud);
-      border-left-color: var(--color-navy);
+      border-top-color: var(--color-navy);
     }
-    .svc-card--cloud:hover { background-color: #d6eeee; }
+    .svc-card--cloud:hover { background-color: var(--color-cloud-hover); }
     .svc-card--cloud .svc-card__icon { color: var(--color-navy); }
     .svc-card--cloud .svc-card__link { color: var(--color-navy); }
     .svc-card--cloud .svc-card__link:hover { color: var(--color-slate); }
@@ -1056,10 +1070,10 @@
 
     .checklist-table tbody tr:nth-child(odd)  { background-color: var(--color-cream); }
     .checklist-table tbody tr:nth-child(even) { background-color: var(--color-cloud); }
-    .checklist-table tbody tr:hover           { background-color: #d6edec; }
+    .checklist-table tbody tr:hover           { background-color: var(--color-table-hover); }
 
     /* Check / dash mark colors */
-    .mark-yes { color: #1A8A60; }  /* forest green for "included" */
+    .mark-yes { color: var(--color-success); }  /* forest green for "included" */
     .mark-no  { color: var(--color-sand); }
 
     /* Note below table */
@@ -1097,7 +1111,7 @@
       .price-heroes { grid-template-columns: repeat(4, 1fr); }
     }
     .price-hero-card {
-      background-color: #fff;
+      background-color: var(--color-surface-card);
       border: var(--border-sand);
       border-radius: var(--radius-card);
       padding: var(--space-lg) var(--space-md);
@@ -1237,9 +1251,9 @@
       color: var(--color-navy);
       white-space: nowrap;
     }
-    .pricing-table tbody tr:nth-child(odd)  { background-color: #fff; }
+    .pricing-table tbody tr:nth-child(odd)  { background-color: var(--color-surface-card); }
     .pricing-table tbody tr:nth-child(even) { background-color: var(--color-cloud); }
-    .pricing-table tbody tr:hover { background-color: #d6edec; }
+    .pricing-table tbody tr:hover { background-color: var(--color-table-hover); }
     .pricing-table .price-na {
       color: var(--color-sand);
       font-family: var(--font-body);
@@ -1336,7 +1350,7 @@
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
-      background-color: #fff;
+      background-color: var(--color-surface-card);
       border: var(--border-sand);
       border-radius: var(--radius-card);
       padding: var(--space-sm) var(--space-lg);
@@ -1368,8 +1382,9 @@
       display: flex;
       flex-direction: column;
       gap: var(--space-md);
-      background-color: #fff;
-      border-left: 3px solid var(--color-teal);
+      background-color: var(--color-surface-card);
+      border: var(--border-sand);
+      border-top: 3px solid var(--color-teal);
       border-radius: var(--radius-card);
       padding: var(--space-xl);
       box-shadow: var(--shadow-whisper);
@@ -1416,7 +1431,7 @@
       border: var(--border-sand);
       border-radius: var(--radius-card);
       overflow: hidden;
-      background-color: #fff;
+      background-color: var(--color-surface-card);
     }
     .reviews-iframe-wrap iframe {
       display: block;
@@ -1477,8 +1492,8 @@
     .field-is-invalid input,
     .field-is-invalid select,
     .field-is-invalid textarea {
-      border-color: #E74C3C;
-      outline-color: #E74C3C;
+      border-color: var(--color-error-border);
+      outline-color: var(--color-error-border);
     }
 
     .form-grid {
@@ -1524,7 +1539,7 @@
        15. FOOTER
        ------------------------------------------------------------ */
     #footer {
-      background-color: #0F2440;
+      background-color: var(--color-navy-deep);
       padding: var(--space-3xl) 0 0;
     }
 
@@ -1609,7 +1624,7 @@
 
     .footer__legal {
       font-size: var(--text-sm);
-      color: rgba(248, 244, 238, 0.40);
+      color: rgba(248, 244, 238, 0.60);
     }
 
     .footer__links {
@@ -1619,7 +1634,7 @@
     }
     .footer__links a {
       font-size: var(--text-sm);
-      color: rgba(248, 244, 238, 0.40);
+      color: rgba(248, 244, 238, 0.58);
       text-decoration: none;
       transition: color var(--dur-fast) var(--ease-out);
     }
@@ -1641,7 +1656,7 @@
     #lead-popup.is-open { display: flex; }
 
     .popup__panel {
-      background-color: #fff;
+      background-color: var(--color-surface-card);
       border-radius: var(--radius-modal);
       width: 100%;
       max-width: 440px;
@@ -2037,7 +2052,7 @@
                 <div class="form-field">
                   <label for="hero-name">Your Name</label>
                   <input type="text" id="hero-name" name="hero_name"
-                    autocomplete="name" placeholder="Jane Doe">
+                    autocomplete="name" placeholder="María R.">
                   <span class="field-helper"></span>
                 </div>
 
@@ -2465,7 +2480,6 @@
 
         <!-- Section header -->
         <div class="services-header" style="margin-bottom: var(--space-2xl);">
-          <p class="eyebrow">Transparent Pricing</p>
           <h2 id="pricing-heading">Flat-rate prices. No surprises.</h2>
           <p class="services-lede">Every quote is firm before we arrive. Price is based on home size — never hourly, never hidden.</p>
         </div>
@@ -2696,7 +2710,6 @@
         <!-- Section head + rating badge -->
         <div class="reviews-head">
           <div>
-            <p class="eyebrow" style="margin-bottom: var(--space-xs);">Real Clients. Real Results.</p>
             <h2 id="reviews-heading" class="heading-2">What Our Clients Say</h2>
           </div>
 
@@ -2721,7 +2734,7 @@
               <svg aria-hidden="true"><use href="#icon-star"/></svg>
             </div>
             <blockquote class="review-quote">
-              "I've used three different cleaning services in Gilbert and The Clean Cycle is the first one I didn't have to re-clean after. They actually do the baseboards and the microwave — every time."
+              “I’ve used three different cleaning services in Gilbert and The Clean Cycle is the first one I didn’t have to re-clean after. They actually do the baseboards and the microwave — every time.”
             </blockquote>
             <div class="review-byline">
               <span class="review-name">Sarah M.</span>
@@ -2738,7 +2751,7 @@
               <svg aria-hidden="true"><use href="#icon-star"/></svg>
             </div>
             <blockquote class="review-quote">
-              "Used them for a move-out clean on our Chandler rental. The landlord did the walk-through and called it the cleanest departure she'd seen in five years. Got the full deposit back."
+              “Used them for a move-out clean on our Chandler rental. The landlord did the walk-through and called it the cleanest departure she’d seen in five years. Got the full deposit back.”
             </blockquote>
             <div class="review-byline">
               <span class="review-name">James &amp; Priya K.</span>
@@ -2755,7 +2768,7 @@
               <svg aria-hidden="true"><use href="#icon-star"/></svg>
             </div>
             <blockquote class="review-quote">
-              "Our Airbnb in Queen Creek was getting mixed reviews on cleanliness. Six months with The Clean Cycle and we haven't had a single complaint. Guests keep commenting on how fresh it feels."
+              “Our Airbnb in Queen Creek was getting mixed reviews on cleanliness. Six months with The Clean Cycle and we haven’t had a single complaint. Guests keep commenting on how fresh it feels.”
             </blockquote>
             <div class="review-byline">
               <span class="review-name">Danielle R.</span>
@@ -2816,7 +2829,7 @@
             <div class="form-field">
               <label for="f-name">Full Name <span aria-hidden="true">*</span></label>
               <input type="text" id="f-name" name="name" autocomplete="name"
-                placeholder="Jane Doe" required aria-required="true"
+                placeholder="María R." required aria-required="true"
                 aria-describedby="f-name-helper">
               <span class="field-helper" id="f-name-helper" role="alert"></span>
             </div>
@@ -3021,7 +3034,7 @@
             <div class="form-field">
               <label for="p-name">Full Name <span aria-hidden="true">*</span></label>
               <input type="text" id="p-name" name="name" autocomplete="name"
-                placeholder="Jane Doe" required aria-required="true"
+                placeholder="María R." required aria-required="true"
                 aria-describedby="p-name-helper">
               <span class="field-helper" id="p-name-helper" role="alert"></span>
             </div>
