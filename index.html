@@ -530,19 +530,45 @@
       box-shadow: 0 4px 24px rgba(27, 54, 93, 0.18);
     }
 
+    /* Logo — always shown white (hero is dark; pill bg is also navy) */
+    .navbar__logo {
+      display: block;
+      height: 40px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      transition: opacity var(--dur-fast) var(--ease-out);
+    }
+    .navbar__logo:hover { opacity: 0.85; }
+
     .navbar__wordmark {
-      font-family: var(--font-display);
-      font-size: var(--text-lg);
-      font-weight: 600;
-      color: var(--color-navy);
+      display: flex;
+      align-items: center;
       text-decoration: none;
-      letter-spacing: -0.015em;
-      transition: color var(--dur-fast) var(--ease-out);
-      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    #navbar.is-scrolled .navbar__wordmark {
+    /* Phone link — desktop only */
+    .navbar__phone {
+      display: none;
+      align-items: center;
+      gap: var(--space-xs);
+      font-weight: 500;
+      font-size: var(--text-sm);
       color: var(--color-cream);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .navbar__phone:hover { color: var(--color-teal); }
+    @media (min-width: 1024px) {
+      .navbar__phone { display: flex; }
+    }
+
+    .navbar__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-shrink: 0;
     }
 
     .navbar__links {
@@ -555,26 +581,16 @@
       .navbar__links { display: flex; }
     }
 
+    /* Nav links: cream in both states (hero is dark; pill bg is navy) */
     .navbar__links a {
       font-weight: 500;
       font-size: var(--text-base);
-      color: var(--color-navy);
+      color: var(--color-cream);
       text-decoration: none;
       transition: color var(--dur-fast) var(--ease-out);
       white-space: nowrap;
     }
     .navbar__links a:hover { color: var(--color-teal); }
-
-    #navbar.is-scrolled .navbar__links a {
-      color: var(--color-cream);
-    }
-    #navbar.is-scrolled .navbar__links a:hover {
-      color: var(--color-teal);
-    }
-
-    .navbar__cta {
-      flex-shrink: 0;
-    }
 
     /* Hamburger — visible below 1024px */
     .navbar__burger {
@@ -592,12 +608,9 @@
     .navbar__burger span {
       display: block;
       height: 2px;
-      background-color: var(--color-navy);
+      background-color: var(--color-cream);
       border-radius: 2px;
       transition: background-color var(--dur-fast);
-    }
-    #navbar.is-scrolled .navbar__burger span {
-      background-color: var(--color-cream);
     }
     @media (min-width: 1024px) {
       .navbar__burger { display: none; }
@@ -630,24 +643,46 @@
        8. HERO SECTION
        ------------------------------------------------------------ */
     #hero {
-      background-color: var(--color-cream);
+      background-color: var(--color-navy); /* fallback while image loads */
+      background-image:
+        linear-gradient(
+          105deg,
+          rgba(27, 54, 93, 0.92) 0%,
+          rgba(27, 54, 93, 0.80) 52%,
+          rgba(27, 54, 93, 0.48) 100%
+        ),
+        url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: var(--color-cream);
       padding: calc(var(--banner-height) + 5rem) 0 4rem;
       position: relative;
       overflow: visible;
     }
 
-    /* Motivated teal half-circle decoration — top-right */
-    #hero::before {
-      content: "";
-      position: absolute;
-      top: -60px;
-      right: -80px;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background-color: var(--color-cloud);
-      z-index: 0;
-      pointer-events: none;
+    /* All text in hero inherits cream */
+    #hero h1,
+    #hero .display  { color: var(--color-cream); }
+    #hero .lede     { color: rgba(248, 244, 238, 0.88); }
+    #hero .label    { color: var(--color-teal); letter-spacing: 0.1em; }
+
+    /* Micro trust line under CTAs */
+    .hero__trust-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      font-size: var(--text-sm);
+      color: rgba(248, 244, 238, 0.72);
+      font-weight: 500;
+    }
+    .hero__trust-line span {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2xs);
+    }
+    .hero__trust-line svg {
+      color: var(--color-teal);
+      flex-shrink: 0;
     }
 
     #hero .container {
@@ -694,45 +729,66 @@
        ------------------------------------------------------------ */
     #trust-strip {
       background-color: var(--color-navy);
-      padding: var(--space-tight, 2.5rem) 0 3rem;
-      overflow: hidden;
+      padding: 2.5rem 0 3rem;
     }
 
-    .trust-strip__track {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xl);
-      /* Will overflow on mobile and scroll */
-      overflow-x: auto;
-      scrollbar-width: none; /* Firefox */
-      padding-inline: var(--page-inset);
-      padding-block: var(--space-sm);
+    /* 2-col grid on mobile → 4-col row at 768px+ */
+    .trust-strip__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl) var(--space-lg);
     }
-    .trust-strip__track::-webkit-scrollbar { display: none; }
+    @media (min-width: 768px) {
+      .trust-strip__grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+    }
 
     .trust-strip__item {
       display: flex;
-      align-items: center;
-      gap: var(--space-md);
+      align-items: flex-start;
+      gap: var(--space-sm);
+      color: var(--color-cream);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    /* Vertical dividers between items at desktop only */
+    @media (min-width: 768px) {
+      .trust-strip__item + .trust-strip__item {
+        border-left: 1px solid rgba(248, 244, 238, 0.12);
+      }
+    }
+
+    .trust-strip__icon {
       flex-shrink: 0;
-      color: var(--color-cream);
-    }
-
-    .trust-strip__label {
-      font-size: var(--text-sm);
-      font-weight: 500;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--color-cream);
-      white-space: nowrap;
-    }
-
-    .trust-strip__num {
-      font-family: var(--font-display);
-      font-size: var(--text-xl);
-      font-weight: 300;
+      width: 28px;
+      height: 28px;
       color: var(--color-teal);
-      font-variant-numeric: tabular-nums;
+      margin-top: 2px;
+    }
+    .trust-strip__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .trust-strip__text {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3xs);
+    }
+
+    .trust-strip__headline {
+      font-weight: 600;
+      font-size: var(--text-base);
+      color: var(--color-cream);
+      line-height: 1.3;
+    }
+
+    .trust-strip__sub {
+      font-size: var(--text-sm);
+      color: rgba(248, 244, 238, 0.60);
+      font-weight: 400;
     }
 
     /* ------------------------------------------------------------
@@ -1351,6 +1407,30 @@
     <symbol id="icon-phone" viewBox="0 0 16 16" fill="none">
       <path d="M2 3a1 1 0 0 1 1-1h2.5l1 3-1.5 1a9 9 0 0 0 4 4l1-1.5 3 1V13a1 1 0 0 1-1 1C5.4 14 2 6.6 2 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
     </symbol>
+
+    <!-- Shield — Licensed & Insured -->
+    <symbol id="icon-shield" viewBox="0 0 20 20" fill="none">
+      <path d="M10 2L3 5.5V10c0 4.25 3.09 8.22 7 9 3.91-.78 7-4.75 7-9V5.5L10 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Calendar — scheduling -->
+    <symbol id="icon-calendar" viewBox="0 0 20 20" fill="none">
+      <rect x="2" y="4" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M2 9h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M6 2v4M14 2v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="7" cy="13" r="1" fill="currentColor"/>
+      <circle cx="10" cy="13" r="1" fill="currentColor"/>
+      <circle cx="13" cy="13" r="1" fill="currentColor"/>
+    </symbol>
+
+    <!-- Users — families served -->
+    <symbol id="icon-users" viewBox="0 0 20 20" fill="none">
+      <circle cx="7.5" cy="6" r="3" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M1 18c0-3.31 2.91-6 6.5-6s6.5 2.69 6.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="15" cy="6" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M19 18c0-2.76-1.79-5.13-4.24-5.77" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
   </svg>
 
 
@@ -1360,30 +1440,45 @@
        ============================================================ -->
   <nav id="navbar" aria-label="Main navigation">
     <div class="navbar__pill">
-      <a href="/" class="navbar__wordmark" aria-label="The Clean Cycle AZ — Home">
-        The Clean Cycle
+
+      <!-- Logo -->
+      <a href="#hero" class="navbar__wordmark" aria-label="The Clean Cycle AZ — Home">
+        <img
+          src="https://assets.cdn.filesafe.space/yClPU8JfUYTPBosdlZfn/media/67293b5fce0095653cb8d153.png"
+          alt="The Clean Cycle AZ"
+          class="navbar__logo"
+          width="160"
+          height="40"
+        >
       </a>
 
-      <!-- Desktop links -->
+      <!-- Desktop nav links: Home | Services | Pricing | Reviews | Contact -->
       <ul class="navbar__links" role="list">
+        <li><a href="#hero">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#quote-form">Contact</a></li>
       </ul>
 
-      <!-- Desktop CTA -->
-      <div class="navbar__cta">
+      <!-- Desktop: phone + Book Now -->
+      <div class="navbar__actions">
+        <a href="tel:+16026100059" class="navbar__phone" aria-label="Call us at (602) 610-0059">
+          <svg width="14" height="14" aria-hidden="true" style="display:block;">
+            <use href="#icon-phone"/>
+          </svg>
+          (602) 610-0059
+        </a>
         <a
           href="#lead-popup"
           class="btn btn--primary"
           style="height: 40px; padding: 0 1.25rem; font-size: var(--text-sm);"
-          onclick="openPopup(event)"
+          onclick="openLeadPopup(event)"
           aria-haspopup="dialog"
-        >Get Free Quote</a>
+        >Book Now</a>
       </div>
 
-      <!-- Mobile burger -->
+      <!-- Mobile hamburger -->
       <button
         class="navbar__burger"
         aria-label="Open menu"
@@ -1398,18 +1493,22 @@
     </div>
   </nav>
 
-  <!-- Mobile menu drawer -->
+  <!-- Mobile full-screen menu drawer -->
   <nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#hero"       onclick="closeMobileMenu()">Home</a>
     <a href="#services"   onclick="closeMobileMenu()">Services</a>
     <a href="#pricing"    onclick="closeMobileMenu()">Pricing</a>
     <a href="#reviews"    onclick="closeMobileMenu()">Reviews</a>
     <a href="#quote-form" onclick="closeMobileMenu()">Contact</a>
+    <a href="tel:+16026100059" class="navbar__phone" style="font-size: var(--text-md); color: var(--color-teal); opacity: 1; margin-top: var(--space-md);">
+      (602) 610-0059
+    </a>
     <a
       href="#lead-popup"
       class="btn btn--primary"
-      style="margin-top: var(--space-lg); width: fit-content;"
-      onclick="openPopup(event); closeMobileMenu();"
-    >Get Free Quote</a>
+      style="margin-top: var(--space-sm); width: fit-content;"
+      onclick="openLeadPopup(event); closeMobileMenu();"
+    >Book Now</a>
   </nav>
 
 
@@ -1417,36 +1516,117 @@
 
     <!-- ==========================================================
          HERO — #hero
-         Left-aligned split: headline col (2fr) + intake form (1fr)
-         Cycle Mark decoration behind form CTA area
+         Left-aligned 2fr/1fr split over full-bleed photo + dark overlay
          ========================================================== -->
     <section id="hero" aria-labelledby="hero-headline">
       <div class="container">
         <div class="grid-hero">
 
-          <!-- LEFT: Headline column -->
+          <!-- LEFT: Headline + CTA column -->
           <div class="hero__headline-col">
-            <span class="skeleton-label">Hero · Headline Column</span>
-            <div class="skeleton-block" style="min-height:120px; width:100%;">
-              <!-- h1 display headline goes here — Fraunces 700, ≤7 words -->
+
+            <p class="label">Gilbert · Chandler · Queen Creek · Mesa</p>
+
+            <h1 id="hero-headline" class="display">
+              East Valley Homes,<br>Cleaned With Care
+            </h1>
+
+            <p class="lede">
+              The Clean Cycle is a family-owned team serving East Valley families
+              with eco-friendly products, background-checked cleaners, and
+              flexible scheduling — weekly, bi-weekly, or one-time.
+            </p>
+
+            <!-- CTA group: primary → popup, secondary → services section -->
+            <div class="flex-row" style="flex-wrap: wrap; gap: var(--space-md);">
+              <button
+                class="btn btn--primary"
+                style="height: 52px; padding: 0 var(--space-2xl); font-size: var(--text-md);"
+                onclick="openLeadPopup(event)"
+                aria-haspopup="dialog"
+              >
+                Get $50 Off Your First Cleaning
+              </button>
+              <a
+                href="#services"
+                class="btn btn--ghost-light"
+                style="height: 52px;"
+              >See Our Services ↓</a>
             </div>
-            <div class="skeleton-block" style="min-height:60px; width:100%;">
-              <!-- Lede paragraph — 2 lines max -->
+
+            <!-- Micro trust signals -->
+            <div class="hero__trust-line" role="list">
+              <span role="listitem">
+                <svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg>
+                Licensed &amp; Insured
+              </span>
+              <span role="listitem">
+                <svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg>
+                Background-Checked Cleaners
+              </span>
+              <span role="listitem">
+                <svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg>
+                Satisfaction Guaranteed
+              </span>
             </div>
-            <div class="skeleton-block" style="min-height:44px; width:240px;">
-              <!-- Secondary trust signal: "Licensed · Bonded · Insured" micro-line -->
-            </div>
+
           </div>
 
-          <!-- RIGHT: Inline booking intake form -->
+          <!-- RIGHT: Quick-quote card -->
           <div class="hero__form-col">
-            <span class="skeleton-label">Hero · Intake Form Card</span>
             <div class="hero__form-card">
-              <div class="skeleton-block" style="min-height:200px;">
-                <!-- 3-field form: Service Type, Zip Code, Preferred Date + CTA -->
+              <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; color: var(--color-navy); margin-bottom: var(--space-xs);">
+                Get Your Free Quote
+              </p>
+              <p style="font-size: var(--text-sm); color: var(--color-slate); margin-bottom: var(--space-xl);">
+                Takes 30 seconds. No obligation.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+
+                <div class="form-field">
+                  <label for="hero-name">Your Name</label>
+                  <input type="text" id="hero-name" name="hero_name"
+                    autocomplete="name" placeholder="Jane Doe">
+                  <span class="field-helper"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="hero-phone">Phone Number</label>
+                  <input type="tel" id="hero-phone" name="hero_phone"
+                    autocomplete="tel" placeholder="(602) 000-0000">
+                  <span class="field-helper"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="hero-service">Service Needed</label>
+                  <select id="hero-service" name="hero_service">
+                    <option value="" disabled selected>Choose a service…</option>
+                    <option value="standard">Standard Clean</option>
+                    <option value="deep">Deep Clean</option>
+                    <option value="move-out">Move-In / Move-Out</option>
+                    <option value="airbnb">Airbnb Turnover</option>
+                    <option value="commercial">Commercial</option>
+                  </select>
+                  <span class="field-helper"></span>
+                </div>
+
+                <button
+                  type="button"
+                  class="btn btn--secondary"
+                  style="width: 100%; height: 50px; font-size: var(--text-md); margin-top: var(--space-xs);"
+                  onclick="openLeadPopup(event)"
+                >
+                  Request a Quote →
+                </button>
+
+                <p style="font-size: var(--text-xs); color: var(--color-slate); text-align: center; margin-top: var(--space-2xs);">
+                  Or call us: <a href="tel:+16026100059" style="color: var(--color-teal); font-weight: 600;">(602) 610-0059</a>
+                </p>
               </div>
             </div>
-            <!-- Cycle Mark (large) — signature element placement #1 -->
+
+            <!-- Cycle Mark — signature element placement #1 -->
             <svg
               class="cycle-mark cycle-mark--lg hero__cycle-anchor"
               aria-hidden="true"
@@ -1463,50 +1643,65 @@
 
     <!-- ==========================================================
          TRUST STRIP — #trust-strip
-         Navy background · horizontal trust badges
+         Navy background · 4-item grid (2×2 mobile → 4-col desktop)
          ========================================================== -->
-    <section id="trust-strip" aria-label="Trust and credentials">
-      <div class="trust-strip__track" role="list">
+    <section id="trust-strip" aria-label="Why families trust The Clean Cycle AZ">
+      <div class="container">
+        <div class="trust-strip__grid">
 
-        <!-- Trust items — Cycle Mark (small) used as separator between items -->
-        <div class="trust-strip__item" role="listitem">
-          <span class="trust-strip__num">5+</span>
-          <span class="trust-strip__label">Years Serving East Valley</span>
+          <!-- Item 1: Google Rating -->
+          <div class="trust-strip__item">
+            <div class="trust-strip__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78z"/>
+              </svg>
+            </div>
+            <div class="trust-strip__text">
+              <strong class="trust-strip__headline">4.9 Google Rating</strong>
+              <span class="trust-strip__sub">Based on 50+ reviews</span>
+            </div>
+          </div>
+
+          <!-- Item 2: Licensed & Insured -->
+          <div class="trust-strip__item">
+            <div class="trust-strip__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href="#icon-shield"/>
+              </svg>
+            </div>
+            <div class="trust-strip__text">
+              <strong class="trust-strip__headline">Licensed &amp; Insured</strong>
+              <span class="trust-strip__sub">Bonded · Background-checked</span>
+            </div>
+          </div>
+
+          <!-- Item 3: Flexible Scheduling -->
+          <div class="trust-strip__item">
+            <div class="trust-strip__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href="#icon-calendar"/>
+              </svg>
+            </div>
+            <div class="trust-strip__text">
+              <strong class="trust-strip__headline">Weekly, Bi-Weekly &amp; Monthly</strong>
+              <span class="trust-strip__sub">Evenings &amp; weekends available</span>
+            </div>
+          </div>
+
+          <!-- Item 4: Happy Families -->
+          <div class="trust-strip__item">
+            <div class="trust-strip__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href="#icon-users"/>
+              </svg>
+            </div>
+            <div class="trust-strip__text">
+              <strong class="trust-strip__headline">25+ Happy Families</strong>
+              <span class="trust-strip__sub">Serving East Valley since 2019</span>
+            </div>
+          </div>
+
         </div>
-
-        <svg class="cycle-mark cycle-mark--sm" aria-hidden="true" style="color: var(--color-teal); flex-shrink: 0;">
-          <use href="#cycle-mark"/>
-        </svg>
-
-        <div class="trust-strip__item" role="listitem">
-          <span class="skeleton-label skeleton-label--dark">Licensed · Bonded · Insured badge</span>
-        </div>
-
-        <svg class="cycle-mark cycle-mark--sm" aria-hidden="true" style="color: var(--color-teal); flex-shrink: 0;">
-          <use href="#cycle-mark"/>
-        </svg>
-
-        <div class="trust-strip__item" role="listitem">
-          <span class="trust-strip__num">100+</span>
-          <span class="trust-strip__label">East Valley Families</span>
-        </div>
-
-        <svg class="cycle-mark cycle-mark--sm" aria-hidden="true" style="color: var(--color-teal); flex-shrink: 0;">
-          <use href="#cycle-mark"/>
-        </svg>
-
-        <div class="trust-strip__item" role="listitem">
-          <span class="skeleton-label skeleton-label--dark">Eco-Friendly Products badge</span>
-        </div>
-
-        <svg class="cycle-mark cycle-mark--sm" aria-hidden="true" style="color: var(--color-teal); flex-shrink: 0;">
-          <use href="#cycle-mark"/>
-        </svg>
-
-        <div class="trust-strip__item" role="listitem">
-          <span class="skeleton-label skeleton-label--dark">100% Happiness Guarantee badge</span>
-        </div>
-
       </div>
     </section>
 
@@ -1953,7 +2148,7 @@
       <button
         class="popup__close"
         aria-label="Close quote popup"
-        onclick="closePopup()"
+        onclick="closeLeadPopup()"
       >
         <svg width="14" height="14" aria-hidden="true"><use href="#icon-close"/></svg>
       </button>
@@ -2021,7 +2216,7 @@
       href="#lead-popup"
       class="btn btn--primary"
       style="height: 40px; padding: 0 1.25rem; font-size: var(--text-sm);"
-      onclick="openPopup(event)"
+      onclick="openLeadPopup(event)"
     >Book Now</a>
   </div>
 
@@ -2066,19 +2261,17 @@
     }
 
     // --- Modal open / close ---
-    var firstFocusable = null;
-    function openPopup(e) {
+    function openLeadPopup(e) {
       if (e) e.preventDefault();
       var popup = document.getElementById('lead-popup');
       popup.classList.add('is-open');
       popup.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      // Focus first interactive element
+      // Focus first interactive element for accessibility
       var focusables = popup.querySelectorAll('button, input, select, textarea, a[href]');
-      firstFocusable = focusables[0];
-      if (firstFocusable) firstFocusable.focus();
+      if (focusables[0]) focusables[0].focus();
     }
-    function closePopup() {
+    function closeLeadPopup() {
       var popup = document.getElementById('lead-popup');
       popup.classList.remove('is-open');
       popup.setAttribute('aria-hidden', 'true');
@@ -2086,12 +2279,12 @@
     }
     // Close on overlay click
     document.getElementById('lead-popup').addEventListener('click', function (e) {
-      if (e.target === this) closePopup();
+      if (e.target === this) closeLeadPopup();
     });
     // Close on Escape
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
-        closePopup();
+        closeLeadPopup();
         closeMobileMenu();
       }
     });
