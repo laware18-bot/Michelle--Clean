@@ -381,12 +381,20 @@
       max-width: var(--max-width-text);
     }
 
-    .label {
+    .label, .eyebrow {
       font-size: var(--text-sm);
       font-weight: 500;
       letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--color-slate);
+    }
+
+    .services-lede {
+      font-size: var(--text-md);
+      color: var(--color-slate);
+      line-height: 1.55;
+      max-width: 52ch;
+      margin-top: var(--space-md);
     }
 
     /* ------------------------------------------------------------
@@ -1077,113 +1085,233 @@
       padding: var(--section-pad-default);
     }
 
-    /* Tab strip — CSS-only radio pattern */
-    .pricing-tabs {
-      display: flex;
-      gap: var(--space-2xs);
-      background-color: var(--color-cloud);
-      border: var(--border-sand);
-      border-radius: var(--radius-pill);
-      padding: var(--space-2xs);
-      width: fit-content;
+    /* Hero price callouts — 2 col mobile → 4 col 768px+ */
+    .price-heroes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
       margin-bottom: var(--space-2xl);
     }
+    @media (min-width: 768px) {
+      .price-heroes { grid-template-columns: repeat(4, 1fr); }
+    }
+    .price-hero-card {
+      background-color: #fff;
+      border: var(--border-sand);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+    .price-hero-label {
+      display: block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-slate);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: var(--space-xs);
+    }
+    .price-hero-amount {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.2vw + 0.5rem, 2rem);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-teal);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+    .price-hero-note {
+      display: block;
+      font-size: var(--text-xs);
+      color: var(--color-slate);
+      margin-top: var(--space-2xs);
+    }
 
-    /* Radios: stay in flow but invisible — prevents scroll-jump (gate 53) */
+    /* Tab strip — folder-tab style (radios remain in normal flow, gate 53) */
+    .pricing-tabs {
+      display: flex;
+      gap: 2px;
+      border-bottom: 2px solid var(--color-sand);
+      margin-bottom: var(--space-xl);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .pricing-tabs::-webkit-scrollbar { display: none; }
+
+    /* Radios: in-flow, zero-size — no scroll-jump (gate 53) */
     .pricing-tabs input[type="radio"] {
       position: static;
-      width: 0;
-      height: 0;
-      opacity: 0;
-      margin: 0;
-      padding: 0;
+      width: 0; height: 0; opacity: 0; margin: 0; padding: 0;
     }
 
     .pricing-tab-label {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: var(--space-xs) var(--space-lg);
-      height: 38px;
-      border-radius: var(--radius-pill);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 42px;
+      border-radius: 6px 6px 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      margin-bottom: -2px;
       font-size: var(--text-base);
       font-weight: 500;
       color: var(--color-slate);
+      background-color: transparent;
       cursor: pointer;
       user-select: none;
       white-space: nowrap;
       transition:
         background-color var(--dur-fast) var(--ease-out),
-        color var(--dur-fast) var(--ease-out);
+        color            var(--dur-fast) var(--ease-out);
+    }
+    .pricing-tab-label:hover { color: var(--color-navy); }
+
+    /* Active tab: teal background, white text */
+    #tab-standard:checked ~ .pricing-tabs-ui label[for="tab-standard"],
+    #tab-deep:checked     ~ .pricing-tabs-ui label[for="tab-deep"],
+    #tab-moveout:checked  ~ .pricing-tabs-ui label[for="tab-moveout"],
+    #tab-rental:checked   ~ .pricing-tabs-ui label[for="tab-rental"] {
+      background-color: var(--color-teal);
+      color: #fff;
+      border-color: var(--color-teal);
     }
 
-    /* Active tab: show when preceding radio is checked */
-    #tab-residential:checked ~ .pricing-tabs-ui label[for="tab-residential"],
-    #tab-commercial:checked  ~ .pricing-tabs-ui label[for="tab-commercial"],
-    #tab-airbnb:checked      ~ .pricing-tabs-ui label[for="tab-airbnb"] {
+    /* Panel visibility */
+    .pricing-panel { display: none; }
+    #tab-standard:checked ~ .pricing-panels #panel-standard,
+    #tab-deep:checked     ~ .pricing-panels #panel-deep,
+    #tab-moveout:checked  ~ .pricing-panels #panel-moveout,
+    #tab-rental:checked   ~ .pricing-panels #panel-rental {
+      display: block;
+    }
+
+    /* Pricing table */
+    .pricing-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+    }
+    /* Right-edge fade on mobile hints at horizontal scrollability */
+    @media (max-width: 767px) {
+      .pricing-table-wrap::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0;
+        width: 2.5rem;
+        background: linear-gradient(to right, rgba(248,244,238,0) 0%, rgba(248,244,238,0.85) 100%);
+        pointer-events: none;
+      }
+    }
+
+    .pricing-table {
+      width: 100%;
+      min-width: 360px;
+      border-collapse: collapse;
+      font-size: var(--text-base);
+    }
+    .pricing-table thead tr {
       background-color: var(--color-navy);
       color: var(--color-cream);
     }
+    .pricing-table th {
+      padding: var(--space-sm) var(--space-lg);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-base);
+      text-align: left;
+      white-space: nowrap;
+    }
+    .pricing-table th:not(:first-child) { text-align: right; }
+    .pricing-table td {
+      padding: var(--space-sm) var(--space-lg);
+      border-bottom: 1px solid var(--color-sand);
+      vertical-align: middle;
+    }
+    .pricing-table td:not(:first-child) {
+      text-align: right;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--color-navy);
+      white-space: nowrap;
+    }
+    .pricing-table tbody tr:nth-child(odd)  { background-color: #fff; }
+    .pricing-table tbody tr:nth-child(even) { background-color: var(--color-cloud); }
+    .pricing-table tbody tr:hover { background-color: #d6edec; }
+    .pricing-table .price-na {
+      color: var(--color-sand);
+      font-family: var(--font-body);
+      font-weight: 400;
+    }
+    .pricing-table .price-contact {
+      color: var(--color-teal);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: var(--text-sm);
+    }
 
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-      align-items: start;
-    }
-    @media (min-width: 768px) {
-      .pricing-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (min-width: 1024px) {
-      .pricing-grid { grid-template-columns: repeat(3, 1fr); }
-    }
+    /* Rental matrix: wider min-width, centred price cells */
+    .pricing-table--matrix { min-width: 520px; }
+    .pricing-table--matrix th:not(:first-child),
+    .pricing-table--matrix td:not(:first-child) { text-align: center; }
 
-    /* Pricing card */
-    .pricing-card {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-      background-color: var(--color-cream);
+    /* Row reveal toggle */
+    .price-row--hidden { display: none; }
+    .price-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      margin-top: var(--space-md);
+      padding: 0;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-teal);
+      cursor: pointer;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .price-toggle:hover { color: var(--color-teal-hover); }
+    .toggle-chevron {
+      display: inline-block;
+      font-style: normal;
+      transition: transform var(--dur-fast) var(--ease-out);
+    }
+    .price-toggle.is-open .toggle-chevron { transform: rotate(180deg); }
+
+    /* CTA banner */
+    .pricing-cta {
+      margin-top: var(--space-2xl);
+      padding: var(--space-xl) var(--space-2xl);
+      background-color: var(--color-cloud);
       border: var(--border-sand);
       border-radius: var(--radius-card);
-      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
     }
-
-    /* Recommended card: navy fill */
-    .pricing-card--recommended {
-      background-color: var(--color-navy);
-      color: var(--color-cream);
-      border-color: var(--color-navy);
+    @media (min-width: 640px) {
+      .pricing-cta {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-xl);
+      }
     }
-    .pricing-card--recommended .heading-card { color: var(--color-cream); }
-    .pricing-card--recommended .label        { color: var(--color-teal); }
-
-    .pricing-badge {
-      display: inline-block;
-      background-color: var(--color-teal);
-      color: var(--color-navy);
-      font-size: var(--text-sm);
-      font-weight: 600;
-      padding: var(--space-2xs) var(--space-sm);
-      border-radius: var(--radius-pill);
-      width: fit-content;
-    }
-
-    .pricing-amount {
+    .pricing-cta__heading {
       font-family: var(--font-display);
-      font-size: var(--text-2xl);
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: -0.025em;
-      line-height: 1;
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-navy);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
     }
-
-    /* Panel visibility for tabs */
-    .pricing-panel { display: none; }
-    #tab-residential:checked ~ .pricing-panels #panel-residential,
-    #tab-commercial:checked  ~ .pricing-panels #panel-commercial,
-    #tab-airbnb:checked      ~ .pricing-panels #panel-airbnb {
-      display: block;
+    .pricing-cta__sub {
+      font-size: var(--text-base);
+      color: var(--color-slate);
+      margin-top: var(--space-xs);
     }
 
     /* ------------------------------------------------------------
@@ -2162,75 +2290,227 @@
 
     <!-- ==========================================================
          PRICING — #pricing
-         Cream background · CSS-only tab switcher + 3-tier cards
          ========================================================== -->
     <section id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
 
-        <div style="margin-bottom: var(--space-2xl);">
-          <span class="skeleton-label">Pricing · Section Head</span>
-          <div class="skeleton-block" style="min-height:80px; margin-top: var(--space-md);">
-            <!-- Heading + flat-rate signal ("Simple, honest pricing") -->
+        <!-- Section header -->
+        <div class="services-header" style="margin-bottom: var(--space-2xl);">
+          <p class="eyebrow">Transparent Pricing</p>
+          <h2 id="pricing-heading">Flat-rate prices. No surprises.</h2>
+          <p class="services-lede">Every quote is firm before we arrive. Price is based on home size — never hourly, never hidden.</p>
+        </div>
+
+        <!-- Hero price callouts -->
+        <div class="price-heroes" aria-label="Starting prices by service type">
+          <div class="price-hero-card">
+            <span class="price-hero-label">Standard Clean</span>
+            <span class="price-hero-amount">From $110</span>
+            <span class="price-hero-note">per visit</span>
+          </div>
+          <div class="price-hero-card">
+            <span class="price-hero-label">Deep Clean</span>
+            <span class="price-hero-amount">From $170</span>
+            <span class="price-hero-note">per visit</span>
+          </div>
+          <div class="price-hero-card">
+            <span class="price-hero-label">Move In / Out</span>
+            <span class="price-hero-amount">From $197</span>
+            <span class="price-hero-note">per visit</span>
+          </div>
+          <div class="price-hero-card">
+            <span class="price-hero-label">Short-Term Rental</span>
+            <span class="price-hero-amount">From $135</span>
+            <span class="price-hero-note">per turnover</span>
           </div>
         </div>
 
-        <!-- CSS-only radio tab pattern — radios in flow, zero-size (gate 53) -->
-        <input type="radio" name="pricing-tab" id="tab-residential" checked
-          style="position:static; width:0; height:0; opacity:0; margin:0; padding:0;">
-        <input type="radio" name="pricing-tab" id="tab-commercial"
-          style="position:static; width:0; height:0; opacity:0; margin:0; padding:0;">
-        <input type="radio" name="pricing-tab" id="tab-airbnb"
-          style="position:static; width:0; height:0; opacity:0; margin:0; padding:0;">
+        <!-- CSS-only tab switcher — radios in normal flow, zero-size (gate 53) -->
+        <input type="radio" name="pricing-tab" id="tab-standard" checked
+          style="position:static;width:0;height:0;opacity:0;margin:0;padding:0;">
+        <input type="radio" name="pricing-tab" id="tab-deep"
+          style="position:static;width:0;height:0;opacity:0;margin:0;padding:0;">
+        <input type="radio" name="pricing-tab" id="tab-moveout"
+          style="position:static;width:0;height:0;opacity:0;margin:0;padding:0;">
+        <input type="radio" name="pricing-tab" id="tab-rental"
+          style="position:static;width:0;height:0;opacity:0;margin:0;padding:0;">
 
-        <div class="pricing-tabs pricing-tabs-ui" role="tablist" aria-label="Pricing by service type">
-          <label class="pricing-tab-label" for="tab-residential" role="tab">Residential</label>
-          <label class="pricing-tab-label" for="tab-commercial"  role="tab">Commercial</label>
-          <label class="pricing-tab-label" for="tab-airbnb"      role="tab">Airbnb</label>
+        <div class="pricing-tabs pricing-tabs-ui" role="tablist" aria-label="Pricing by service">
+          <label class="pricing-tab-label" for="tab-standard" role="tab">Standard Clean</label>
+          <label class="pricing-tab-label" for="tab-deep"     role="tab">Deep Clean</label>
+          <label class="pricing-tab-label" for="tab-moveout"  role="tab">Move In / Out</label>
+          <label class="pricing-tab-label" for="tab-rental"   role="tab">Short-Term Rental</label>
         </div>
 
         <div class="pricing-panels">
-          <!-- Residential panel -->
-          <div class="pricing-panel" id="panel-residential" role="tabpanel" aria-labelledby="tab-residential">
-            <div class="pricing-grid">
 
-              <div class="pricing-card">
-                <span class="skeleton-label">Essential tier</span>
-                <div class="skeleton-block" style="min-height:220px;"><!-- Pricing card content --></div>
-              </div>
-
-              <div class="pricing-card pricing-card--recommended">
-                <div class="pricing-badge">Most Popular</div>
-                <span class="skeleton-label skeleton-label--dark">Standard tier (recommended)</span>
-                <div class="skeleton-block skeleton-block--dark" style="min-height:220px;"><!-- Pricing card content --></div>
-              </div>
-
-              <div class="pricing-card">
-                <span class="skeleton-label">Deep Clean tier</span>
-                <div class="skeleton-block" style="min-height:220px;"><!-- Pricing card content --></div>
-              </div>
-
+          <!-- Standard Clean panel -->
+          <div class="pricing-panel" id="panel-standard" role="tabpanel">
+            <div class="pricing-table-wrap">
+              <table class="pricing-table" id="pricing-standard">
+                <caption class="sr-only">Standard Clean pricing by home size</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Home Size</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1 Bed / 1 Bath</td>         <td>$110</td></tr>
+                  <tr><td>2 Bed / 1 Bath</td>         <td>$130</td></tr>
+                  <tr><td>2 Bed / 2 Bath</td>         <td>$150</td></tr>
+                  <tr><td>3 Bed / 2 Bath</td>         <td>$170</td></tr>
+                  <tr><td>3 Bed / 3 Bath</td>         <td>$195</td></tr>
+                  <tr><td>4 Bed / 2 Bath</td>         <td>$215</td></tr>
+                  <tr class="price-row--hidden"><td>4 Bed / 3 Bath</td>   <td>$240</td></tr>
+                  <tr class="price-row--hidden"><td>5 Bed / 3 Bath</td>   <td>$270</td></tr>
+                  <tr class="price-row--hidden"><td>5 Bed / 4 Bath</td>   <td>$300</td></tr>
+                  <tr class="price-row--hidden"><td>6 Bed / 4+ Bath</td>  <td><span class="price-contact">Contact us</span></td></tr>
+                </tbody>
+              </table>
             </div>
+            <button class="price-toggle" data-table="pricing-standard" aria-expanded="false">
+              <span class="toggle-label">Show all home sizes</span>
+              <span class="toggle-chevron" aria-hidden="true">▾</span>
+            </button>
           </div>
 
-          <!-- Commercial panel -->
-          <div class="pricing-panel" id="panel-commercial" role="tabpanel" aria-labelledby="tab-commercial">
-            <div class="pricing-grid">
-              <div class="pricing-card" style="grid-column: 1 / -1; max-width: 520px;">
-                <span class="skeleton-label">Commercial pricing — skeleton</span>
-                <div class="skeleton-block" style="min-height:140px;"><!-- Quote-based commercial pricing --></div>
-              </div>
+          <!-- Deep Clean panel -->
+          <div class="pricing-panel" id="panel-deep" role="tabpanel">
+            <div class="pricing-table-wrap">
+              <table class="pricing-table" id="pricing-deep">
+                <caption class="sr-only">Deep Clean pricing by home size</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Home Size</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1 Bed / 1 Bath</td>         <td>$170</td></tr>
+                  <tr><td>2 Bed / 1 Bath</td>         <td>$200</td></tr>
+                  <tr><td>2 Bed / 2 Bath</td>         <td>$230</td></tr>
+                  <tr><td>3 Bed / 2 Bath</td>         <td>$260</td></tr>
+                  <tr><td>3 Bed / 3 Bath</td>         <td>$295</td></tr>
+                  <tr><td>4 Bed / 2 Bath</td>         <td>$325</td></tr>
+                  <tr class="price-row--hidden"><td>4 Bed / 3 Bath</td>   <td>$360</td></tr>
+                  <tr class="price-row--hidden"><td>5 Bed / 3 Bath</td>   <td>$400</td></tr>
+                  <tr class="price-row--hidden"><td>5 Bed / 4 Bath</td>   <td>$440</td></tr>
+                  <tr class="price-row--hidden"><td>6 Bed / 4+ Bath</td>  <td><span class="price-contact">Contact us</span></td></tr>
+                </tbody>
+              </table>
             </div>
+            <button class="price-toggle" data-table="pricing-deep" aria-expanded="false">
+              <span class="toggle-label">Show all home sizes</span>
+              <span class="toggle-chevron" aria-hidden="true">▾</span>
+            </button>
           </div>
 
-          <!-- Airbnb panel -->
-          <div class="pricing-panel" id="panel-airbnb" role="tabpanel" aria-labelledby="tab-airbnb">
-            <div class="pricing-grid">
-              <div class="pricing-card" style="grid-column: 1 / -1; max-width: 520px;">
-                <span class="skeleton-label">Airbnb / Short-Term Rental pricing — skeleton</span>
-                <div class="skeleton-block" style="min-height:140px;"><!-- Per-turnover pricing --></div>
-              </div>
+          <!-- Move In / Out panel -->
+          <div class="pricing-panel" id="panel-moveout" role="tabpanel">
+            <div class="pricing-table-wrap">
+              <table class="pricing-table" id="pricing-moveout">
+                <caption class="sr-only">Move In / Out pricing by home size</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Home Size</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1 Bed / 1 Bath</td>         <td>$197</td></tr>
+                  <tr><td>2 Bed / 1 Bath</td>         <td>$235</td></tr>
+                  <tr><td>2 Bed / 2 Bath</td>         <td>$268</td></tr>
+                  <tr><td>3 Bed / 2 Bath</td>         <td>$305</td></tr>
+                  <tr><td>3 Bed / 3 Bath</td>         <td>$345</td></tr>
+                  <tr><td>4 Bed / 2 Bath</td>         <td>$380</td></tr>
+                  <tr class="price-row--hidden"><td>4 Bed / 3 Bath</td>   <td>$420</td></tr>
+                  <tr class="price-row--hidden"><td>5 Bed / 3 Bath</td>   <td>$465</td></tr>
+                  <tr class="price-row--hidden"><td>5 Bed / 4 Bath</td>   <td>$515</td></tr>
+                  <tr class="price-row--hidden"><td>6 Bed / 4+ Bath</td>  <td><span class="price-contact">Contact us</span></td></tr>
+                </tbody>
+              </table>
             </div>
+            <button class="price-toggle" data-table="pricing-moveout" aria-expanded="false">
+              <span class="toggle-label">Show all home sizes</span>
+              <span class="toggle-chevron" aria-hidden="true">▾</span>
+            </button>
           </div>
+
+          <!-- Short-Term Rental panel — beds × sqft matrix -->
+          <div class="pricing-panel" id="panel-rental" role="tabpanel">
+            <div class="pricing-table-wrap">
+              <table class="pricing-table pricing-table--matrix" id="pricing-rental">
+                <caption class="sr-only">Short-Term Rental pricing matrix by bedrooms and square footage</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Bedrooms</th>
+                    <th scope="col">≤ 800 sqft</th>
+                    <th scope="col">801–1,200 sqft</th>
+                    <th scope="col">1,201–1,800 sqft</th>
+                    <th scope="col">1,801–2,500 sqft</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Studio</td>
+                    <td>$135</td>
+                    <td>$155</td>
+                    <td><span class="price-na">—</span></td>
+                    <td><span class="price-na">—</span></td>
+                  </tr>
+                  <tr>
+                    <td>1 Bed</td>
+                    <td>$145</td>
+                    <td>$165</td>
+                    <td>$190</td>
+                    <td><span class="price-na">—</span></td>
+                  </tr>
+                  <tr>
+                    <td>2 Beds</td>
+                    <td>$165</td>
+                    <td>$195</td>
+                    <td>$225</td>
+                    <td>$260</td>
+                  </tr>
+                  <tr>
+                    <td>3 Beds</td>
+                    <td>$195</td>
+                    <td>$225</td>
+                    <td>$260</td>
+                    <td>$300</td>
+                  </tr>
+                  <tr>
+                    <td>4 Beds</td>
+                    <td><span class="price-na">—</span></td>
+                    <td>$260</td>
+                    <td>$300</td>
+                    <td>$345</td>
+                  </tr>
+                  <tr>
+                    <td>5 Beds</td>
+                    <td><span class="price-na">—</span></td>
+                    <td><span class="price-na">—</span></td>
+                    <td>$340</td>
+                    <td>$390</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin-top: var(--space-md); font-size: var(--text-sm); color: var(--color-slate);">
+              6+ beds or 2,500+ sqft: <a href="#quote-form" style="color: var(--color-teal); font-weight: 600;">Contact for custom quote</a>
+            </p>
+          </div>
+
+        </div><!-- /.pricing-panels -->
+
+        <!-- CTA banner -->
+        <div class="pricing-cta">
+          <div class="pricing-cta__copy">
+            <p class="pricing-cta__heading">Not sure which service fits your home?</p>
+            <p class="pricing-cta__sub">We'll help you pick the right service and lock in your price — free, no pressure.</p>
+          </div>
+          <a href="#quote-form" class="btn btn--primary pricing-cta__btn" style="flex-shrink:0;">Get a Free Quote →</a>
         </div>
 
       </div>
@@ -2600,6 +2880,24 @@
         closeMobileMenu();
       }
     });
+
+    // --- Pricing: show/hide extra table rows ---
+    (function () {
+      document.querySelectorAll('.price-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var isOpen   = btn.classList.toggle('is-open');
+          var tableId  = btn.getAttribute('data-table');
+          var table    = document.getElementById(tableId);
+          if (!table) return;
+          table.querySelectorAll('.price-row--hidden').forEach(function (row) {
+            row.style.display = isOpen ? 'table-row' : '';
+          });
+          btn.querySelector('.toggle-label').textContent =
+            isOpen ? 'Show fewer sizes' : 'Show all home sizes';
+          btn.setAttribute('aria-expanded', String(isOpen));
+        });
+      });
+    })();
 
     // --- Checklist tabs ---
     (function () {
